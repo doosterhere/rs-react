@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 interface ISearchProps {
   setSearchTerm: (value: string) => void;
+  handleSearch: () => void;
 }
 
 interface ISearchState {
@@ -23,6 +24,7 @@ class SearchBar extends Component<ISearchProps, ISearchState> {
   handleSearch = () => {
     this.props.setSearchTerm(this.state.searchTerm);
     localStorage.setItem('searchTerm', this.state.searchTerm);
+    this.props.handleSearch();
   };
 
   render() {

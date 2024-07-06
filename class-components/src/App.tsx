@@ -25,10 +25,31 @@ class App extends Component<unknown, IAppState> {
     });
   };
 
+  handleSearch = async () => {
+    try {
+      this.setState({ isLoading: true });
+      const response = await fetch(
+        `https://swapi.dev/api/planets/?search=${this.state.searchTerm}&page=1`,
+      );
+      const data = await response.json();
+      this.setState({ searchResults: data.results });
+    } catch (error) {
+      this.setState({
+        searchResults: [],
+      });
+      console.error('Error while fetching data', error);
+    } finally {
+      this.setState({ isLoading: false });
+    }
+  };
+
   render() {
     return (
       <div>
-        <SearchBar setSearchTerm={this.setSearchTerm} />
+        <SearchBar
+          setSearchTerm={this.setSearchTerm}
+          handleSearch={this.handleSearch}
+        />
         <List
           itemsList={this.state.searchResults}
           isLoading={this.state.isLoading}
