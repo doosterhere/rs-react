@@ -61,6 +61,9 @@ class App extends Component<unknown, IAppState> {
   };
 
   render() {
+    const { isLoading, searchResults, isModalVisible, modalContent } =
+      this.state;
+
     return (
       <ErrorBoundary fallbackComponent={<Fallback />}>
         <div>
@@ -68,17 +71,14 @@ class App extends Component<unknown, IAppState> {
             setSearchTerm={this.setSearchTerm}
             handleSearch={this.handleSearch}
           />
-          {this.state.isLoading && <Loader />}
-          {!this.state.isLoading && (
-            <List
-              itemsList={this.state.searchResults}
-              isLoading={this.state.isLoading}
-            />
+          {isLoading && <Loader />}
+          {!isLoading && (
+            <List itemsList={searchResults} isLoading={isLoading} />
           )}
           <ButtonErrorTest />
           <Modal
-            isVisible={this.state.isModalVisible}
-            content={this.state.modalContent}
+            isVisible={isModalVisible}
+            content={modalContent}
             hideModal={this.hideModal}
           />
         </div>
