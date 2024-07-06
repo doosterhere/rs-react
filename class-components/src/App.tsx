@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './App.css';
+import { SearchBar } from './components';
 
 interface IAppState {
   searchTerm: string;
@@ -17,8 +18,18 @@ class App extends Component<unknown, IAppState> {
     };
   }
 
+  setSearchTerm = (value: string) => {
+    this.setState({
+      searchTerm: value,
+    });
+  };
+
   render() {
-    return <div>App</div>;
+    return (
+      <div>
+        <SearchBar setSearchTerm={this.setSearchTerm} />
+      </div>
+    );
   }
 }
 
