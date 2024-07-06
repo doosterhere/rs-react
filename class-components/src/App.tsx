@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './App.css';
-import { SearchBar } from './components';
+import { SearchBar, List } from './components';
 import { PlanetType } from './types';
 
 interface IAppState {
@@ -29,6 +29,10 @@ class App extends Component<unknown, IAppState> {
     return (
       <div>
         <SearchBar setSearchTerm={this.setSearchTerm} />
+        <List
+          itemsList={this.state.searchResults}
+          isLoading={this.state.isLoading}
+        />
       </div>
     );
   }
