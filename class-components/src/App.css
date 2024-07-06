@@ -53,3 +53,7 @@ input {
   width: 450px;
   border-bottom: 1px solid rgb(230, 237, 245);
 }
+
+.list-item span {
+  font-weight: bold;
+}

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { PlanetType } from '../types';
+import { ListItem } from '../components';
 
 interface IListProps {
   itemsList: PlanetType[];
@@ -12,9 +13,7 @@ class List extends Component<IListProps> {
       <div className="list">
         {!!this.props.itemsList.length &&
           this.props.itemsList.map(item => (
-            <div className="list-item" key={item.name}>
-              {item.name}
-            </div>
+            <ListItem {...item} key={item.name} />
           ))}
         {!this.props.itemsList.length && !this.props.isLoading && (
           <div>No results found</div>
