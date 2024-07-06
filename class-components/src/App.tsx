@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './App.css';
-import { SearchBar, List } from './components';
+import { SearchBar, List, Loader } from './components';
 import { PlanetType } from './types';
 
 interface IAppState {
@@ -50,10 +50,13 @@ class App extends Component<unknown, IAppState> {
           setSearchTerm={this.setSearchTerm}
           handleSearch={this.handleSearch}
         />
-        <List
-          itemsList={this.state.searchResults}
-          isLoading={this.state.isLoading}
-        />
+        {this.state.isLoading && <Loader />}
+        {!this.state.isLoading && (
+          <List
+            itemsList={this.state.searchResults}
+            isLoading={this.state.isLoading}
+          />
+        )}
       </div>
     );
   }
