@@ -1,10 +1,25 @@
-import { Component } from 'react'
-import './App.css'
+import { Component } from 'react';
+import './App.css';
 
-class App extends Component {
+interface IAppState {
+  searchTerm: string;
+  searchResults: [];
+  isLoading: boolean;
+}
+
+class App extends Component<unknown, IAppState> {
+  constructor(props: unknown) {
+    super(props);
+    this.state = {
+      searchTerm: '',
+      searchResults: [],
+      isLoading: false,
+    };
+  }
+
   render() {
-    return <div>App</div>
+    return <div>App</div>;
   }
 }
 
-export default App
+export default App;
