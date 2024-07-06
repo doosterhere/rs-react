@@ -1,4 +1,6 @@
 #root {
+  position: relative;
+
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -14,6 +16,18 @@ button {
   font-size: 16px;
 
   cursor: pointer;
+}
+
+button.button-error {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  border-color: black;
+
+  color: white;
+
+  background-color: palevioletred;
 }
 
 button:active {

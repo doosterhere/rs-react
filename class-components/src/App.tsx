@@ -1,6 +1,12 @@
 import { Component } from 'react';
 import './App.css';
-import { SearchBar, List, Loader, ErrorBoundary } from './components';
+import {
+  SearchBar,
+  List,
+  Loader,
+  ErrorBoundary,
+  ButtonErrorTest,
+} from './components';
 import { PlanetType } from './types';
 
 interface IAppState {
@@ -58,6 +64,7 @@ class App extends Component<unknown, IAppState> {
               isLoading={this.state.isLoading}
             />
           )}
+          <ButtonErrorTest />
         </div>
       </ErrorBoundary>
     );
