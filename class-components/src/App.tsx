@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './App.css';
-import { SearchBar, List, Loader } from './components';
+import { SearchBar, List, Loader, ErrorBoundary } from './components';
 import { PlanetType } from './types';
 
 interface IAppState {
@@ -45,19 +45,21 @@ class App extends Component<unknown, IAppState> {
 
   render() {
     return (
-      <div>
-        <SearchBar
-          setSearchTerm={this.setSearchTerm}
-          handleSearch={this.handleSearch}
-        />
-        {this.state.isLoading && <Loader />}
-        {!this.state.isLoading && (
-          <List
-            itemsList={this.state.searchResults}
-            isLoading={this.state.isLoading}
+      <ErrorBoundary fallbackComponent={<div>Something went wrong!</div>}>
+        <div>
+          <SearchBar
+            setSearchTerm={this.setSearchTerm}
+            handleSearch={this.handleSearch}
           />
-        )}
-      </div>
+          {this.state.isLoading && <Loader />}
+          {!this.state.isLoading && (
+            <List
+              itemsList={this.state.searchResults}
+              isLoading={this.state.isLoading}
+            />
+          )}
+        </div>
+      </ErrorBoundary>
     );
   }
 }
