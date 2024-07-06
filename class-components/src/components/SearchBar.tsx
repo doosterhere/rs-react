@@ -21,8 +21,8 @@ class SearchBar extends Component<ISearchProps, ISearchState> {
     this.setState({ searchTerm: e.target.value.trim() });
   };
 
-  handleSearch = () => {
-    this.props.setSearchTerm(this.state.searchTerm);
+  handleSearch = async () => {
+    await this.props.setSearchTerm(this.state.searchTerm);
     localStorage.setItem('searchTerm', this.state.searchTerm);
     this.props.handleSearch();
   };
