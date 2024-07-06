@@ -6,6 +6,7 @@ import {
   Loader,
   ErrorBoundary,
   ButtonErrorTest,
+  Fallback,
 } from './components';
 import { PlanetType } from './types';
 
@@ -51,7 +52,7 @@ class App extends Component<unknown, IAppState> {
 
   render() {
     return (
-      <ErrorBoundary fallbackComponent={<div>Something went wrong!</div>}>
+      <ErrorBoundary fallbackComponent={<Fallback />}>
         <div>
           <SearchBar
             setSearchTerm={this.setSearchTerm}
