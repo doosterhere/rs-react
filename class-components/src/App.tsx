@@ -1,10 +1,11 @@
 import { Component } from 'react';
 import './App.css';
 import { SearchBar } from './components';
+import { PlanetType } from './types';
 
 interface IAppState {
   searchTerm: string;
-  searchResults: [];
+  searchResults: PlanetType[];
   isLoading: boolean;
 }
 
