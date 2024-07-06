@@ -7,6 +7,7 @@ import {
   ErrorBoundary,
   ButtonErrorTest,
   Fallback,
+  Modal,
 } from './components';
 import { PlanetType } from './types';
 
@@ -14,6 +15,8 @@ interface IAppState {
   searchTerm: string;
   searchResults: PlanetType[];
   isLoading: boolean;
+  isModalVisible: boolean;
+  modalContent: string;
 }
 
 class App extends Component<unknown, IAppState> {
@@ -23,6 +26,8 @@ class App extends Component<unknown, IAppState> {
       searchTerm: '',
       searchResults: [],
       isLoading: false,
+      isModalVisible: false,
+      modalContent: '',
     };
   }
 
@@ -43,11 +48,16 @@ class App extends Component<unknown, IAppState> {
     } catch (error) {
       this.setState({
         searchResults: [],
+        modalContent: 'Error while fetching data. Try later.',
+        isModalVisible: true,
       });
-      console.error('Error while fetching data', error);
     } finally {
       this.setState({ isLoading: false });
     }
+  };
+
+  hideModal = () => {
+    this.setState({ isModalVisible: false });
   };
 
   render() {
@@ -66,6 +76,11 @@ class App extends Component<unknown, IAppState> {
             />
           )}
           <ButtonErrorTest />
+          <Modal
+            isVisible={this.state.isModalVisible}
+            content={this.state.modalContent}
+            hideModal={this.hideModal}
+          />
         </div>
       </ErrorBoundary>
     );

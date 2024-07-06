@@ -5,6 +5,7 @@ import Loader from './Loader.tsx';
 import ErrorBoundary from './ErrorBoundary.tsx';
 import ButtonErrorTest from './ButtonErrorTest.tsx';
 import Fallback from './Fallback.tsx';
+import Modal from './Modal.tsx';
 
 export {
   SearchBar,
@@ -14,4 +15,5 @@ export {
   ErrorBoundary,
   ButtonErrorTest,
   Fallback,
+  Modal,
 };
