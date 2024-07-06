@@ -17,6 +17,10 @@ class SearchBar extends Component<ISearchProps, ISearchState> {
     };
   }
 
+  componentDidMount(): void {
+    this.handleSearch();
+  }
+
   handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchTerm: e.target.value.trim() });
   };
