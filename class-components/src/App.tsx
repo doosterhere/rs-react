@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import './App.css';
 import {
   SearchBar,
@@ -11,80 +11,48 @@ import {
 } from './components';
 import { PlanetType } from './types';
 
-interface IAppState {
-  searchTerm: string;
-  searchResults: PlanetType[];
-  isLoading: boolean;
-  isModalVisible: boolean;
-  modalContent: string;
-}
+const App = () => {
+  const [searchResults, setSearchResults] = useState<PlanetType[] | []>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
-class App extends Component<unknown, IAppState> {
-  constructor(props: unknown) {
-    super(props);
-    this.state = {
-      searchTerm: '',
-      searchResults: [],
-      isLoading: false,
-      isModalVisible: false,
-      modalContent: '',
-    };
-  }
-
-  setSearchTerm = (value: string) => {
-    this.setState({
-      searchTerm: value,
-    });
-  };
-
-  handleSearch = async () => {
+  const startSearch = async (query: string) => {
     try {
-      this.setState({ isLoading: true });
+      setIsLoading(true);
       const response = await fetch(
-        `https://swapi.dev/api/planets/?search=${this.state.searchTerm}&page=1`,
+        `https://swapi.dev/api/planets/?search=${query}&page=1`,
       );
       const data = await response.json();
-      this.setState({ searchResults: data.results });
+      setSearchResults(data.results);
     } catch (error) {
-      this.setState({
-        searchResults: [],
-        modalContent: 'Error while fetching data. Try later.',
-        isModalVisible: true,
-      });
+      setSearchResults([]);
+      setModalContent('Error while fetching data. Try later.');
+      setIsModalVisible(true);
     } finally {
-      this.setState({ isLoading: false });
+      setIsLoading(false);
     }
   };
 
-  hideModal = () => {
-    this.setState({ isModalVisible: false });
+  const hideModal = () => {
+    setIsModalVisible(false);
   };
 
-  render() {
-    const { isLoading, searchResults, isModalVisible, modalContent } =
-      this.state;
-
-    return (
-      <ErrorBoundary fallbackComponent={<Fallback />}>
-        <div>
-          <SearchBar
-            setSearchTerm={this.setSearchTerm}
-            handleSearch={this.handleSearch}
-          />
-          {isLoading && <Loader />}
-          {!isLoading && (
-            <List itemsList={searchResults} isLoading={isLoading} />
-          )}
-          <ButtonErrorTest />
-          <Modal
-            isVisible={isModalVisible}
-            content={modalContent}
-            hideModal={this.hideModal}
-          />
-        </div>
-      </ErrorBoundary>
-    );
-  }
-}
+  return (
+    <ErrorBoundary fallbackComponent={<Fallback />}>
+      <div>
+        <SearchBar startSearch={startSearch} />
+        {isLoading && <Loader />}
+        {!isLoading && <List itemsList={searchResults} isLoading={isLoading} />}
+        <ButtonErrorTest />
+        <Modal
+          isVisible={isModalVisible}
+          content={modalContent}
+          hideModal={hideModal}
+        />
+      </div>
+    </ErrorBoundary>
+  );
+};
 
 export default App;
