@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
+import { useLocalStorage } from '../hooks';
 
 interface ISearchProps {
   startSearch: (query: string) => void;
 }
 
-const getSearchTerm = () => localStorage.getItem('searchQuery') || '';
-
 const SearchBar: FC<ISearchProps> = ({ startSearch }) => {
-  const [searchQuery, setSearchQuery] = useState(() => getSearchTerm());
+  const { value: searchQuery, setValue: setSearchQuery } =
+    useLocalStorage('searchQuery');
 
   useEffect(() => {
     handleSearch();
@@ -17,8 +17,7 @@ const SearchBar: FC<ISearchProps> = ({ startSearch }) => {
     setSearchQuery(e.target.value.trim());
   };
 
-  const handleSearch = async () => {
-    localStorage.setItem('searchQuery', searchQuery);
+  const handleSearch = () => {
     startSearch(searchQuery);
   };
 
