@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { FC } from 'react';
 
 interface IModalProps {
   isVisible: boolean;
@@ -6,20 +6,16 @@ interface IModalProps {
   content: string;
 }
 
-class Modal extends Component<IModalProps> {
-  render() {
-    return (
-      <div
-        className="modal-overlay"
-        style={{ display: this.props.isVisible ? 'block' : 'none' }}
-      >
-        <div className="modal">
-          <p>{this.props.content}</p>
-          <button onClick={this.props.hideModal}>Close</button>
-        </div>
-      </div>
-    );
-  }
-}
+const Modal: FC<IModalProps> = ({ isVisible, hideModal, content }) => (
+  <div
+    className="modal-overlay"
+    style={{ display: isVisible ? 'block' : 'none' }}
+  >
+    <div className="modal">
+      <p>{content}</p>
+      <button onClick={hideModal}>Close</button>
+    </div>
+  </div>
+);
 
 export default Modal;
