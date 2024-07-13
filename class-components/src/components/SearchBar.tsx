@@ -1,51 +1,40 @@
-import { Component } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 interface ISearchProps {
-  setSearchTerm: (value: string) => void;
-  handleSearch: () => void;
+  startSearch: (query: string) => void;
 }
 
-interface ISearchState {
-  searchTerm: string;
-}
+const getSearchTerm = () => localStorage.getItem('searchQuery') || '';
 
-class SearchBar extends Component<ISearchProps, ISearchState> {
-  constructor(props: ISearchProps) {
-    super(props);
-    this.state = {
-      searchTerm: localStorage.getItem('searchTerm') || '',
-    };
-  }
+const SearchBar: FC<ISearchProps> = ({ startSearch }) => {
+  const [searchQuery, setSearchQuery] = useState(() => getSearchTerm());
 
-  componentDidMount(): void {
-    this.handleSearch();
-  }
+  useEffect(() => {
+    handleSearch();
+  }, []);
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchTerm: e.target.value.trim() });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value.trim());
   };
 
-  handleSearch = async () => {
-    await this.props.setSearchTerm(this.state.searchTerm);
-    localStorage.setItem('searchTerm', this.state.searchTerm);
-    this.props.handleSearch();
+  const handleSearch = async () => {
+    localStorage.setItem('searchQuery', searchQuery);
+    startSearch(searchQuery);
   };
 
-  render() {
-    return (
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search for a StarWars planet..."
-          value={this.state.searchTerm}
-          onChange={this.handleInputChange}
-        />
-        <button type="button" onClick={this.handleSearch}>
-          Search
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="search-bar">
+      <input
+        type="text"
+        placeholder="Search for a StarWars planet..."
+        value={searchQuery}
+        onChange={handleInputChange}
+      />
+      <button type="button" onClick={handleSearch}>
+        Search
+      </button>
+    </div>
+  );
+};
 
 export default SearchBar;
