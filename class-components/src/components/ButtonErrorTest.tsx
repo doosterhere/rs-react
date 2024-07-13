@@ -1,33 +1,23 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
-interface IButtonErrorTestState {
-  hasError: boolean;
-}
+const ButtonErrorTest = () => {
+  const [hasError, setHasError] = useState(false);
 
-class ButtonErrorTest extends Component<unknown, IButtonErrorTestState> {
-  state = {
-    hasError: false,
+  const handleThrowError = () => {
+    setHasError(true);
   };
 
-  handleThrowError = () => {
-    this.setState({ hasError: true });
-  };
+  if (hasError) {
+    throw new Error('Throwing the error while rendering');
+  }
 
-  render() {
-    if (this.state.hasError) {
-      throw new Error('Throwing the error while rendering');
-    }
-
-    return (
-      <button
-        type="button"
-        className="button-error"
-        onClick={this.handleThrowError}
-      >
+  return (
+    <>
+      <button type="button" className="button-error" onClick={handleThrowError}>
         Throw an error
       </button>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default ButtonErrorTest;
