@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import {
-  SearchBar,
   List,
   Loader,
   ErrorBoundary,
@@ -57,7 +56,6 @@ const MainPage = () => {
   return (
     <ErrorBoundary fallbackComponent={<Fallback />}>
       <div className="container">
-        <SearchBar />
         {isLoading && <Loader />}
         {!isLoading && (
           <List itemsList={searchResults.results} isLoading={isLoading} />
