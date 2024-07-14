@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 
 const useLocalStorage = (key: string, defaultValue = '') => {
   const [value, setValue] = useState(defaultValue);
+  const [restored, setRestored] = useState(false);
 
   useEffect(() => {
     const storedQuery = localStorage.getItem(key);
     if (storedQuery) {
       setValue(storedQuery);
+      setRestored(true);
     }
   }, [key]);
 
@@ -18,7 +20,7 @@ const useLocalStorage = (key: string, defaultValue = '') => {
     };
   }, [key, value]);
 
-  return { value, setValue };
+  return { value, setValue, restored };
 };
 
 export default useLocalStorage;
