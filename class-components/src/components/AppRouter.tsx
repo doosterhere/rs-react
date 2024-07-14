@@ -1,21 +1,21 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './Layout';
-import { MainPage, Page404 } from '../pages';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { HomePage, Page404 } from '../pages';
 import ListItemDetailed from './ListItemDetailed';
 
-const AppRouter = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="" element={<MainPage />}>
-            <Route path=":name" element={<ListItemDetailed />} />
-          </Route>
-        </Route>
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />,
+    errorElement: <Page404 />,
+    children: [
+      {
+        path: 'detail/:id',
+        element: <ListItemDetailed />,
+      },
+    ],
+  },
+]);
+
+const AppRouter = () => <RouterProvider router={router} />;
 
 export default AppRouter;
