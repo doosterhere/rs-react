@@ -4,7 +4,7 @@ const Fallback = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Something went wrong!</h1>
       <button onClick={reloadPage}>Return to main page</button>
     </div>
