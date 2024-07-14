@@ -1,43 +1,41 @@
-import { FC } from 'react';
+import { FC, useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 interface IPaginationProps {
-  pageCount: number;
+  itemsCount: number;
 }
 
-const Pagination: FC<IPaginationProps> = ({ pageCount }) => {
-  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
+const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
+  const pagesCount = Math.ceil(itemsCount / 10);
+  const pages = useMemo(() => Array.from({ length: pagesCount }, (_, index) => index + 1), [itemsCount]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const activePage = searchParams.get('page');
+  const [activePage, setActivePage] = useState('1');
+
+  useEffect(() => {
+    const page = searchParams.get('page');
+
+    if (page) {
+      setActivePage(page);
+    }
+  }, [searchParams]);
 
   const handlePageClick = (page: number) => {
-    setSearchParams({
-      search: searchParams.get('search') || '',
-      page: page.toString(),
-    });
+    const search = searchParams.get('search') || '';
+    setActivePage(page.toString());
+    setSearchParams({ search, page: page.toString() });
   };
 
   return (
     <div className="pagination">
-      <div className="pagination-arrow">
-        <span>&#10094;</span>
-      </div>
       {pages.map(page => (
         <div
-          className={
-            page === Number(activePage)
-              ? 'pagination-page active'
-              : 'pagination-page'
-          }
+          className={`pagination-page ${page === Number(activePage) ? 'active' : ''}`}
           key={page}
           onClick={() => handlePageClick(page)}
         >
           {page}
         </div>
       ))}
-      <div className="pagination-arrow">
-        <span>&#10095;</span>
-      </div>
     </div>
   );
 };
