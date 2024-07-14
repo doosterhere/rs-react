@@ -1,17 +1,21 @@
-import { FC, Dispatch, SetStateAction } from 'react';
+import { FC } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 interface IPaginationProps {
   pageCount: number;
-  setPage: Dispatch<SetStateAction<string>>;
-  activePage: string;
 }
 
-const Pagination: FC<IPaginationProps> = ({
-  pageCount,
-  setPage,
-  activePage,
-}) => {
+const Pagination: FC<IPaginationProps> = ({ pageCount }) => {
   const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activePage = searchParams.get('page');
+
+  const handlePageClick = (page: number) => {
+    setSearchParams({
+      search: searchParams.get('search') || '',
+      page: page.toString(),
+    });
+  };
 
   return (
     <div className="pagination">
@@ -26,7 +30,7 @@ const Pagination: FC<IPaginationProps> = ({
               : 'pagination-page'
           }
           key={page}
-          onClick={() => setPage(page.toString())}
+          onClick={() => handlePageClick(page)}
         >
           {page}
         </div>

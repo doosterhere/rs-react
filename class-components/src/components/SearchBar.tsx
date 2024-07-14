@@ -1,17 +1,14 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocalStorage } from '../hooks';
+import { useSearchParams } from 'react-router-dom';
 
-interface ISearchProps {
-  startSearch: (query: string, page: string) => void;
-  page: string;
-}
-
-const SearchBar: FC<ISearchProps> = ({ startSearch, page }) => {
+const SearchBar = () => {
   const {
     value: searchQuery,
     setValue: setSearchQuery,
     restored,
   } = useLocalStorage('searchQuery');
+  const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (restored || !searchQuery) handleSearch();
@@ -22,7 +19,10 @@ const SearchBar: FC<ISearchProps> = ({ startSearch, page }) => {
   };
 
   const handleSearch = () => {
-    startSearch(searchQuery, page);
+    setSearchParams({
+      search: searchQuery,
+      page: '1',
+    });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

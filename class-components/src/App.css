@@ -36,6 +36,17 @@ footer {
   background-color: rgb(82, 82, 82);
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+header img {
+  width: 80px;
+}
+
 button {
   padding: 10px;
   border: 1px solid black;
@@ -90,7 +101,6 @@ input {
 }
 
 .list-item {
-  padding: 10px 0;
   width: 450px;
 
   cursor: pointer;
@@ -98,10 +108,6 @@ input {
 
 .list-item:not(:last-child) {
   border-bottom: 1px solid rgb(230, 237, 245);
-}
-
-.list-item span {
-  font-weight: bold;
 }
 
 .loader-overlay {

@@ -2,23 +2,23 @@ import { FC } from 'react';
 
 interface IListItemProps {
   name: string;
-  diameter: string;
-  terrain: string;
-  population: string;
+  // diameter: string;
+  // terrain: string;
+  // population: string;
 }
 
 const ListItem: FC<IListItemProps> = ({
   name,
-  diameter,
-  terrain,
-  population,
+  // diameter,
+  // terrain,
+  // population,
 }) => {
   return (
     <div className="list-item">
       <div>
-        <span>Planet name:</span> {name}
+        <h3>{name}</h3>
       </div>
-      <div>
+      {/* <div>
         <span>Diameter:</span> {diameter}
       </div>
       <div>
@@ -26,7 +26,7 @@ const ListItem: FC<IListItemProps> = ({
       </div>
       <div>
         <span>Population:</span> {population}
-      </div>
+      </div> */}
     </div>
   );
 };

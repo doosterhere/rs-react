@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import {
   SearchBar,
   List,
@@ -20,17 +20,21 @@ const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState('');
-  const [page, setPage] = useState('1');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    startSearch(searchQuery);
-  }, [page]);
+    setSearchParams({ search: searchParams.get('search') || '', page: '1' });
+  }, []);
 
-  const startSearch = async (query: string) => {
+  useEffect(() => {
+    const query = searchParams.get('search') || '';
+    const page = searchParams.get('page') || '1';
+    startSearch(query, page);
+  }, [searchParams]);
+
+  const startSearch = async (query: string, page: string) => {
     try {
       setIsLoading(true);
-      setSearchQuery(query);
       const response = await fetch(
         `https://swapi.dev/api/planets/?search=${query}&page=${page}`,
       );
@@ -53,18 +57,12 @@ const MainPage = () => {
   return (
     <ErrorBoundary fallbackComponent={<Fallback />}>
       <div className="container">
-        <SearchBar startSearch={startSearch} page={page} />
+        <SearchBar />
         {isLoading && <Loader />}
         {!isLoading && (
           <List itemsList={searchResults.results} isLoading={isLoading} />
         )}
-        {!isLoading && pageCount > 1 && (
-          <Pagination
-            pageCount={pageCount}
-            setPage={setPage}
-            activePage={page}
-          />
-        )}
+        {!isLoading && pageCount > 1 && <Pagination pageCount={pageCount} />}
         <ButtonErrorTest />
         <Outlet />
         <Modal
