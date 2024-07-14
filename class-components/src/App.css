@@ -74,11 +74,10 @@ input {
 .search-bar {
   position: relative;
 
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: center;
   gap: 10px;
-  border-bottom: 1px solid lightgray;
 }
 
 .list {
@@ -148,6 +147,35 @@ input {
   background-color: white;
 
   transform: translate(-50%, -50%);
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 20px;
+}
+
+.pagination-page,
+.pagination-arrow {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+
+  cursor: pointer;
+}
+
+.pagination-arrow {
+  border: none;
+}
+
+.pagination-page.active {
+  color: white;
+
+  background-color: gray;
 }
 
 @keyframes spinner {

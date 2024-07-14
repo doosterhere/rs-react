@@ -8,6 +8,8 @@ import Fallback from './Fallback.tsx';
 import Modal from './Modal.tsx';
 import AppRouter from './AppRouter.tsx';
 import Layout from './Layout.tsx';
+import ListItemDetailed from './ListItemDetailed.tsx';
+import Pagination from './Pagination.tsx';
 
 export {
   SearchBar,
@@ -20,4 +22,6 @@ export {
   Modal,
   AppRouter,
   Layout,
+  ListItemDetailed,
+  Pagination,
 };
