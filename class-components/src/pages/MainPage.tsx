@@ -62,7 +62,7 @@ const MainPage = () => {
           <Pagination
             pageCount={pageCount}
             setPage={setPage}
-            activePage={Number(page)}
+            activePage={page}
           />
         )}
         <ButtonErrorTest />
