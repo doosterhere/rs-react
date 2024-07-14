@@ -1,7 +1,6 @@
 import { Component, ReactNode } from 'react';
 
 interface IErrorBoundaryProps {
-  fallbackComponent: ReactNode;
   children: ReactNode;
 }
 
@@ -16,18 +15,22 @@ class ErrorBoundary extends Component<IErrorBoundaryProps> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error(
-      `Error in error boundary: ${error}`,
-      `Component stack: ${errorInfo.componentStack}`,
-    );
+    console.error(`Error in error boundary: ${error}`, `Component stack: ${errorInfo.componentStack}`);
+  }
+
+  reloadPage() {
+    history.go(0);
   }
 
   render() {
-    if (this.state.hasError) {
-      return this.props.fallbackComponent;
-    }
-
-    return this.props.children;
+    return this.state.hasError ? (
+      <div className="container">
+        <h1>Something went wrong!</h1>
+        <button onClick={this.reloadPage}>Return to main page</button>
+      </div>
+    ) : (
+      this.props.children
+    );
   }
 }
 
