@@ -25,7 +25,7 @@ const SearchBar: FC<ISearchProps> = ({ startSearch }) => {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search for a StarWars planet..."
+        placeholder="Search for a Star Wars planet..."
         value={searchQuery}
         onChange={handleInputChange}
       />

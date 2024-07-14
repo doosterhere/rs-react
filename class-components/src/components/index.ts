@@ -6,6 +6,8 @@ import ErrorBoundary from './ErrorBoundary.tsx';
 import ButtonErrorTest from './ButtonErrorTest.tsx';
 import Fallback from './Fallback.tsx';
 import Modal from './Modal.tsx';
+import AppRouter from './AppRouter.tsx';
+import Layout from './Layout.tsx';
 
 export {
   SearchBar,
@@ -16,4 +18,6 @@ export {
   ButtonErrorTest,
   Fallback,
   Modal,
+  AppRouter,
+  Layout,
 };
