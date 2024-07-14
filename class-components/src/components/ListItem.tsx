@@ -1,33 +1,22 @@
 import { FC } from 'react';
+import { useParams, useSearchParams, NavLink } from 'react-router-dom';
 
 interface IListItemProps {
   name: string;
-  // diameter: string;
-  // terrain: string;
-  // population: string;
+  id: string | undefined;
 }
 
-const ListItem: FC<IListItemProps> = ({
-  name,
-  // diameter,
-  // terrain,
-  // population,
-}) => {
+const ListItem: FC<IListItemProps> = ({ name, id }) => {
+  const params = useParams();
+  const [searchParams] = useSearchParams();
+
   return (
-    <div className="list-item">
-      <div>
-        <h3>{name}</h3>
-      </div>
-      {/* <div>
-        <span>Diameter:</span> {diameter}
-      </div>
-      <div>
-        <span>Terrain:</span> {terrain}
-      </div>
-      <div>
-        <span>Population:</span> {population}
-      </div> */}
-    </div>
+    <NavLink
+      to={params.id === id ? `/?${searchParams.toString()}` : `/detail/${id}?${searchParams.toString()}`}
+      className="list-item"
+    >
+      {name}
+    </NavLink>
   );
 };
 
