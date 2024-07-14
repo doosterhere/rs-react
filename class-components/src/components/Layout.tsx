@@ -6,7 +6,13 @@ const Layout = () => {
   return (
     <>
       <ErrorBoundary fallbackComponent={<Fallback />}>
-        <header>Star Wars planet finder app</header>
+        <header>
+          <img
+            src="../../public/images/star-wars-logo.png"
+            alt="Star Wars logo"
+          />
+          Star Wars planet finder app
+        </header>
         <Outlet />
         <footer>2024</footer>
       </ErrorBoundary>
