@@ -25,7 +25,7 @@ class ErrorBoundary extends Component<IErrorBoundaryProps> {
   render() {
     return this.state.hasError ? (
       <div className="container">
-        <h1>Something went wrong!</h1>
+        <h1 data-testid="error-boundary">Something went wrong!</h1>
         <button onClick={this.reloadPage}>Return to main page</button>
       </div>
     ) : (
