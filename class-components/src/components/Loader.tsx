@@ -1,5 +1,5 @@
 const Loader = () => (
-  <div className="loader-overlay">
+  <div className="loader-overlay" role="progressbar">
     <div className="loader"></div>
   </div>
 );
