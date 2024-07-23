@@ -32,6 +32,7 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
           className={`pagination-page ${page === Number(activePage) ? 'active' : ''}`}
           key={page}
           onClick={() => handlePageClick(page)}
+          role="button"
         >
           {page}
         </div>
