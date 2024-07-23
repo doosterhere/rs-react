@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+
 import Loader from './Loader';
 import { PlanetType } from '../types';
+import { getDetailedData } from '../api';
 
 const ListItemDetailed = () => {
   const { id } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
   const [detailedData, setDetailedData] = useState<PlanetType>({} as PlanetType);
 
-  const getData = async () => {
-    setIsLoaded(true);
-    const response = await fetch(`https://swapi.dev/api/planets/${id}`);
-    const data = await response.json();
-    setDetailedData(data);
-    setIsLoaded(false);
-  };
-
   useEffect(() => {
-    getData();
+    if (id) {
+      setIsLoaded(true);
+      getDetailedData(id).then(response => {
+        setDetailedData(response ?? ({} as PlanetType));
+        setIsLoaded(false);
+      });
+    }
   }, [id]);
 
   return (
