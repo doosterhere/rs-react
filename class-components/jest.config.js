@@ -1,7 +1,7 @@
 /** @type {import('jest').Config} */
 const config = {
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/main.tsx'],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/main.tsx', '!src/**/*.(d|type).ts', '!src/**/index.ts'],
   coverageDirectory: 'coverage',
   coverageThreshold: {
     global: {
