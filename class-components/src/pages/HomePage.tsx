@@ -12,7 +12,7 @@ const HomePage = () => {
 
   useEffect(() => {
     setSearchParams({ search: searchParams.get('search') || '' });
-  }, [searchParams, setSearchParams]);
+  }, []);
 
   return (
     <>
