@@ -12,7 +12,7 @@ const HomePage = () => {
 
   useEffect(() => {
     setSearchParams({ search: searchParams.get('search') || '' });
-  }, []);
+  }, [searchParams, setSearchParams]);
 
   return (
     <>
@@ -20,7 +20,8 @@ const HomePage = () => {
       <div className="container">
         <div className="container-left">
           <SearchBar setData={setData} />
-          <List itemsList={data.results} />
+          {data.results.length > 0 && <List itemsList={data.results} />}
+          {data.results.length === 0 && <div>No results</div>}
           {data.count > 10 && <Pagination itemsCount={data.count} />}
         </div>
         <div className="container-right">
