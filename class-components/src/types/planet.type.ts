@@ -8,11 +8,11 @@ type PlanetType = {
   terrain: string;
   surface_water: string;
   population: string;
-  residents: string[];
-  films: string[];
-  created: string;
-  edited: string;
-  url: string;
+  residents?: string[];
+  films?: string[];
+  created?: string;
+  edited?: string;
+  url?: string;
 };
 
 export default PlanetType;
