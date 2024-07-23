@@ -1,8 +1,10 @@
-import { FC, useState, useEffect, useRef, FormEvent } from 'react';
-import { useLocalStorage } from '../hooks';
+import { FC, useState, useEffect, useRef, FormEvent, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+import { useLocalStorage } from '../hooks';
 import { DefaultResponseType, PlanetType } from '../types';
 import Loader from './Loader';
+import { getData } from '../api';
 
 const LS_KEY = 'searchQuery';
 
@@ -16,13 +18,34 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
   const { value: searchQuery, setValue: setSearchQuery, restored } = useLocalStorage(LS_KEY);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const fetchData = useCallback(
+    async (query: string, page: string) => {
+      try {
+        setIsLoading(true);
+        const result = await getData(query, page);
+        setData(result ?? { count: 0, results: [] });
+      } catch (error) {
+        setData({ count: 0, results: [] });
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [setData],
+  );
+
   useEffect(() => {
     if (restored || !searchQuery) {
-      if (inputRef.current) inputRef.current.value = searchQuery || '';
-      if (searchQuery) searchParams.set('search', searchQuery);
+      if (inputRef.current) {
+        inputRef.current.value = searchQuery || '';
+      }
+
+      if (searchQuery) {
+        searchParams.set('search', searchQuery);
+      }
+
       fetchData(searchQuery, searchParams.get('page') || '1');
     }
-  }, [restored]);
+  }, [restored, fetchData, searchQuery, searchParams]);
 
   useEffect(() => {
     if (!searchParams.get('page')) {
@@ -34,20 +57,7 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
     if (searchQuery !== null) {
       fetchData(searchQuery, searchParams.get('page') || '1');
     }
-  }, [searchQuery, searchParams]);
-
-  const fetchData = async (query: string, page: string) => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`https://swapi.dev/api/planets/?search=${query}&page=${page}`);
-      const results = await response.json();
-      setData(results);
-    } catch (error) {
-      setData({ count: 0, results: [] });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [searchQuery, searchParams, fetchData]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
