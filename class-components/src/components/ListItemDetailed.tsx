@@ -12,13 +12,11 @@ const ListItemDetailed = () => {
   const [detailedData, setDetailedData] = useState<PlanetType>({} as PlanetType);
 
   useEffect(() => {
-    if (id) {
-      setIsLoaded(true);
-      getDetailedData(id).then(response => {
-        setDetailedData(response ?? ({} as PlanetType));
-        setIsLoaded(false);
-      });
-    }
+    setIsLoaded(true);
+    getDetailedData(id!).then(response => {
+      setDetailedData(response ?? ({} as PlanetType));
+      setIsLoaded(false);
+    });
   }, [id]);
 
   return (
