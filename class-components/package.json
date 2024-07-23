@@ -10,8 +10,8 @@
     "preview": "vite preview",
     "format:fix": "prettier --write .",
     "prepare": "cd .. && npx husky class-components/.husky",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "jest --coverage=false",
+    "test:coverage": "jest"
   },
   "dependencies": {
     "react": "^18.3.1",
