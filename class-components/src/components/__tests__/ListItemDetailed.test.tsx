@@ -17,10 +17,11 @@ const details = {
 };
 
 const apiSpy = jest.spyOn(apiMock, 'getDetailedData');
-apiSpy.mockResolvedValue(details);
 
 describe('ListItemDetailed', () => {
   it('should renders correct data', async () => {
+    apiSpy.mockResolvedValueOnce(details);
+
     renderWithRouter(<ListItemDetailed />);
 
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
@@ -34,5 +35,17 @@ describe('ListItemDetailed', () => {
     expect(screen.getByText(/test-terrain/i)).toBeInTheDocument();
     expect(screen.getByText(/600/i)).toBeInTheDocument();
     expect(screen.getByText(/500/i)).toBeInTheDocument();
+  });
+
+  it('should render correctly with do data received', async () => {
+    apiSpy.mockResolvedValueOnce(undefined);
+
+    renderWithRouter(<ListItemDetailed />);
+
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
+
+    expect(screen.queryByText(/test-planet/i)).not.toBeInTheDocument();
   });
 });
