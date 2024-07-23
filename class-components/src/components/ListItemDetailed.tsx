@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 
 import Loader from './Loader';
 import { PlanetType } from '../types';
@@ -7,7 +7,8 @@ import { getDetailedData } from '../api';
 
 const ListItemDetailed = () => {
   const { id } = useParams();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [searchParams] = useSearchParams();
+  const [isLoaded, setIsLoaded] = useState(true);
   const [detailedData, setDetailedData] = useState<PlanetType>({} as PlanetType);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const ListItemDetailed = () => {
           <div>Climate: {detailedData?.climate}</div>
           <div>Terrain: {detailedData?.terrain}</div>
           <div>Surfase water: {detailedData?.surface_water}</div>
-          <Link to={'/'}>Close</Link>
+          <Link to={`/?${searchParams.toString()}`}>Close</Link>
         </div>
       )}
     </div>
