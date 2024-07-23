@@ -12,7 +12,7 @@ type PlanetType = {
   films?: string[];
   created?: string;
   edited?: string;
-  url?: string;
+  url: string;
 };
 
 export default PlanetType;
