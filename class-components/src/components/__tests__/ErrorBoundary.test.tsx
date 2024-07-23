@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 
 import ErrorBoundary from '../ErrorBoundary';
 
@@ -15,5 +15,27 @@ describe('ErrorBoundary', () => {
     );
 
     expect(screen.getByTestId('error-boundary')).toBeVisible();
+  });
+
+  it('should reload the page when the button is clicked', () => {
+    const reloadSpy = jest.spyOn(window.history, 'go').mockImplementationOnce(() => ({
+      go: () => jest.fn(),
+    }));
+
+    const ThrowError = () => {
+      throw new Error('Test error boundary');
+    };
+
+    render(
+      <ErrorBoundary>
+        <ThrowError />
+      </ErrorBoundary>,
+    );
+
+    const button = screen.getByRole('button');
+
+    fireEvent.click(button);
+
+    expect(reloadSpy).toHaveBeenCalledTimes(1);
   });
 });
