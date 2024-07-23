@@ -8,7 +8,7 @@ interface IListProps {
 
 const List: FC<IListProps> = ({ itemsList }) => {
   return (
-    <div className="list">
+    <div className="list" data-testid="list">
       {!!itemsList.length &&
         itemsList.map(item => {
           const id = item.url.match(/(\d+)/g)?.[0];
