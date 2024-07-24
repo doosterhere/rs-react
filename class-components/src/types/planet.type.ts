@@ -15,4 +15,4 @@ type PlanetType = {
   url: string;
 };
 
-export default PlanetType;
+export type { PlanetType };

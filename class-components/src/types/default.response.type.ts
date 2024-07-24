@@ -3,4 +3,4 @@ type DefaultResponseType<T> = {
   results: T[];
 };
 
-export default DefaultResponseType;
+export type { DefaultResponseType };
