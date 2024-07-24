@@ -1,22 +1,12 @@
 import { DefaultResponseType, PlanetType } from '../../types';
 
 import { getData, getDetailedData } from '../getData';
+import { mockData, mockDetailedData } from '../mockData';
 
-const mockDetailedData: PlanetType = {
-  name: 'test-planet',
-  diameter: '100',
-  climate: 'test-climate',
-  gravity: '200',
-  terrain: 'test-terrain',
-  surface_water: '300',
-  population: '400',
-  url: 'https://swapi.dev/api/planets/1/',
-};
-
-const mockData: DefaultResponseType<PlanetType> = {
-  count: 1,
-  results: [mockDetailedData],
-};
+// const mockData: DefaultResponseType<PlanetType> = {
+//   count: 1,
+//   results: [mockDetailedData],
+// };
 
 let data: PlanetType | DefaultResponseType<PlanetType> | void;
 let ok: boolean;
