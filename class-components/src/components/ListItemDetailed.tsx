@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 
-import Loader from './Loader';
+import { Loader } from '../components';
 import { PlanetType } from '../types';
 import { getDetailedData } from '../api';
 
@@ -39,4 +39,4 @@ const ListItemDetailed = () => {
   );
 };
 
-export default ListItemDetailed;
+export { ListItemDetailed };

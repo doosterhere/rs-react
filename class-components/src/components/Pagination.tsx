@@ -41,4 +41,4 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   );
 };
 
-export default Pagination;
+export { Pagination };

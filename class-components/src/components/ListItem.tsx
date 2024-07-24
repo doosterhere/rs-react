@@ -20,4 +20,4 @@ const ListItem: FC<IListItemProps> = ({ name, id }) => {
   );
 };
 
-export default ListItem;
+export { ListItem };

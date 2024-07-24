@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useLocalStorage } from '../hooks';
 import { DefaultResponseType, PlanetType } from '../types';
-import Loader from './Loader';
+import { Loader } from '../components';
 import { getData } from '../api';
 
 const LS_KEY = 'searchQuery';
@@ -85,4 +85,4 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
   );
 };
 
-export default SearchBar;
+export { SearchBar };

@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 
 import { renderWithRouter } from '../../utils';
-
 import { HomePage, Page404 } from '../../pages';
 import { ListItemDetailed } from '../../components';
 

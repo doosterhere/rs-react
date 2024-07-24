@@ -2,8 +2,7 @@ import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/rea
 import userEvent from '@testing-library/user-event';
 
 import { renderWithRouter } from '../../utils';
-
-import SearchBar from '../SearchBar';
+import { SearchBar } from '../SearchBar';
 import { mockData } from '../../api';
 
 const mockGetData = jest.mock('../../api/getData.ts', () => ({

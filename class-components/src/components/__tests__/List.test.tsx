@@ -1,8 +1,7 @@
 import { screen } from '@testing-library/react';
 
 import { renderWithRouter } from '../../utils';
-
-import List from '../List';
+import { List } from '../List';
 
 const itemList = [
   {

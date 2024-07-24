@@ -19,4 +19,4 @@ const List: FC<IListProps> = ({ itemsList }) => {
   );
 };
 
-export default List;
+export { List };
