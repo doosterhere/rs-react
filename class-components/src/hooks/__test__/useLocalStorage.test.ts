@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 
-import useLocalStorage from '../useLocalStorage';
+import { useLocalStorage } from '../useLocalStorage';
 
 describe('useLocalStorage', () => {
   it('should return an object with correct properties', () => {
