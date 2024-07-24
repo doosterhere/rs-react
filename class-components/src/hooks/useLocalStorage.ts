@@ -6,6 +6,7 @@ const useLocalStorage = (key: string, defaultValue = '') => {
 
   useEffect(() => {
     const storedQuery = localStorage.getItem(key);
+
     if (storedQuery) {
       setValue(storedQuery);
       setRestored(true);
