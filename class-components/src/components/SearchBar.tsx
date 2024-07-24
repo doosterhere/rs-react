@@ -39,13 +39,13 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
         inputRef.current.value = searchQuery || '';
       }
 
-      if (searchQuery) {
-        searchParams.set('search', searchQuery);
+      if (searchParams.get('search') !== searchQuery) {
+        setSearchParams({ search: searchQuery });
       }
 
       fetchData(searchQuery, searchParams.get('page') || '1');
     }
-  }, [restored, fetchData, searchQuery, searchParams]);
+  }, [restored, fetchData, searchQuery, searchParams, setSearchParams]);
 
   useEffect(() => {
     if (!searchParams.get('page')) {
@@ -70,7 +70,7 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
 
   return (
     <div className="search-bar">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} role="form">
         <input
           type="search"
           autoComplete="off"
