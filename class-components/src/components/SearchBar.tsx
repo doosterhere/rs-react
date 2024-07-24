@@ -43,15 +43,13 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
         setSearchParams({ search: searchQuery });
       }
 
+      if (!searchParams.get('page')) {
+        setSearchParams(prev => `${prev}&page=1`);
+      }
+
       fetchData(searchQuery, searchParams.get('page') || '1');
     }
   }, [restored, fetchData, searchQuery, searchParams, setSearchParams]);
-
-  useEffect(() => {
-    if (!searchParams.get('page')) {
-      setSearchParams(prev => `${prev}&page=1`);
-    }
-  }, [searchParams, setSearchParams]);
 
   useEffect(() => {
     if (searchQuery !== null) {
