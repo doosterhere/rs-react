@@ -1,12 +1,6 @@
 import { DefaultResponseType, PlanetType } from '../../types';
 
-import { getData, getDetailedData } from '../getData';
-import { mockData, mockDetailedData } from '../mockData';
-
-// const mockData: DefaultResponseType<PlanetType> = {
-//   count: 1,
-//   results: [mockDetailedData],
-// };
+import { getData, getDetailedData, mockData, mockDetailedData } from '../../api';
 
 let data: PlanetType | DefaultResponseType<PlanetType> | void;
 let ok: boolean;

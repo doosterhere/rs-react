@@ -1,4 +1,4 @@
-import { DefaultResponseType, PlanetType } from '../../types';
+import { DefaultResponseType, PlanetType } from '../types';
 
 const mockDetailedData: PlanetType = {
   name: 'test-planet',
