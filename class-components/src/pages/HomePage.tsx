@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
+
 import { Header, List, Pagination, SearchBar } from '../components';
 import { DefaultResponseType, PlanetType } from '../types';
 
@@ -32,4 +33,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export { HomePage };
