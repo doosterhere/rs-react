@@ -14,7 +14,7 @@ const List: FC<IListProps> = ({ itemsList }) => {
     <div className={classes.list} data-testid="list">
       {!!itemsList.length &&
         itemsList.map(item => {
-          const id = item.url.match(/(\d+)/g)?.[0];
+          const id = item.url.match(/(\d+)/)?.[0] ?? '0';
 
           return <ListItem {...item} key={item.name} id={id} />;
         })}
