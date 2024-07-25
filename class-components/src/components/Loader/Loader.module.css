@@ -1,0 +1,38 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #00000080;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  padding: 15px;
+  border-radius: 50%;
+
+  aspect-ratio: 1;
+  background: lightskyblue;
+  --mask: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(1turn);
+  }
+}
