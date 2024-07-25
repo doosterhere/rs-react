@@ -1,3 +1,4 @@
 import { useLocalStorage } from './useLocalStorage';
+import { useAppDispatch, useAppSelector } from './useRedux';
 
-export { useLocalStorage };
+export { useLocalStorage, useAppDispatch, useAppSelector };
