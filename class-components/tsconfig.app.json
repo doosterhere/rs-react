@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "esnext"],
+    "baseUrl": "./",
     "module": "ESNext",
     "skipLibCheck": true,
     "sourceMap": true,
 
-    /* Bundler mode */
+    // /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -18,12 +17,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
+    // /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["@testing-library/jest-dom"]
   },
-  "include": ["src"]
+  "include": ["./src"]
 }
