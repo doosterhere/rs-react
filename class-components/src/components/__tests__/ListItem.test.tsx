@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
 import { renderWithRouter } from '../../utils';
-import { ListItem } from '../ListItem';
+import { ListItem } from '..';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
