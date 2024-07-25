@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef, FormEvent, useCallback } from 'react';
+import { FC, useEffect, useRef, FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import classes from './SearchBar.module.css';
@@ -6,7 +6,7 @@ import classes from './SearchBar.module.css';
 import { useLocalStorage } from '../../hooks';
 import { DefaultResponseType, PlanetType } from '../../types';
 import { Loader } from '..';
-import { getData } from '../../api';
+import { planetApi } from '../../api';
 
 const LS_KEY = 'searchQuery';
 
@@ -16,24 +16,12 @@ interface ISearchBarProps {
 
 const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isLoading, setIsLoading] = useState(false);
   const { value: searchQuery, setValue: setSearchQuery, restored } = useLocalStorage(LS_KEY);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const fetchData = useCallback(
-    async (query: string, page: string) => {
-      try {
-        setIsLoading(true);
-        const result = await getData(query, page);
-        setData(result ?? { count: 0, results: [] });
-      } catch (error) {
-        setData({ count: 0, results: [] });
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [setData],
-  );
+  const { fulfilledTimeStamp: loaded, data } = planetApi.useGetPlanetsQuery({
+    search: searchQuery,
+    page: searchParams.get('page') || '1',
+  });
 
   useEffect(() => {
     if (restored || !searchQuery) {
@@ -48,10 +36,14 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
       if (!searchParams.get('page')) {
         setSearchParams(prev => `${prev}&page=1`);
       }
-
-      fetchData(searchQuery, searchParams.get('page') || '1');
     }
-  }, [restored, fetchData, searchQuery, searchParams, setSearchParams]);
+  }, [restored, searchQuery, searchParams, setSearchParams]);
+
+  useEffect(() => {
+    if (data) {
+      setData(data);
+    }
+  }, [data, setData]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -70,13 +62,13 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
           autoComplete="off"
           placeholder="Search for a Star Wars planet..."
           ref={inputRef}
-          disabled={isLoading}
+          disabled={!loaded}
         />
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={!loaded}>
           Search
         </button>
       </form>
-      {isLoading && <Loader />}
+      {!loaded && <Loader />}
     </div>
   );
 };
