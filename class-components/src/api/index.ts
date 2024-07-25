@@ -1,2 +1,2 @@
-export * from './getData';
 export * from './mockData';
+export * from './planetApi';
