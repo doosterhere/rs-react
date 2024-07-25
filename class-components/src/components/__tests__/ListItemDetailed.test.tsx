@@ -1,7 +1,7 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 
 import { renderWithRouter } from '../../utils';
-import { ListItemDetailed } from '../ListItemDetailed';
+import { ListItemDetailed } from '..';
 import * as apiMock from '../../api';
 
 const details = {
