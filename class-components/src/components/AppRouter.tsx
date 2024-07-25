@@ -1,16 +1,18 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { ROUTES } from '../constants';
+
 import { HomePage, Page404 } from '../pages';
 import { ListItemDetailed } from './ListItemDetailed/ListItemDetailed';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: ROUTES.HOME,
     element: <HomePage />,
     errorElement: <Page404 />,
     children: [
       {
-        path: 'detail/:id',
+        path: ROUTES.DETAIL,
         element: <ListItemDetailed />,
       },
     ],
