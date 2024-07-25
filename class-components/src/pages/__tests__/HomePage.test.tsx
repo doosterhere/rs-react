@@ -4,15 +4,15 @@ import { renderWithRouter } from '../../utils';
 import { HomePage } from '../../pages';
 import { mockData } from '../../api';
 
-globalThis.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(mockData),
-  }),
-) as jest.Mock;
-
 describe('HomPage', () => {
   it('should render correctly', async () => {
+    globalThis.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockData),
+      }),
+    ) as jest.Mock;
+
     renderWithRouter(<HomePage />);
 
     const loader = screen.getByRole('progressbar');
@@ -27,5 +27,23 @@ describe('HomPage', () => {
     expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
     expect(screen.getByText(/test-planet-1/i)).toBeInTheDocument();
     expect(screen.getByText(/test-planet-2/i)).toBeInTheDocument();
+  });
+
+  it('should render correctly with no data', async () => {
+    globalThis.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ count: 0, results: [] }),
+      }),
+    ) as jest.Mock;
+
+    renderWithRouter(<HomePage />);
+
+    const loader = screen.getByRole('progressbar');
+
+    await waitForElementToBeRemoved(loader);
+
+    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    expect(screen.getByText(/no results/i)).toBeInTheDocument();
   });
 });
