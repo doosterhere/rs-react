@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
 import { renderWithRouter } from '../../utils';
-import { Header } from '../Header';
+import { Header } from '..';
 
 describe('Header', () => {
   it('should render correctly', () => {
