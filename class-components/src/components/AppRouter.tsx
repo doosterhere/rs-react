@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { HomePage, Page404 } from '../pages';
-import { ListItemDetailed } from './ListItemDetailed';
+import { ListItemDetailed } from '.';
 
 const router = createBrowserRouter([
   {
