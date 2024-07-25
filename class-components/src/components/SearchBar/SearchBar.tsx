@@ -53,12 +53,6 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
     }
   }, [restored, fetchData, searchQuery, searchParams, setSearchParams]);
 
-  useEffect(() => {
-    if (searchQuery !== null) {
-      fetchData(searchQuery, searchParams.get('page') || '1');
-    }
-  }, [searchQuery, searchParams, fetchData]);
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
