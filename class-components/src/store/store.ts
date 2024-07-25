@@ -2,7 +2,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { planetApi } from '../api';
+import { itemsReducer } from './reducers/itemsReducer';
+import { planetApi } from '../api/planetApi';
 
 const persistConfig = {
   key: 'root',
@@ -11,6 +12,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  items: itemsReducer.reducer,
   [planetApi.reducerPath]: planetApi.reducer,
 });
 
