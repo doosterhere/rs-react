@@ -5,25 +5,23 @@ import classes from './ListItemDetailed.module.css';
 
 import { Loader } from '..';
 import { PlanetType } from '../../types';
-import { getDetailedData } from '../../api';
+import { planetApi } from '../../api';
 
 const ListItemDetailed = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
-  const [isLoaded, setIsLoaded] = useState(true);
   const [detailedData, setDetailedData] = useState<PlanetType>({} as PlanetType);
+  const { fulfilledTimeStamp: loaded, data } = planetApi.useGetPlanetQuery(id!);
 
   useEffect(() => {
-    setIsLoaded(true);
-    getDetailedData(id!).then(response => {
-      setDetailedData(response ?? ({} as PlanetType));
-      setIsLoaded(false);
-    });
-  }, [id]);
+    if (data) {
+      setDetailedData(data);
+    }
+  }, [data]);
 
   return (
     <div className={classes.item}>
-      {isLoaded ? (
+      {!loaded ? (
         <Loader />
       ) : (
         <div className={classes.content}>
