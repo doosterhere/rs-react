@@ -27,11 +27,7 @@ body {
   padding: 20px 0;
   max-width: 1280px;
   display: flex;
-  gap: 30px;
-}
-
-.container-right {
-  align-self: center;
+  flex-direction: column;
 }
 
 button {

@@ -1,0 +1,13 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.details:has(div) {
+  margin-left: 30px;
+}
+
+.details {
+  align-self: center;
+}
