@@ -4,21 +4,17 @@ import { useParams, useSearchParams, NavLink } from 'react-router-dom';
 import classes from './ListItem.module.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addItem, removeItem, checkItem } from '../../store';
+import { FullPlanetInfo } from '../../types';
 
-interface IListItemProps {
-  name: string;
-  id: string;
-}
-
-const ListItem: FC<IListItemProps> = ({ name, id }) => {
+const ListItem: FC<FullPlanetInfo> = props => {
   const params = useParams();
   const [searchParams] = useSearchParams();
-  const isChecked = useAppSelector(state => checkItem(state, id));
+  const isChecked = Boolean(useAppSelector(state => checkItem(state, props.id)));
   const dispatcher = useAppDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    isChecked ? dispatcher(removeItem(id)) : dispatcher(addItem(id));
+    isChecked ? dispatcher(removeItem(props.id)) : dispatcher(addItem(props));
   };
 
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -27,7 +23,7 @@ const ListItem: FC<IListItemProps> = ({ name, id }) => {
 
   return (
     <NavLink
-      to={params.id === id ? `/?${searchParams.toString()}` : `/detail/${id}?${searchParams.toString()}`}
+      to={params.id === props.id ? `/?${searchParams.toString()}` : `/detail/${props.id}?${searchParams.toString()}`}
       className={classes.item}
     >
       <div className={classes.content}>
@@ -38,7 +34,7 @@ const ListItem: FC<IListItemProps> = ({ name, id }) => {
           checked={isChecked}
           onClick={handleClick}
         />
-        <div>{name}</div>
+        <div>{props.name}</div>
         <div />
       </div>
     </NavLink>
