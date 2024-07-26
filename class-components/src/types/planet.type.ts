@@ -15,4 +15,6 @@ type PlanetType = {
   url: string;
 };
 
-export type { PlanetType };
+type FullPlanetInfo = PlanetType & { id: string };
+
+export type { PlanetType, FullPlanetInfo };
