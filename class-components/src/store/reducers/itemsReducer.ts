@@ -28,8 +28,9 @@ export const itemsReducer = createSlice({
   selectors: {
     selectItems: state => state.selectedItems,
     checkItem: (state, id: string) => state.selectedItems.includes(id),
+    selectQuantity: state => state.selectedItems.length,
   },
 });
 
 export const { addItem, removeItem, clearItems } = itemsReducer.actions;
-export const { selectItems, checkItem } = itemsReducer.selectors;
+export const { selectItems, checkItem, selectQuantity } = itemsReducer.selectors;
