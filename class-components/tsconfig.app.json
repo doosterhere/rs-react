@@ -9,8 +9,9 @@
     "sourceMap": true,
 
     // /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -24,5 +25,5 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["@testing-library/jest-dom"]
   },
-  "include": ["./src"]
+  "include": ["src/**/*"]
 }
