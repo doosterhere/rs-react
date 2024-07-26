@@ -3,7 +3,7 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 
 import classes from './HomePage.module.css';
 
-import { Header, List, Pagination, SearchBar } from '../../components';
+import { Header, List, Pagination, SearchBar, Flyout } from '../../components';
 import { DefaultResponseType, PlanetType } from '../../types';
 
 const HomePage = () => {
@@ -33,6 +33,7 @@ const HomePage = () => {
         </div>
         {data.count > 10 && <Pagination itemsCount={data.count} />}
       </div>
+      <Flyout></Flyout>
     </>
   );
 };
