@@ -20,7 +20,7 @@ const ListItemDetailed = () => {
   }, [data]);
 
   return (
-    <div className={classes.item}>
+    <>
       {!loaded ? (
         <Loader />
       ) : (
@@ -35,7 +35,7 @@ const ListItemDetailed = () => {
           <Link to={`/?${searchParams.toString()}`}>Close</Link>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
