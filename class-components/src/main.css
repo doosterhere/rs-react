@@ -4,9 +4,11 @@
   font-weight: 400;
 }
 
-body {
-  position: relative;
+* {
+  box-sizing: border-box;
+}
 
+body {
   margin: 0;
 
   font-family: 'Montserrat', sans-serif;
@@ -38,18 +40,6 @@ button {
   font-size: 16px;
 
   cursor: pointer;
-}
-
-button.button-error {
-  position: fixed;
-  top: 5px;
-  right: 5px;
-
-  border-color: black;
-
-  color: white;
-
-  background-color: palevioletred;
 }
 
 button:active {
