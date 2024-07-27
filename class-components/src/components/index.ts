@@ -8,5 +8,19 @@ import { ListItemDetailed } from './ListItemDetailed/ListItemDetailed.tsx';
 import { Pagination } from './Pagination/Pagination.tsx';
 import { Header } from './Header/Header.tsx';
 import { Flyout } from './Flyout/Flyout.tsx';
+import { ThemeProvider, ThemeContext } from './ThemeContext.tsx';
 
-export { SearchBar, List, ListItem, Loader, ErrorBoundary, AppRouter, ListItemDetailed, Pagination, Header, Flyout };
+export {
+  SearchBar,
+  List,
+  ListItem,
+  Loader,
+  ErrorBoundary,
+  AppRouter,
+  ListItemDetailed,
+  Pagination,
+  Header,
+  Flyout,
+  ThemeProvider,
+  ThemeContext,
+};
