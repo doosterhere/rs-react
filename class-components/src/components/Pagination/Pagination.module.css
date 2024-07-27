@@ -26,7 +26,7 @@
 }
 
 .pagination.dark .page {
-  border-color: white;
+  border-color: darkgray;
 
   background-color: darkslateblue;
 }
