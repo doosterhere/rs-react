@@ -28,7 +28,7 @@ const Flyout: FC = () => {
   };
 
   return (
-    <div className={classes.flyout} style={{ display: quantity > 0 ? 'flex' : 'none' }}>
+    <div className={classes.flyout} data-quantity={quantity}>
       {!areYouSure && (
         <>
           <div>Selected items: {quantity}</div>

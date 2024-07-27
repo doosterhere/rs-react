@@ -9,6 +9,16 @@
   gap: 20px;
   border: 1px solid black;
   border-radius: 6px;
+
+  transition: all 0.4s ease-in-out;
+}
+
+.flyout[data-quantity='0'] {
+  transform: translateX(150%);
+}
+
+.flyout[data-quantity='1'] {
+  transform: translateX(0);
 }
 
 button.withIcon {
