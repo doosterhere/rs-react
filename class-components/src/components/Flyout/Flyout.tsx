@@ -5,10 +5,10 @@ import clsx from 'clsx';
 import classes from './Flyout.module.css';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectQuantity, clearItems } from '../../store';
+import { selectSelectedQuantity, clearSelectedItems } from '../../store';
 
 const Flyout: FC = () => {
-  const quantity = useAppSelector(selectQuantity);
+  const quantity = useAppSelector(selectSelectedQuantity);
   const dispatcher = useAppDispatch();
   const [areYouSure, setAreYouSure] = useState(false);
 
@@ -19,7 +19,7 @@ const Flyout: FC = () => {
   const handleDownload = () => {};
 
   const handleUnselect = () => {
-    dispatcher(clearItems());
+    dispatcher(clearSelectedItems());
     setAreYouSure(false);
   };
 

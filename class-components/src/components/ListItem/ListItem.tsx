@@ -3,18 +3,18 @@ import { useParams, useSearchParams, NavLink } from 'react-router-dom';
 
 import classes from './ListItem.module.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addItem, removeItem, checkItem } from '../../store';
+import { addSelectedItem, removeSelectedItem, checkIsItemSelected } from '../../store';
 import { FullPlanetInfo } from '../../types';
 
 const ListItem: FC<FullPlanetInfo> = props => {
   const params = useParams();
   const [searchParams] = useSearchParams();
-  const isChecked = Boolean(useAppSelector(state => checkItem(state, props.id)));
+  const isChecked = Boolean(useAppSelector(state => checkIsItemSelected(state, props.id)));
   const dispatcher = useAppDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    isChecked ? dispatcher(removeItem(props.id)) : dispatcher(addItem(props));
+    isChecked ? dispatcher(removeSelectedItem(props.id)) : dispatcher(addSelectedItem(props));
   };
 
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
