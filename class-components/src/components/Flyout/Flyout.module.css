@@ -10,7 +10,7 @@
   border: 1px solid black;
   border-radius: 6px;
 
-  transition: all 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .flyout[data-quantity='0'] {
@@ -21,11 +21,23 @@
   transform: translateX(0);
 }
 
+.dark {
+  color: white;
+
+  background-color: rgb(47, 54, 61);
+}
+
 button.withIcon {
   width: 180px;
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.flyout.dark button.withIcon {
+  color: white;
+
+  background-color: slategray;
 }
 
 .delete:before,
@@ -35,6 +47,10 @@ button.withIcon {
 
 .remove:before {
   color: green;
+}
+
+.flyout.dark .remove:before {
+  color: yellowgreen;
 }
 
 a {
