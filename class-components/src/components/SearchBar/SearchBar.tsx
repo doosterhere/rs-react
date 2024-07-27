@@ -1,5 +1,7 @@
-import { FC, useEffect, useRef, FormEvent } from 'react';
+import { FC, useEffect, useRef, FormEvent, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+import clsx from 'clsx';
 
 import classes from './SearchBar.module.css';
 
@@ -8,6 +10,7 @@ import { DefaultResponseType, PlanetType } from '../../types';
 import { Loader } from '..';
 import { planetApi } from '../../api';
 import { setCurrentPageItems } from '../../store';
+import { ThemeContext } from '../ThemeContext';
 
 const LS_KEY = 'searchQuery';
 
@@ -24,6 +27,7 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
     page: searchParams.get('page') || '1',
   });
   const dispatcher = useAppDispatch();
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (restored || !searchQuery) {
@@ -58,7 +62,7 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
   };
 
   return (
-    <div className={classes.search}>
+    <div className={clsx(classes.search, classes[theme.value])}>
       <form onSubmit={handleSubmit} role="form">
         <input
           type="search"
