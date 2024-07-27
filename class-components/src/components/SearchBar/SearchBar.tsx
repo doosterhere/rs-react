@@ -3,10 +3,11 @@ import { useSearchParams } from 'react-router-dom';
 
 import classes from './SearchBar.module.css';
 
-import { useLocalStorage } from '../../hooks';
+import { useAppDispatch, useLocalStorage } from '../../hooks';
 import { DefaultResponseType, PlanetType } from '../../types';
 import { Loader } from '..';
 import { planetApi } from '../../api';
+import { setCurrentPageItems } from '../../store';
 
 const LS_KEY = 'searchQuery';
 
@@ -22,6 +23,7 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
     search: searchQuery,
     page: searchParams.get('page') || '1',
   });
+  const dispatcher = useAppDispatch();
 
   useEffect(() => {
     if (restored || !searchQuery) {
@@ -42,8 +44,9 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
   useEffect(() => {
     if (data) {
       setData(data);
+      dispatcher(setCurrentPageItems(data.results));
     }
-  }, [data, setData]);
+  }, [data, setData, dispatcher]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
