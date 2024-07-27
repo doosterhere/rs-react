@@ -12,6 +12,14 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
+.dark {
+  border-color: rgb(47, 54, 61);
+
+  color: white;
+
+  background-color: rgb(47, 54, 61);
+}
+
 .content a {
   width: 80px;
   padding: 5px 0;
@@ -21,4 +29,8 @@
   color: white;
   background-color: lightskyblue;
   text-decoration: none;
+}
+
+.content.dark a {
+  background-color: darkslateblue;
 }
