@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
 
+import clsx from 'clsx';
+
 import classes from './Flyout.module.css';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -31,7 +33,7 @@ const Flyout: FC = () => {
         <>
           <div>Selected items: {quantity}</div>
           <button className={classes.withIcon} onClick={handleSure}>
-            <i className="fa-solid fa-trash-can"></i>
+            <i className={clsx('fa-solid', 'fa-trash-can', classes.delete)}></i>
             Unselect all
           </button>
           <button className={classes.withIcon} onClick={handleDownload}>
@@ -44,11 +46,11 @@ const Flyout: FC = () => {
         <>
           <div>Are you sure?</div>
           <button className={classes.withIcon} onClick={handleUnselect}>
-            <i className="fa-solid fa-check"></i>
+            <i className={clsx('fa-solid', 'fa-check', classes.remove)}></i>
             Absolutely!
           </button>
           <button className={classes.withIcon} onClick={handleGoBack}>
-            <i className="fa-solid fa-ban"></i>
+            <i className={clsx('fa-solid', 'fa-ban', classes.back)}></i>
             No way!
           </button>
         </>

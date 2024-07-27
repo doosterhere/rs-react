@@ -17,3 +17,12 @@ button.withIcon {
   justify-content: center;
   gap: 10px;
 }
+
+.delete:before,
+.back:before {
+  color: red;
+}
+
+.remove:before {
+  color: green;
+}
