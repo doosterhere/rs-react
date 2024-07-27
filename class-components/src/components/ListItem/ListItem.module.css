@@ -12,8 +12,20 @@
   text-decoration: none;
 }
 
+.dark {
+  border-color: rgb(47, 54, 61);
+
+  color: white;
+
+  background-color: rgb(47, 54, 61);
+}
+
 .item:hover {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.item.dark:hover {
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.6);
 }
 
 .content {
@@ -32,4 +44,8 @@
 
 .input:hover {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.item.dark .input:hover {
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.25);
 }

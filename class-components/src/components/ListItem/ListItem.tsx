@@ -1,16 +1,21 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { useParams, useSearchParams, NavLink } from 'react-router-dom';
 
+import clsx from 'clsx';
+
 import classes from './ListItem.module.css';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addSelectedItem, removeSelectedItem, checkIsItemSelected } from '../../store';
 import { FullPlanetInfo } from '../../types';
+import { ThemeContext } from '../ThemeContext';
 
 const ListItem: FC<FullPlanetInfo> = props => {
   const params = useParams();
   const [searchParams] = useSearchParams();
   const isChecked = Boolean(useAppSelector(state => checkIsItemSelected(state, props.id)));
   const dispatcher = useAppDispatch();
+  const { theme } = useContext(ThemeContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
@@ -24,7 +29,7 @@ const ListItem: FC<FullPlanetInfo> = props => {
   return (
     <NavLink
       to={params.id === props.id ? `/?${searchParams.toString()}` : `/detail/${props.id}?${searchParams.toString()}`}
-      className={classes.item}
+      className={clsx(classes.item, classes[theme.value])}
     >
       <div className={classes.content}>
         <input
