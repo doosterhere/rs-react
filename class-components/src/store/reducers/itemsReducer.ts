@@ -30,6 +30,9 @@ export const itemsReducer = createSlice({
     clearSelectedItems: create.reducer(state => {
       state.selectedItems = initialState.selectedItems;
     }),
+    setCurrentPageItems: create.reducer((state, action: PayloadAction<PlanetType[]>) => {
+      state.currentPageItems = action.payload;
+    }),
   }),
   selectors: {
     selectSelectedItems: state => state.selectedItems,
@@ -38,5 +41,5 @@ export const itemsReducer = createSlice({
   },
 });
 
-export const { addSelectedItem, removeSelectedItem, clearSelectedItems } = itemsReducer.actions;
+export const { addSelectedItem, removeSelectedItem, clearSelectedItems, setCurrentPageItems } = itemsReducer.actions;
 export const { selectSelectedItems, checkIsItemSelected, selectSelectedQuantity } = itemsReducer.selectors;
