@@ -36,3 +36,7 @@ button.withIcon {
 .remove:before {
   color: green;
 }
+
+a {
+  text-decoration: none;
+}

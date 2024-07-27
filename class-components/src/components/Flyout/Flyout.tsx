@@ -1,22 +1,25 @@
 import { FC, useState } from 'react';
 
 import clsx from 'clsx';
+import { CSVLink } from 'react-csv';
 
 import classes from './Flyout.module.css';
 
+import { CSV_HEADERS } from '../../constants';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { selectSelectedQuantity, clearSelectedItems } from '../../store';
+import { selectSelectedQuantity, clearSelectedItems, selectSelectedItems } from '../../store';
 
 const Flyout: FC = () => {
   const quantity = useAppSelector(selectSelectedQuantity);
   const dispatcher = useAppDispatch();
   const [areYouSure, setAreYouSure] = useState(false);
+  const csvData = useAppSelector(selectSelectedItems);
+
+  const createCSVFileName = () => `${quantity}_planet${quantity > 1 ? 's' : ''}.csv`;
 
   const handleSure = () => {
     setAreYouSure(true);
   };
-
-  const handleDownload = () => {};
 
   const handleUnselect = () => {
     dispatcher(clearSelectedItems());
@@ -36,10 +39,12 @@ const Flyout: FC = () => {
             <i className={clsx('fa-solid', 'fa-trash-can', classes.delete)}></i>
             Unselect all
           </button>
-          <button className={classes.withIcon} onClick={handleDownload}>
-            <i className="fa-solid fa-file-arrow-down"></i>
-            Download selected
-          </button>
+          <CSVLink data={csvData} headers={CSV_HEADERS} filename={createCSVFileName()} target="_blank">
+            <button className={classes.withIcon}>
+              <i className="fa-solid fa-file-arrow-down"></i>
+              Download selected
+            </button>
+          </CSVLink>
         </>
       )}
       {areYouSure && (
