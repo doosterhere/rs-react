@@ -1,9 +1,11 @@
-import { FC, useState, useMemo, useEffect } from 'react';
+import { FC, useState, useMemo, useEffect, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { clsx } from 'clsx/lite';
+import { clsx } from 'clsx';
 
 import classes from './Pagination.module.css';
+
+import { ThemeContext } from '../ThemeContext';
 
 interface IPaginationProps {
   itemsCount: number;
@@ -14,6 +16,7 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   const pages = useMemo(() => Array.from({ length: pagesCount }, (_, index) => index + 1), [pagesCount]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [activePage, setActivePage] = useState('1');
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const page = searchParams.get('page');
@@ -30,7 +33,7 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   };
 
   return (
-    <div className={classes.pagination}>
+    <div className={clsx(classes.pagination, classes[theme.value])}>
       {pages.map(page => (
         <div
           className={clsx(classes.page, page === Number(activePage) && classes.active)}

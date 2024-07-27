@@ -8,6 +8,10 @@
   font-size: 20px;
 }
 
+.dark {
+  color: white;
+}
+
 .page {
   padding: 10px;
   width: 35px;
@@ -21,8 +25,18 @@
   cursor: pointer;
 }
 
+.pagination.dark .page {
+  border-color: white;
+
+  background-color: darkslateblue;
+}
+
 .page.active {
   color: white;
 
   background-color: lightskyblue;
+}
+
+.pagination.dark .page.active {
+  background-color: black;
 }
