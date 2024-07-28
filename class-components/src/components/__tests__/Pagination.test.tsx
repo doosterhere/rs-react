@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import { screen, fireEvent } from '@testing-library/react';
 
 import { renderWithRouter } from '../../utils';
