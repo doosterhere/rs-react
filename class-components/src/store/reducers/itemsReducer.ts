@@ -36,7 +36,7 @@ const itemsReducer = createSlice({
   }),
   selectors: {
     selectSelectedItems: state => state.selectedItems,
-    checkIsItemSelected: (state, id: string) => state.selectedItems.find(items => items.id === id)?.id,
+    checkIsItemSelected: (state, id: string) => Boolean(state.selectedItems.find(items => items.id === id)?.id),
     selectSelectedQuantity: state => state.selectedItems.length,
   },
 });

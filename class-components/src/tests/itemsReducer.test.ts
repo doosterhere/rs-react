@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-import { mockDetailedData } from './mocks/mockData';
+import { mockedPlanet } from './mocks/mockData';
 import { FullPlanetInfo, PlanetType } from '../types';
 import itemsReducer, {
   selectSelectedItems,
@@ -12,7 +12,7 @@ import itemsReducer, {
   setCurrentPageItems,
 } from '../store/reducers/itemsReducer';
 
-const items: FullPlanetInfo[] = [{ ...mockDetailedData, id: '1' }];
+const items: FullPlanetInfo[] = [{ ...mockedPlanet, id: '1' }];
 const state = {
   items: {
     selectedItems: items,
@@ -50,16 +50,16 @@ describe('itemReducer', () => {
   });
 
   it('should add the item with "addSelectedItem" action', () => {
-    const action = { type: addSelectedItem.type, payload: { ...mockDetailedData, id: '1' } };
+    const action = { type: addSelectedItem.type, payload: { ...mockedPlanet, id: '1' } };
     const result = itemsReducer({ selectedItems: [], currentPageItems: [] }, action);
 
     expect(result.selectedItems).toHaveLength(1);
-    expect(result.selectedItems[0]).toEqual({ ...mockDetailedData, id: '1' });
+    expect(result.selectedItems[0]).toEqual({ ...mockedPlanet, id: '1' });
   });
 
   it('should not to add the item with "addSelectedItem" action if the item is already selected', () => {
-    const action = { type: addSelectedItem.type, payload: { ...mockDetailedData, id: '1' } };
-    const result = itemsReducer({ selectedItems: [{ ...mockDetailedData, id: '1' }], currentPageItems: [] }, action);
+    const action = { type: addSelectedItem.type, payload: { ...mockedPlanet, id: '1' } };
+    const result = itemsReducer({ selectedItems: [{ ...mockedPlanet, id: '1' }], currentPageItems: [] }, action);
 
     expect(result.selectedItems).toHaveLength(1);
   });
