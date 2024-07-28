@@ -16,7 +16,7 @@ const itemsReducer = createSlice({
   initialState,
   reducers: create => ({
     addSelectedItem: create.reducer((state, action: PayloadAction<FullPlanetInfo>) => {
-      if (state.selectedItems.indexOf(action.payload) === -1) {
+      if (!state.selectedItems.find(item => item.id === action.payload.id)) {
         state.selectedItems.push(action.payload);
         state.selectedItems.sort((a, b) => a.name.localeCompare(b.name));
       }
