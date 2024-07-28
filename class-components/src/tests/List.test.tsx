@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 
 import { renderWithRouter } from '../utils';
 import { List } from '../components';
+import { renderWithProvider } from '../utils/test-utils';
 
 const itemList = [
   {
@@ -29,7 +30,7 @@ const itemList = [
 
 describe('List', () => {
   it('should renders correctly with data', () => {
-    renderWithRouter(<List itemsList={itemList} />);
+    renderWithProvider(<List itemsList={itemList} />);
 
     expect(screen.getByText(/test-planet-1/i)).toBeInTheDocument();
 
