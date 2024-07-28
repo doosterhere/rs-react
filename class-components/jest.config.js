@@ -2,11 +2,14 @@
 const config = {
   collectCoverage: true,
   collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/main.tsx',
+    'src/api/**/*',
+    'src/components/**/*',
+    'src/hooks/**/*',
+    'src/pages/**/*',
+    'src/store/**/*',
+    'src/utils/**/*',
     '!src/**/*.(d|type).ts',
     '!src/**/index.ts',
-    '!src/**/*mock*.ts',
   ],
   coverageDirectory: 'coverage',
   coverageThreshold: {
