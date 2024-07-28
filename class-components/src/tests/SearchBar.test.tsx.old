@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event';
 
 import { renderWithRouter } from '../utils';
 import { SearchBar } from '../components';
-import { mockData } from './mocks/mockData';
+import { mockedPlanets } from './testSetup/mockData';
 
 const mockGetData = jest.mock('../api/getData.ts', () => ({
-  mockData,
+  mockedPlanets,
 }));
 
 globalThis.fetch = jest.fn(() =>
