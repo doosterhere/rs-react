@@ -1,5 +1,8 @@
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { MemoryRouter, MemoryRouterProps } from 'react-router-dom';
+
+import { store } from '../store';
 
 const renderWithRouter = (component: React.ReactNode, options: MemoryRouterProps = {}) => {
   const Wrapper = ({ children }: { children: React.ReactNode }) => (
@@ -9,4 +12,14 @@ const renderWithRouter = (component: React.ReactNode, options: MemoryRouterProps
   return render(component, { wrapper: Wrapper });
 };
 
-export { renderWithRouter };
+const renderWithProvider = (component: React.ReactNode, options: MemoryRouterProps = {}) => {
+  const Wrapper = ({ children }: { children: React.ReactNode }) => (
+    <Provider store={store}>
+      <MemoryRouter {...options}> {children} </MemoryRouter>
+    </Provider>
+  );
+
+  return render(component, { wrapper: Wrapper });
+};
+
+export { renderWithRouter, renderWithProvider };
