@@ -11,7 +11,7 @@ const initialState: IItemsState = {
   currentPageItems: [],
 };
 
-export const itemsReducer = createSlice({
+const itemsReducer = createSlice({
   name: 'items',
   initialState,
   reducers: create => ({
@@ -43,3 +43,4 @@ export const itemsReducer = createSlice({
 
 export const { addSelectedItem, removeSelectedItem, clearSelectedItems, setCurrentPageItems } = itemsReducer.actions;
 export const { selectSelectedItems, checkIsItemSelected, selectSelectedQuantity } = itemsReducer.selectors;
+export default itemsReducer.reducer;
