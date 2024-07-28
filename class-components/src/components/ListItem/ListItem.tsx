@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from 'react';
+import { FC, useContext } from 'react';
 import { useParams, useSearchParams, NavLink } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -13,14 +13,16 @@ import { ThemeContext } from '../ThemeContext';
 const ListItem: FC<FullPlanetInfo> = props => {
   const params = useParams();
   const [searchParams] = useSearchParams();
-  const restoredIsChecked = useAppSelector(state => checkIsItemSelected(state, props.id)) ?? false;
-  const [isChecked, setIsChecked] = useState(restoredIsChecked);
+  const isChecked = useAppSelector(state => checkIsItemSelected(state, props.id)) ?? false;
   const dispatcher = useAppDispatch();
   const { theme } = useContext(ThemeContext);
 
+  const handleChange = () => {
+    isChecked ? dispatcher(removeSelectedItem(props.id)) : dispatcher(addSelectedItem(props));
+  };
+
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    isChecked ? dispatcher(removeSelectedItem(props.id)) : dispatcher(addSelectedItem(props));
   };
 
   return (
@@ -32,9 +34,7 @@ const ListItem: FC<FullPlanetInfo> = props => {
         <input
           type="checkbox"
           className={classes.input}
-          onChange={e => {
-            setIsChecked(e.target.checked);
-          }}
+          onChange={handleChange}
           onClick={handleClick}
           checked={isChecked}
         />
