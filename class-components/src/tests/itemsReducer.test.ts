@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
-import { mockDetailedData } from '../../api';
-import { FullPlanetInfo, PlanetType } from '../../types';
+import { mockDetailedData } from './mocks/mockData';
+import { FullPlanetInfo, PlanetType } from '../types';
 import itemsReducer, {
   selectSelectedItems,
   selectSelectedQuantity,
@@ -10,7 +10,7 @@ import itemsReducer, {
   removeSelectedItem,
   clearSelectedItems,
   setCurrentPageItems,
-} from '../reducers/itemsReducer';
+} from '../store/reducers/itemsReducer';
 
 const items: FullPlanetInfo[] = [{ ...mockDetailedData, id: '1' }];
 const state = {

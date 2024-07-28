@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithRouter } from '../../utils';
+import { renderWithRouter } from '../utils';
 
-import { Page404 } from '../Page404';
+import { Page404 } from '../pages/Page404';
 
 describe('Page404', () => {
   it('should render correctly', () => {

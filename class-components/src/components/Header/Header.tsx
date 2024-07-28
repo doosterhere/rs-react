@@ -34,7 +34,7 @@ const Header = () => {
           <img src="/images/star-wars-logo.png" alt="Star Wars logo" />
         </Link>
         <div>Star Wars planet finder app</div>
-        <div className={classes.theme} onClick={toggle}>
+        <div className={classes.theme} onClick={toggle} role="button">
           {theme.value === 'light' && (
             <div className={classes.button}>
               <i className="fa-solid fa-sun" />

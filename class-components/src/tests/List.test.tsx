@@ -1,7 +1,8 @@
+import 'whatwg-fetch';
 import { screen } from '@testing-library/react';
 
-import { renderWithRouter } from '../../utils';
-import { List } from '..';
+import { renderWithRouter } from '../utils';
+import { List } from '../components';
 
 const itemList = [
   {

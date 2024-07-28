@@ -1,8 +1,9 @@
+import 'whatwg-fetch';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 
-import { renderWithRouter } from '../../utils';
-import { ListItemDetailed } from '..';
-import * as apiMock from '../../api';
+import { renderWithRouter } from '../utils';
+import { ListItemDetailed } from '../components';
+import * as apiMock from '../api';
 
 const details = {
   name: 'test-planet',

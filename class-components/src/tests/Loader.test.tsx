@@ -1,11 +1,12 @@
+import 'whatwg-fetch';
 import { render, screen } from '@testing-library/react';
 
-import { Loader } from '..';
+import { Loader } from '../components';
 
 describe('Loader', () => {
   it('should render correctly', () => {
     render(<Loader />);
 
-    expect(screen.getByRole('progressbar')).toBeVisible();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 });

@@ -1,7 +1,9 @@
+import 'whatwg-fetch';
 import { screen } from '@testing-library/react';
 
-import { renderWithRouter } from '../../utils';
-import { ListItem } from '..';
+import { renderWithRouter } from '../utils';
+import { ListItem } from '../components';
+import { FullPlanetInfo } from '../types';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -11,9 +13,9 @@ jest.mock('react-router-dom', () => ({
 describe('ListItem', () => {
   it('should render with correct href when id matches', () => {
     const props = {
-      name: 'test',
       id: '1',
-    };
+      name: 'test',
+    } as FullPlanetInfo;
 
     renderWithRouter(<ListItem {...props} />);
 
@@ -26,7 +28,7 @@ describe('ListItem', () => {
     const props = {
       name: 'test',
       id: '2',
-    };
+    } as FullPlanetInfo;
 
     renderWithRouter(<ListItem {...props} />);
 

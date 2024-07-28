@@ -1,8 +1,8 @@
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 
-import { renderWithRouter } from '../../utils';
-import { HomePage } from '../../pages';
-import { mockData } from '../../api';
+import { renderWithRouter } from '../utils';
+import { HomePage } from '../pages';
+import { mockData } from '../api';
 
 describe('HomPage', () => {
   it('should render correctly', async () => {

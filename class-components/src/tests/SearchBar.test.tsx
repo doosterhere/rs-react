@@ -1,11 +1,12 @@
+import 'whatwg-fetch';
 import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { renderWithRouter } from '../../utils';
-import { SearchBar } from '..';
-import { mockData } from '../../api';
+import { renderWithRouter } from '../utils';
+import { SearchBar } from '../components';
+import { mockData } from './mocks/mockData';
 
-const mockGetData = jest.mock('../../api/getData.ts', () => ({
+const mockGetData = jest.mock('../api/getData.ts', () => ({
   mockData,
 }));
 

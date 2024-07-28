@@ -1,20 +1,20 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithRouter } from '../../utils';
-import { HomePage, Page404 } from '../../pages';
-import { ListItemDetailed } from '../../components';
+import { renderWithRouter } from '../utils';
+import { HomePage, Page404 } from '../pages';
+import { ListItemDetailed } from '../components';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   BrowserRouter: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
-jest.mock('../../pages', () => ({
+jest.mock('../pages', () => ({
   HomePage: () => <div data-testid="home">Home</div>,
   Page404: () => <div data-testid="page404">Page404</div>,
 }));
 
-jest.mock('../../components', () => ({
+jest.mock('../components', () => ({
   ListItemDetailed: () => <div data-testid="detailed">Detailed</div>,
 }));
 

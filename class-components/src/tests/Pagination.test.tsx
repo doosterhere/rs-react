@@ -1,8 +1,8 @@
 import 'whatwg-fetch';
 import { screen, fireEvent } from '@testing-library/react';
 
-import { renderWithRouter } from '../../utils';
-import { Pagination } from '..';
+import { renderWithRouter } from '../utils';
+import { Pagination } from '../components';
 
 describe('Pagination', () => {
   it('should renders correctly with two buttons and set proper classNames', () => {
