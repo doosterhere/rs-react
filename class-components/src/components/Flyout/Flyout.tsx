@@ -46,7 +46,7 @@ const Flyout: FC = () => {
             headers={CSV_HEADERS}
             filename={createCSVFileName()}
             target="_blank"
-            data-testId="csvlink"
+            data-testid="csvlink"
           >
             <button className={classes.withIcon} role="button">
               <i className="fa-solid fa-file-arrow-down"></i>
