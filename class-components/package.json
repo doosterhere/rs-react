@@ -1,7 +1,7 @@
 {
   "name": "class-components",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
     "format:fix": "prettier --write .",
     "prepare": "cd .. && npx husky class-components/.husky",
     "test": "jest --coverage=false",
-    "test:coverage": "jest"
+    "coverage": "jest"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
