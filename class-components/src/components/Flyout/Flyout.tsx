@@ -37,12 +37,18 @@ const Flyout: FC = () => {
       {!areYouSure && (
         <>
           <div>Selected items: {quantity}</div>
-          <button className={classes.withIcon} onClick={handleSure}>
+          <button className={classes.withIcon} onClick={handleSure} role="button">
             <i className={clsx('fa-solid', 'fa-trash-can', classes.delete)}></i>
             Unselect all
           </button>
-          <CSVLink data={csvData} headers={CSV_HEADERS} filename={createCSVFileName()} target="_blank">
-            <button className={classes.withIcon}>
+          <CSVLink
+            data={csvData}
+            headers={CSV_HEADERS}
+            filename={createCSVFileName()}
+            target="_blank"
+            data-testId="csvlink"
+          >
+            <button className={classes.withIcon} role="button">
               <i className="fa-solid fa-file-arrow-down"></i>
               Download selected
             </button>
