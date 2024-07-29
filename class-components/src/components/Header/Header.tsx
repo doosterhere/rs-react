@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -6,25 +6,12 @@ import clsx from 'clsx';
 import classes from './Header.module.css';
 
 import { ThemeContext } from '../ThemeContext';
-import { useLocalStorage } from '../../hooks';
-
-const LS_KEY = 'theme';
 
 const Header = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { value: themeStyle, setValue: setThemeStyle, restored } = useLocalStorage(LS_KEY);
-
-  useEffect(() => {
-    if (restored) {
-      if (theme.value !== themeStyle) {
-        toggleTheme();
-      }
-    }
-  }, [restored]);
 
   const toggle = () => {
     toggleTheme();
-    setThemeStyle(() => (theme.value === 'light' ? 'dark' : 'light'));
   };
 
   return (
