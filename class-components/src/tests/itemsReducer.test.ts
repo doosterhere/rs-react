@@ -1,5 +1,3 @@
-import 'whatwg-fetch';
-
 import { mockedPlanet } from './mocks/mockData';
 import { FullPlanetInfo, PlanetType } from '../types';
 import itemsReducer, {

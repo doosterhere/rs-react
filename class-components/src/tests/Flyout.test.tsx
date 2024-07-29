@@ -1,4 +1,3 @@
-import 'whatwg-fetch';
 import { screen, render } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
 import userEvent from '@testing-library/user-event';
