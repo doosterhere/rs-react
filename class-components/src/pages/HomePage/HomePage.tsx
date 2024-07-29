@@ -12,6 +12,8 @@ import { ThemeContext } from '../../components/ThemeContext';
 const HomePage = () => {
   const [data, setData] = useState<DefaultResponseType<PlanetType>>({
     count: 0,
+    next: null,
+    previous: null,
     results: [],
   });
   const [searchParams, setSearchParams] = useSearchParams();
