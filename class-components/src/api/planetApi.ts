@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_API } from '../constants';
 import { DefaultResponseType, PlanetType } from '../types';
 
-const planetApi = createApi({
+export const planetApi = createApi({
   reducerPath: 'planetApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_API }),
   endpoints: builder => ({
@@ -24,4 +24,5 @@ const planetApi = createApi({
   }),
 });
 
-export { planetApi };
+// export { planetApi };
+export const { useGetPlanetQuery, useGetPlanetsQuery } = planetApi;

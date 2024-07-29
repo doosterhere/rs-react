@@ -1,33 +1,32 @@
-import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { act, renderHook, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { renderWithRouter } from '../utils';
+import { renderWithProvider } from '../utils';
 import { SearchBar } from '../components';
-import { mockedPlanets } from './testSetup/mockData';
-
-const mockGetData = jest.mock('../api/getData.ts', () => ({
-  mockedPlanets,
-}));
-
-globalThis.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(mockGetData),
-  }),
-) as jest.Mock;
+import * as planetApi from '../api';
+import { mockedPlanets } from './mocks/mockData';
 
 describe('SearchBar', () => {
+  const useGetPlanetsQueryMock = jest.spyOn(planetApi, 'useGetPlanetsQuery') as jest.Mock;
+
   it('should render correctly', async () => {
     const setData = jest.fn();
+    useGetPlanetsQueryMock.mockReturnValueOnce({ data: mockedPlanets, fulfilledTimeStamp: undefined });
+    const { result } = renderHook(() => useGetPlanetsQueryMock({ search: '', page: '1' }));
 
-    renderWithRouter(<SearchBar setData={setData} />);
+    renderWithProvider(<SearchBar setData={setData} />, { initialEntries: ['/?search=&page=1'] });
 
     const loader = screen.getByRole('progressbar');
 
     expect(loader).toBeInTheDocument();
 
+    act(() => {
+      result.current.fulfilledTimeStamp = 1;
+    });
+
     await waitForElementToBeRemoved(loader);
 
+    expect(loader).not.toBeInTheDocument();
     expect(screen.getByRole('form')).toBeInTheDocument();
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeInTheDocument();
@@ -36,13 +35,7 @@ describe('SearchBar', () => {
   it('should call setData', async () => {
     const setData = jest.fn();
 
-    renderWithRouter(<SearchBar setData={setData} />, { initialEntries: ['/?search='] });
-
-    const loader = screen.getByRole('progressbar');
-
-    expect(loader).toBeInTheDocument();
-
-    await waitForElementToBeRemoved(loader);
+    renderWithProvider(<SearchBar setData={setData} />, { initialEntries: ['/?search=&page=1'] });
 
     const input = screen.getByRole('searchbox');
     const button = screen.getByRole('button');
@@ -51,9 +44,5 @@ describe('SearchBar', () => {
     await userEvent.click(button);
 
     expect(setData).toHaveBeenCalled();
-
-    await waitFor(async () => {
-      setTimeout(() => {}, 2000);
-    });
   });
 });

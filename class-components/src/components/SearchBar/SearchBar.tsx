@@ -8,7 +8,7 @@ import classes from './SearchBar.module.css';
 import { useAppDispatch, useLocalStorage } from '../../hooks';
 import { DefaultResponseType, PlanetType } from '../../types';
 import { Loader } from '..';
-import { planetApi } from '../../api';
+import { useGetPlanetsQuery } from '../../api';
 import { setCurrentPageItems } from '../../store';
 import { ThemeContext } from '../ThemeContext';
 
@@ -22,7 +22,7 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { value: searchQuery, setValue: setSearchQuery, restored } = useLocalStorage(LS_KEY);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fulfilledTimeStamp: loaded, data } = planetApi.useGetPlanetsQuery({
+  const { fulfilledTimeStamp: loaded, data } = useGetPlanetsQuery({
     search: searchQuery,
     page: searchParams.get('page') || '1',
   });

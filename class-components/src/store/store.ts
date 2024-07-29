@@ -3,7 +3,7 @@ import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, R
 import storage from 'redux-persist/lib/storage';
 
 import itemsReducer from './reducers/itemsReducer';
-import { planetApi } from '../api/planetApi';
+import { planetApi } from '../api';
 
 const persistConfig = {
   key: 'root',
