@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useState } from 'react';
+import { createContext, FC, ReactNode, useCallback, useState } from 'react';
 
 type ThemeType = {
   value: 'light' | 'dark';
@@ -14,13 +14,9 @@ const ThemeContext = createContext<IThemeContext>({ theme: { value: 'light' }, t
 const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeType>({ value: 'light' });
 
-  const toggleTheme = () => {
-    if (theme.value === 'light') {
-      setTheme({ value: 'dark' });
-    } else {
-      setTheme({ value: 'light' });
-    }
-  };
+  const toggleTheme = useCallback(() => {
+    setTheme(prev => ({ value: prev.value === 'light' ? 'dark' : 'light' }));
+  }, []);
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
