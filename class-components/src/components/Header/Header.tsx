@@ -21,14 +21,14 @@ const Header = () => {
           <img src="/images/star-wars-logo.png" alt="Star Wars logo" />
         </Link>
         <div>Star Wars planet finder app</div>
-        <div className={classes.theme} onClick={toggle} role="button">
+        <div className={classes.theme}>
           {theme.value === 'light' && (
-            <div className={classes.button}>
+            <div className={classes.button} onClick={toggle} role="button">
               <i className="fa-solid fa-sun" />
             </div>
           )}
           {theme.value === 'dark' && (
-            <div className={classes.button} onClick={toggle}>
+            <div className={classes.button} onClick={toggle} role="button">
               <i className="fa-solid fa-moon"></i>
             </div>
           )}
