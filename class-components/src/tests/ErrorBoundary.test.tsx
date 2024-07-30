@@ -8,6 +8,8 @@ describe('ErrorBoundary', () => {
       throw new Error('Test error boundary');
     };
 
+    const consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
     render(
       <ErrorBoundary>
         <ThrowError />
@@ -15,6 +17,8 @@ describe('ErrorBoundary', () => {
     );
 
     expect(screen.getByTestId('error-boundary')).toBeVisible();
+
+    consoleErrorMock.mockRestore();
   });
 
   it('should reload the page when the button is clicked', () => {
@@ -25,6 +29,8 @@ describe('ErrorBoundary', () => {
     const ThrowError = () => {
       throw new Error('Test error boundary');
     };
+
+    const consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     render(
       <ErrorBoundary>
@@ -37,5 +43,7 @@ describe('ErrorBoundary', () => {
     fireEvent.click(button);
 
     expect(reloadSpy).toHaveBeenCalledTimes(1);
+
+    consoleErrorMock.mockRestore();
   });
 });
