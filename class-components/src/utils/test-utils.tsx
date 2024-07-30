@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { MemoryRouter, MemoryRouterProps } from 'react-router-dom';
 
 import { store } from '../store';
+import { ThemeProvider } from '../components';
 
 const renderWithRouter = (component: React.ReactNode, options: MemoryRouterProps = {}) => {
   const Wrapper = ({ children }: { children: React.ReactNode }) => (
@@ -15,7 +16,9 @@ const renderWithRouter = (component: React.ReactNode, options: MemoryRouterProps
 const renderWithProvider = (component: React.ReactNode, options: MemoryRouterProps = {}) => {
   const Wrapper = ({ children }: { children: React.ReactNode }) => (
     <Provider store={store}>
-      <MemoryRouter {...options}> {children} </MemoryRouter>
+      <ThemeProvider>
+        <MemoryRouter {...options}> {children} </MemoryRouter>
+      </ThemeProvider>
     </Provider>
   );
 
