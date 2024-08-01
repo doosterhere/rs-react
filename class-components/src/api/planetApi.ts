@@ -24,5 +24,4 @@ export const planetApi = createApi({
   }),
 });
 
-// export { planetApi };
 export const { useGetPlanetQuery, useGetPlanetsQuery } = planetApi;
