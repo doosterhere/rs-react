@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import itemsReducer from './reducers/itemsReducer';
 import { planetApi } from '../api';
+import { createWrapper } from 'next-redux-wrapper';
 
 const persistConfig = {
   key: 'root',
@@ -31,3 +32,5 @@ const persistor = persistStore(store);
 export { store, persistor };
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
+
+export const wrapper = createWrapper(() => store, { debug: true });
