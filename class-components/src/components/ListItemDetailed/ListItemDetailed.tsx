@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import clsx from 'clsx';
 
@@ -10,10 +11,12 @@ import { useGetPlanetQuery } from '../../api';
 import { ThemeContext } from '../ThemeContext';
 
 const ListItemDetailed = () => {
-  const { id } = useParams();
-  const [searchParams] = useSearchParams();
-  const { data, fulfilledTimeStamp: loading } = useGetPlanetQuery(id!);
+  const { query } = useRouter();
+  const { data, fulfilledTimeStamp: loading } = useGetPlanetQuery(query.detail!.toString());
   const { theme } = useContext(ThemeContext);
+  const search = query.search?.toString() || '';
+  const page = query.page?.toString() || '1';
+  const queryString = `search=${search}&page=${page}`;
 
   return (
     <>
@@ -28,7 +31,7 @@ const ListItemDetailed = () => {
           <div>Climate: {data?.climate}</div>
           <div>Terrain: {data?.terrain}</div>
           <div>Surfase water: {data?.surface_water}</div>
-          <Link to={`/?${searchParams.toString()}`}>Close</Link>
+          <Link href={`/?${queryString}`}>Close</Link>
         </div>
       )}
     </>

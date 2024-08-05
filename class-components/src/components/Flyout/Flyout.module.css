@@ -28,7 +28,7 @@
 }
 
 button.withIcon {
-  width: 180px;
+  width: 200px;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -53,6 +53,6 @@ button.withIcon {
   color: yellowgreen;
 }
 
-a {
+.csvlink {
   text-decoration: none;
 }

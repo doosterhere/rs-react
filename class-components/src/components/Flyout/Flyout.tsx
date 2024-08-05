@@ -42,6 +42,7 @@ const Flyout: FC = () => {
             Unselect all
           </button>
           <CSVLink
+            className={classes.csvlink}
             data={csvData}
             headers={CSV_HEADERS}
             filename={createCSVFileName()}

@@ -1,5 +1,5 @@
 import { FC, useState, useMemo, useEffect, useContext } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 import { clsx } from 'clsx';
 
@@ -14,22 +14,22 @@ interface IPaginationProps {
 const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   const pagesCount = Math.ceil(itemsCount / 10);
   const pages = useMemo(() => Array.from({ length: pagesCount }, (_, index) => index + 1), [pagesCount]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const router = useRouter();
+  const { query } = router;
   const [activePage, setActivePage] = useState('1');
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    const page = searchParams.get('page');
-
-    if (page) {
-      setActivePage(page);
+    if (query.page) {
+      setActivePage(query.page.toString());
     }
-  }, [searchParams]);
+  }, [query.page]);
 
   const handlePageClick = (page: number) => {
-    const search = searchParams.get('search') || '';
+    const search = query.search || '';
     setActivePage(page.toString());
-    setSearchParams({ search, page: page.toString() });
+    const newQuery = { ...query, search, page: page.toString() };
+    router.push({ pathname: router.pathname, query: newQuery });
   };
 
   return (

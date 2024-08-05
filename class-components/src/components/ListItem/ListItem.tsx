@@ -1,5 +1,6 @@
 import { FC, useContext } from 'react';
-import { useParams, useSearchParams, NavLink } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import clsx from 'clsx';
 
@@ -11,11 +12,13 @@ import { FullPlanetInfo } from '../../types';
 import { ThemeContext } from '../ThemeContext';
 
 const ListItem: FC<FullPlanetInfo> = props => {
-  const params = useParams();
-  const [searchParams] = useSearchParams();
+  const { query } = useRouter();
   const isChecked = useAppSelector(state => checkIsItemSelected(state, props.id)) ?? false;
   const dispatcher = useAppDispatch();
   const { theme } = useContext(ThemeContext);
+  const search = query.search?.toString() || '';
+  const page = query.page?.toString() || '1';
+  const queryString = `search=${search}&page=${page}`;
 
   const handleChange = () => {
     isChecked ? dispatcher(removeSelectedItem(props.id)) : dispatcher(addSelectedItem(props));
@@ -26,8 +29,8 @@ const ListItem: FC<FullPlanetInfo> = props => {
   };
 
   return (
-    <NavLink
-      to={params.id === props.id ? `/?${searchParams.toString()}` : `/detail/${props.id}?${searchParams.toString()}`}
+    <Link
+      href={query.id === props.id ? `/?${queryString}` : `/detail/${props.id}?${queryString}`}
       className={clsx(classes.item, classes[theme.value])}
     >
       <div className={classes.content}>
@@ -41,7 +44,7 @@ const ListItem: FC<FullPlanetInfo> = props => {
         <div>{props.name}</div>
         <div />
       </div>
-    </NavLink>
+    </Link>
   );
 };
 

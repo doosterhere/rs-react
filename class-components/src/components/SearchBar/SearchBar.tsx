@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, FormEvent, useContext } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 import clsx from 'clsx';
 
@@ -19,15 +19,16 @@ interface ISearchBarProps {
 }
 
 const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { value: searchQuery, setValue: setSearchQuery, restored } = useLocalStorage(LS_KEY);
+  const router = useRouter();
+  const { query } = router;
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fulfilledTimeStamp: loaded, data } = useGetPlanetsQuery({
-    search: searchQuery,
-    page: searchParams.get('page') || '1',
-  });
   const dispatcher = useAppDispatch();
   const { theme } = useContext(ThemeContext);
+  const { value: searchQuery, setValue: setSearchQuery, restored } = useLocalStorage(LS_KEY);
+  const { fulfilledTimeStamp: loaded, data } = useGetPlanetsQuery({
+    search: searchQuery,
+    page: query.page?.toString() || '1',
+  });
 
   useEffect(() => {
     if (restored || !searchQuery) {
@@ -35,29 +36,35 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
         inputRef.current.value = searchQuery || '';
       }
 
-      if (searchParams.get('search') !== searchQuery) {
-        setSearchParams({ search: searchQuery });
+      const newQuery = { ...query };
+
+      if (query.search?.toString() !== searchQuery) {
+        newQuery.search = searchQuery;
       }
 
-      if (!searchParams.get('page')) {
-        setSearchParams(prev => `${prev}&page=1`);
+      if (!query.page) {
+        newQuery.page = '1';
       }
+
+      router.push({ pathname: router.pathname, query: newQuery });
     }
-  }, [restored, searchQuery, searchParams, setSearchParams]);
+  }, [restored, searchQuery]);
 
   useEffect(() => {
     if (data) {
       setData(data);
       dispatcher(setCurrentPageItems(data.results));
     }
-  }, [data, setData, dispatcher]);
+  }, [dispatcher, setData, data]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     if (inputRef.current) {
       setSearchQuery(inputRef.current.value);
-      setSearchParams({ search: inputRef.current.value, page: '1' });
+      // setSearchParams({ search: inputRef.current.value, page: '1' });
+      const newQuery = { ...query, search: inputRef.current.value, page: '1' };
+      router.push({ pathname: router.pathname, query: newQuery });
     }
   };
 
@@ -65,6 +72,7 @@ const SearchBar: FC<ISearchBarProps> = ({ setData }) => {
     <div className={clsx(classes.search, classes[theme.value])}>
       <form onSubmit={handleSubmit} role="form">
         <input
+          className={classes.searchInput}
           type="search"
           autoComplete="off"
           placeholder="Search for a Star Wars planet..."

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import clsx from 'clsx';
 
@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className={clsx(classes.header, classes[theme.value])} role="heading">
       <div>
-        <Link to={'/'}>
+        <Link href={'/'}>
           <img src="/images/star-wars-logo.png" alt="Star Wars logo" />
         </Link>
         <div>Star Wars planet finder app</div>
