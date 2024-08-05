@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import clsx from 'clsx';
 
@@ -18,7 +19,7 @@ const Header = () => {
     <header className={clsx(classes.header, classes[theme.value])} role="heading">
       <div>
         <Link href={'/'}>
-          <img src="/images/star-wars-logo.png" alt="Star Wars logo" />
+          <Image src="/images/star-wars-logo.png" alt="Star Wars logo" width={80} height={32} />
         </Link>
         <div>Star Wars planet finder app</div>
         <div className={classes.theme}>
