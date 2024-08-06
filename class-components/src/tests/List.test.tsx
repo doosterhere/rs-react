@@ -1,8 +1,7 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithRouter } from '../utils';
+import { renderWithProvider } from '../utils';
 import { List } from '../components';
-import { renderWithProvider } from '../utils/test-utils';
 
 const itemList = [
   {
@@ -27,6 +26,15 @@ const itemList = [
   },
 ];
 
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    query: {
+      page: '1',
+    },
+  }),
+}));
+
 describe('List', () => {
   it('should renders correctly with data', () => {
     renderWithProvider(<List itemsList={itemList} />);
@@ -37,7 +45,7 @@ describe('List', () => {
   });
 
   it('should renders correctly without data', () => {
-    renderWithRouter(<List itemsList={[]} />);
+    renderWithProvider(<List itemsList={[]} />);
 
     expect(screen.getByTestId('list').childNodes).toHaveLength(0);
   });
