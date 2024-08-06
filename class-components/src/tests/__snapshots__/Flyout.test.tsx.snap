@@ -20,6 +20,7 @@ exports[`Flyout should render correctly 1`] = `
       Unselect all
     </button>
     <a
+      class="csvlink"
       data-testid="csvlink"
       download="1_planet.csv"
       href="data:text/csv;charset=utf-8,﻿[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
