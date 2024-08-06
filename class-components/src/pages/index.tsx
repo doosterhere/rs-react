@@ -1,48 +1,59 @@
-import { useState, useEffect, useContext } from 'react';
-// import { Outlet, useSearchParams } from 'react-router-dom';
-import { useRouter } from 'next/router';
+import { useContext, ReactNode, useEffect } from 'react';
+import { GetServerSideProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 
 import clsx from 'clsx';
 
 import classes from './index.module.css';
 
-import { Header, List, Pagination, SearchBar, Flyout } from '../components';
+import { BASE_API } from '../constants';
+import { Header, List, Pagination, SearchBar, Flyout, ThemeContext } from '../components';
 import { DefaultResponseType, PlanetType } from '../types';
-import { ThemeContext } from '../components/ThemeContext';
+import { useAppDispatch } from '../hooks';
+import { setCurrentPageItems } from '../store';
 
-export default function HomePage() {
-  const [data, setData] = useState<DefaultResponseType<PlanetType>>({
-    count: 0,
-    next: null,
-    previous: null,
-    results: [],
-  });
-  const router = useRouter();
-  const { query } = router;
+type Props = {
+  children?: ReactNode;
+  resData?: DefaultResponseType<PlanetType>;
+};
+
+export const getServerSideProps: GetServerSideProps<{ resData: DefaultResponseType<PlanetType> }> = async ({
+  query,
+}: {
+  query: ParsedUrlQuery;
+}) => {
+  const { search = '', page = '1' } = query;
+  const res = await fetch(`${BASE_API}/planets/?search=${search}&page=${page}`);
+  const resData = await res.json();
+
+  return { props: { resData } };
+};
+
+export default function HomePage({ children, resData }: Props): JSX.Element {
   const { theme } = useContext(ThemeContext);
+  const dispatcher = useAppDispatch();
 
   useEffect(() => {
-    const newQuery = { ...query, search: query.search?.toString() || '' };
-    router.push({ pathname: router.pathname, query: newQuery });
-  }, []);
+    if (resData?.results) {
+      dispatcher(setCurrentPageItems(resData.results));
+    }
+  }, [resData, dispatcher]);
 
   return (
     <main className={clsx(classes.main, classes[theme.value])}>
       <Header />
       <div className="container">
-        <SearchBar setData={setData} />
+        <SearchBar />
         <div className={classes.content}>
           <div className={classes.list}>
-            {data.results.length > 0 && <List itemsList={data.results} />}
-            {data.results.length === 0 && <div>No results</div>}
+            {resData && resData.results.length > 0 && <List itemsList={resData.results} />}
+            {resData && resData.results.length === 0 && <div>No results</div>}
           </div>
-          <div className={classes.details}>{/* <Outlet /> */}</div>
+          {children}
         </div>
-        {data.count > 10 && <Pagination itemsCount={data.count} />}
+        {resData && resData.count > 10 && <Pagination itemsCount={resData.count} />}
       </div>
-      <Flyout></Flyout>
+      <Flyout />
     </main>
   );
 }
-
-export { HomePage };
