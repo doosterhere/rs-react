@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export const useLocalStorage = <T>(key: string, defaultValue: T) => {
-  const [storedValue, setStoredValue] = useState<T | undefined>();
+export const useLocalStorage = (key: string, defaultValue: string) => {
+  const [storedValue, setStoredValue] = useState<string | undefined>();
 
   const setValue = useCallback(
-    (value: T) => {
+    (value: string) => {
       window.localStorage.setItem(key, JSON.stringify(value));
     },
     [key],
@@ -15,13 +15,15 @@ export const useLocalStorage = <T>(key: string, defaultValue: T) => {
 
     if (value) {
       try {
-        const parsed = JSON.parse(value) as T;
+        const parsed = JSON.parse(value);
         setStoredValue(parsed);
       } catch (error) {
         console.log(error);
         setStoredValue(defaultValue);
       }
-    } else {
+    }
+
+    if (!value) {
       setStoredValue(defaultValue);
     }
   }, [defaultValue, key]);
@@ -32,5 +34,5 @@ export const useLocalStorage = <T>(key: string, defaultValue: T) => {
     }
   }, [storedValue, setValue]);
 
-  return [storedValue as T, setStoredValue] as const;
+  return { storedValue, setStoredValue } as const;
 };

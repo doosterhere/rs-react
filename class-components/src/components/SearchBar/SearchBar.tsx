@@ -14,7 +14,7 @@ const SearchBar = () => {
   const router = useRouter();
   const { query } = router;
   const { theme } = useContext(ThemeContext);
-  const [searchQuery, setSearchQuery] = useLocalStorage(LS_KEY, '');
+  const { storedValue: searchQuery, setStoredValue: setSearchQuery } = useLocalStorage(LS_KEY, '');
   const [value, setValue] = useState(searchQuery);
 
   useEffect(() => {
