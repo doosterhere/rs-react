@@ -22,6 +22,8 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   useEffect(() => {
     if (query.page) {
       setActivePage(query.page.toString());
+    } else {
+      setActivePage('1');
     }
   }, [query.page]);
 
