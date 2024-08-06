@@ -2,33 +2,29 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProvider } from '../utils';
 import { ListItemDetailed } from '../components';
-import * as planetApi from '../api';
-import { mockedPlanet } from './mocks/mockData';
+import { PlanetType } from '../types';
+import { mockedPlanet } from './testSetup/mockData';
+
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    query: {
+      page: '1',
+      id: '1',
+    },
+  }),
+}));
 
 describe('ListItemDetailed', () => {
-  const useGetPlanetQueryMock = jest.spyOn(planetApi, 'useGetPlanetQuery') as jest.Mock;
-
   it('should renders correct data', async () => {
-    useGetPlanetQueryMock.mockReturnValueOnce({ data: mockedPlanet, fulfilledTimeStamp: 1 });
-
-    renderWithProvider(<ListItemDetailed />, { initialEntries: ['/detail/1?search=&page=1'] });
+    renderWithProvider(<ListItemDetailed data={mockedPlanet} />);
 
     expect(screen.getByText(/Mocked Planet/i)).toBeInTheDocument();
   });
 
-  it('should render correctly with do data received', async () => {
-    useGetPlanetQueryMock.mockReturnValueOnce({ data: {}, fulfilledTimeStamp: 1 });
-
-    renderWithProvider(<ListItemDetailed />, { initialEntries: ['/detail/1?search=&page=1'] });
+  it('should render correctly with no data received', async () => {
+    renderWithProvider(<ListItemDetailed data={{} as PlanetType} />);
 
     expect(screen.queryByText(/Mocked Planet/i)).not.toBeInTheDocument();
-  });
-
-  it('should render loader when data is not received', () => {
-    useGetPlanetQueryMock.mockReturnValueOnce({ data: mockedPlanet, fulfilledTimeStamp: undefined });
-
-    renderWithProvider(<ListItemDetailed />, { initialEntries: ['/detail/1?search=&page=1'] });
-
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 });

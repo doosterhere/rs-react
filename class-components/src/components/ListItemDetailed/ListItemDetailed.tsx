@@ -26,7 +26,9 @@ const ListItemDetailed: FC<{ data: PlanetType }> = ({ data }) => {
         <div>Climate: {data?.climate}</div>
         <div>Terrain: {data?.terrain}</div>
         <div>Surfase water: {data?.surface_water}</div>
-        <Link href={`/?${queryString}`}>Close</Link>
+        <Link href={`/?${queryString}`} role="link">
+          Close
+        </Link>
       </div>
     </>
   );
