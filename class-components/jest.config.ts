@@ -1,5 +1,11 @@
-/** @type {import('jest').Config} */
-const config = {
+import type { Config } from 'jest';
+import nextJest from 'next/jest';
+
+const createJestConfig = nextJest({
+  dir: './',
+});
+
+const config: Config = {
   collectCoverage: true,
   collectCoverageFrom: [
     'src/api/**/*',
@@ -12,6 +18,7 @@ const config = {
     '!src/**/index.ts',
   ],
   coverageDirectory: 'coverage',
+  coverageProvider: 'v8',
   coverageThreshold: {
     global: {
       branches: 80,
@@ -22,13 +29,10 @@ const config = {
   },
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['@testing-library/jest-dom', '<rootDir>/jest.setup.js'],
-  transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
-  },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   moduleNameMapper: {
     '^.+\\.(css|scss)$': 'identity-obj-proxy',
   },
 };
 
-export default config;
+export default createJestConfig(config);
