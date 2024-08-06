@@ -8,7 +8,6 @@ const createJestConfig = nextJest({
 const config: Config = {
   collectCoverage: true,
   collectCoverageFrom: [
-    'src/api/**/*',
     'src/components/**/*',
     'src/hooks/**/*',
     'src/pages/**/*',
@@ -29,10 +28,6 @@ const config: Config = {
   },
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['@testing-library/jest-dom', '<rootDir>/jest.setup.js'],
-  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  moduleNameMapper: {
-    '^.+\\.(css|scss)$': 'identity-obj-proxy',
-  },
 };
 
 export default createJestConfig(config);
