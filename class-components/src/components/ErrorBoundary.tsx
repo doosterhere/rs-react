@@ -19,14 +19,16 @@ class ErrorBoundary extends Component<IErrorBoundaryProps> {
   }
 
   reloadPage() {
-    history.go(0);
+    window.location.assign('/');
   }
 
   render() {
     return this.state.hasError ? (
-      <div className="container">
+      <div className="container" style={{ display: 'flex', alignItems: 'center' }}>
         <h1 data-testid="error-boundary">Something went wrong!</h1>
-        <button onClick={this.reloadPage}>Return to main page</button>
+        <button onClick={this.reloadPage} style={{ width: '300px' }}>
+          Return to main page
+        </button>
       </div>
     ) : (
       this.props.children
