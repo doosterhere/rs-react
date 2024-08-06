@@ -1,0 +1,7 @@
+.details:has(div) {
+  margin-left: 30px;
+}
+
+.details {
+  align-self: center;
+}
