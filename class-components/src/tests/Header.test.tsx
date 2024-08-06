@@ -1,11 +1,10 @@
-import { screen } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 
-import { renderWithRouter } from '../utils';
 import { Header } from '../components';
 
 describe('Header', () => {
   it('should render correctly', () => {
-    renderWithRouter(<Header />);
+    render(<Header />);
 
     expect(screen.getByText(/Star Wars planet finder app/i)).toBeInTheDocument();
 
