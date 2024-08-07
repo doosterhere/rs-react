@@ -3,17 +3,6 @@ import { screen, fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '../utils';
 import { Pagination } from '../components';
 
-jest.mock('next/router', () => {
-  const router = {
-    push: jest.fn(),
-    query: {},
-    pathname: '/',
-  };
-  return {
-    useRouter: jest.fn().mockReturnValue(router),
-  };
-});
-
 describe('Pagination', () => {
   it('should renders correctly with two buttons and set proper classNames', () => {
     renderWithProvider(<Pagination itemsCount={15} />);

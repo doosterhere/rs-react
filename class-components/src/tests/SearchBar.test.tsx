@@ -5,17 +5,6 @@ import { useRouter } from 'next/router';
 import { renderWithProvider } from '../utils';
 import { SearchBar } from '../components';
 
-jest.mock('next/router', () => {
-  const router = {
-    push: jest.fn(),
-    query: {},
-    pathname: '/',
-  };
-  return {
-    useRouter: jest.fn().mockReturnValue(router),
-  };
-});
-
 describe('SearchBar', () => {
   it('should render correctly', async () => {
     renderWithProvider(<SearchBar />);
