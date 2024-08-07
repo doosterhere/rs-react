@@ -1,4 +1,5 @@
-import { createContext, FC, ReactNode, useCallback, useState } from 'react';
+'use client';
+import { createContext, ReactNode, useMemo, useState, useContext } from 'react';
 
 type ThemeType = {
   value: 'light' | 'dark';
@@ -9,16 +10,28 @@ interface IThemeContext {
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<IThemeContext>({ theme: { value: 'light' }, toggleTheme: () => {} });
+const ThemeContext = createContext<IThemeContext | undefined>(undefined);
 
-const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<ThemeType>({ value: 'light' });
 
-  const toggleTheme = useCallback(() => {
+  const toggleTheme = () => {
     setTheme(prev => ({ value: prev.value === 'light' ? 'dark' : 'light' }));
-  }, []);
+  };
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+  const value = useMemo(() => ({ theme, toggleTheme }), [theme]);
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
-export { ThemeContext, ThemeProvider };
+const useTheme = () => {
+  const context = useContext(ThemeContext);
+
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+
+  return context;
+};
+
+export { ThemeProvider, useTheme };
