@@ -3,7 +3,6 @@ import { persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, R
 import storage from 'redux-persist/lib/storage';
 
 import itemsReducer from './reducers/itemsReducer';
-import { createWrapper } from 'next-redux-wrapper';
 
 const persistConfig = {
   key: 'root',
@@ -17,18 +16,18 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
-  reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: { ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER] },
-    }),
-});
+const configStore = () =>
+  configureStore({
+    reducer: persistedReducer,
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        serializableCheck: { ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER] },
+      }),
+  });
 
-const persistor = persistStore(store);
+const persistor = persistStore(configStore());
 
-export { store, persistor };
+export { configStore, persistor };
+export type AppStore = ReturnType<typeof configStore>;
 export type RootState = ReturnType<typeof rootReducer>;
-export type AppDispatch = typeof store.dispatch;
-
-export const wrapper = createWrapper(() => store);
+export type AppDispatch = AppStore['dispatch'];
