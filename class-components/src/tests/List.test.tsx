@@ -6,7 +6,9 @@ import { mockedPlanets } from './testSetup/mockData';
 
 describe('List', () => {
   it('should renders correctly with data', () => {
-    renderWithProvider(<List itemsList={mockedPlanets.results} />);
+    const { container } = renderWithProvider(<List itemsList={mockedPlanets.results} />);
+
+    expect(container).toMatchSnapshot();
 
     expect(screen.getByText(/^Mocked\sPlanet$/i)).toBeInTheDocument();
 
@@ -14,7 +16,9 @@ describe('List', () => {
   });
 
   it('should renders correctly without data', () => {
-    renderWithProvider(<List itemsList={[]} />);
+    const { container } = renderWithProvider(<List itemsList={[]} />);
+
+    expect(container).toMatchSnapshot();
 
     expect(screen.getByTestId('list').childNodes).toHaveLength(0);
   });

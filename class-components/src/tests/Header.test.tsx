@@ -4,7 +4,9 @@ import { Header } from '../components';
 
 describe('Header', () => {
   it('should render correctly', () => {
-    render(<Header />);
+    const { container } = render(<Header />);
+
+    expect(container).toMatchSnapshot();
 
     expect(screen.getByText(/Star Wars planet finder app/i)).toBeInTheDocument();
 

@@ -5,7 +5,9 @@ import { Pagination } from '../components';
 
 describe('Pagination', () => {
   it('should renders correctly with two buttons and set proper classNames', () => {
-    renderWithProvider(<Pagination itemsCount={15} />);
+    const { container } = renderWithProvider(<Pagination itemsCount={15} />);
+
+    expect(container).toMatchSnapshot();
 
     const buttons = screen.queryAllByRole('button');
 

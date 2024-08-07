@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar should render correctly 1`] = `
+<div>
+  <div
+    class="search light"
+  >
+    <form
+      role="form"
+    >
+      <input
+        autocomplete="off"
+        class="searchInput"
+        placeholder="Search for a Star Wars planet..."
+        role="searchbox"
+        type="search"
+        value=""
+      />
+      <button
+        role="button"
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+`;

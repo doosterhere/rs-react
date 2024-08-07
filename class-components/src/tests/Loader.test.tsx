@@ -4,7 +4,9 @@ import { Loader } from '../components';
 
 describe('Loader', () => {
   it('should render correctly', () => {
-    render(<Loader />);
+    const { container } = render(<Loader />);
+
+    expect(container).toMatchSnapshot();
 
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });

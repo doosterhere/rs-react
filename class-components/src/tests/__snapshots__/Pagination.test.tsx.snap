@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should renders correctly with two buttons and set proper classNames 1`] = `
+<div>
+  <div
+    class="pagination light"
+  >
+    <div
+      class="page active"
+      role="button"
+    >
+      1
+    </div>
+    <div
+      class="page"
+      role="button"
+    >
+      2
+    </div>
+  </div>
+</div>
+`;

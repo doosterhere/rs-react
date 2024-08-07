@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render correctly 1`] = `
+<div>
+  <header
+    class="header light"
+    role="heading"
+  >
+    <div>
+      <a
+        href="/"
+      >
+        <img
+          alt="Star Wars logo"
+          data-nimg="1"
+          decoding="async"
+          height="32"
+          loading="lazy"
+          src="/_next/image?url=%2Fimages%2Fstar-wars-logo.png&w=256&q=75"
+          srcset="/_next/image?url=%2Fimages%2Fstar-wars-logo.png&w=96&q=75 1x, /_next/image?url=%2Fimages%2Fstar-wars-logo.png&w=256&q=75 2x"
+          style="color: transparent;"
+          width="80"
+        />
+      </a>
+      <div>
+        Star Wars planet finder app
+      </div>
+      <div
+        class="theme"
+      >
+        <div
+          class="button"
+          role="button"
+        >
+          <i
+            class="fa-solid fa-sun"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+`;
