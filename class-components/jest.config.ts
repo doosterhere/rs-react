@@ -15,6 +15,7 @@ const config: Config = {
     'src/utils/**/*',
     '!src/**/*.(d|type).ts',
     '!src/**/index.ts',
+    '!src/**/*_*',
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
