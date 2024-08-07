@@ -1,11 +1,12 @@
-import { FC, useState, useMemo, useEffect, useContext } from 'react';
+'use client';
+import { FC, useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { clsx } from 'clsx';
 
 import classes from './Pagination.module.css';
 
-import { ThemeContext } from '../ThemeContext';
+import { useTheme } from '../ThemeContext';
 
 interface IPaginationProps {
   itemsCount: number;
@@ -17,7 +18,7 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   const router = useRouter();
   const { query } = router;
   const [activePage, setActivePage] = useState('1');
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (query.page) {

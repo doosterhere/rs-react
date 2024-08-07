@@ -1,11 +1,12 @@
-import { useState, FormEvent, useContext, useEffect } from 'react';
+'use client';
+import { useState, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import clsx from 'clsx';
 
 import classes from './SearchBar.module.css';
 
-import { ThemeContext } from '../ThemeContext';
+import { useTheme } from '../ThemeContext';
 import { useLocalStorage } from '../../hooks';
 
 const LS_KEY = 'searchQuery';
@@ -13,7 +14,7 @@ const LS_KEY = 'searchQuery';
 const SearchBar = () => {
   const router = useRouter();
   const { query } = router;
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const { storedValue: searchQuery, setStoredValue: setSearchQuery } = useLocalStorage(LS_KEY, '');
   const [value, setValue] = useState(searchQuery);
 

@@ -1,4 +1,5 @@
-import { FC, useContext } from 'react';
+'use client';
+import { FC } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -6,11 +7,11 @@ import clsx from 'clsx';
 
 import classes from './ListItemDetailed.module.css';
 
-import { ThemeContext } from '../ThemeContext';
+import { useTheme } from '../ThemeContext';
 import { PlanetType } from '../../types';
 
 const ListItemDetailed: FC<{ data: PlanetType }> = ({ data }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const { query } = useRouter();
   const search = query.search?.toString() || '';
   const page = query.page?.toString() || '1';

@@ -1,4 +1,5 @@
-import { FC, useContext } from 'react';
+'use client';
+import { FC } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -9,13 +10,13 @@ import classes from './ListItem.module.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addSelectedItem, removeSelectedItem, checkIsItemSelected } from '../../store';
 import { FullPlanetInfo } from '../../types';
-import { ThemeContext } from '../ThemeContext';
+import { useTheme } from '../ThemeContext';
 
 const ListItem: FC<FullPlanetInfo> = props => {
   const { query } = useRouter();
   const isChecked = useAppSelector(state => checkIsItemSelected(state, props.id)) ?? false;
   const dispatcher = useAppDispatch();
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const search = query.search?.toString() || '';
   const page = query.page?.toString() || '1';
   const queryString = `search=${search}&page=${page}`;
