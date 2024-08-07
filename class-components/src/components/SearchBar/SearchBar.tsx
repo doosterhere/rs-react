@@ -39,8 +39,11 @@ const SearchBar = () => {
           type="search"
           autoComplete="off"
           placeholder="Search for a Star Wars planet..."
+          role="searchbox"
         />
-        <button type="submit">Search</button>
+        <button type="submit" role="button">
+          Search
+        </button>
       </form>
     </div>
   );

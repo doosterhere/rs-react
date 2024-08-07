@@ -5,15 +5,16 @@ import { ListItemDetailed } from '../components';
 import { PlanetType } from '../types';
 import { mockedPlanet } from './testSetup/mockData';
 
-jest.mock('next/router', () => ({
-  useRouter: () => ({
+jest.mock('next/router', () => {
+  const router = {
     push: jest.fn(),
-    query: {
-      page: '1',
-      id: '1',
-    },
-  }),
-}));
+    query: {},
+    pathname: '/',
+  };
+  return {
+    useRouter: jest.fn().mockReturnValue(router),
+  };
+});
 
 describe('ListItemDetailed', () => {
   it('should renders correct data', async () => {

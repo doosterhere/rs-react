@@ -2,14 +2,9 @@ import { screen } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
-import { renderWithRouter } from '../utils';
+import { renderWithProvider } from '../utils';
 import { ListItem } from '../components';
 import { FullPlanetInfo } from '../types';
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useParams: jest.fn().mockReturnValue({ id: '1' }),
-}));
 
 jest.mock('react-redux');
 
@@ -21,7 +16,7 @@ describe('ListItem', () => {
       name: 'test',
     } as FullPlanetInfo;
 
-    renderWithRouter(<ListItem {...props} />);
+    renderWithProvider(<ListItem {...props} />);
 
     expect(screen.getByText(/test/i)).toBeInTheDocument();
 
@@ -35,7 +30,7 @@ describe('ListItem', () => {
       id: '2',
     } as FullPlanetInfo;
 
-    renderWithRouter(<ListItem {...props} />);
+    renderWithProvider(<ListItem {...props} />);
 
     expect(screen.getByRole('link')).toHaveAttribute('href', '/detail/2');
   });
@@ -51,7 +46,7 @@ describe('ListItem', () => {
       id: '2',
     } as FullPlanetInfo;
 
-    renderWithRouter(<ListItem {...props} />);
+    renderWithProvider(<ListItem {...props} />);
 
     const checkbox = screen.getByRole('checkbox');
 

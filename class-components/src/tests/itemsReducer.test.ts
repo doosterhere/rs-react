@@ -1,4 +1,4 @@
-import { mockedPlanet } from './mocks/mockData';
+import { mockedPlanet } from './testSetup/mockData';
 import { FullPlanetInfo, PlanetType } from '../types';
 import itemsReducer, {
   selectSelectedItems,

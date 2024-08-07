@@ -26,14 +26,16 @@ const itemList = [
   },
 ];
 
-jest.mock('next/router', () => ({
-  useRouter: () => ({
+jest.mock('next/router', () => {
+  const router = {
     push: jest.fn(),
-    query: {
-      page: '1',
-    },
-  }),
-}));
+    query: {},
+    pathname: '/',
+  };
+  return {
+    useRouter: jest.fn().mockReturnValue(router),
+  };
+});
 
 describe('List', () => {
   it('should renders correctly with data', () => {
