@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -6,10 +6,10 @@ import clsx from 'clsx';
 
 import classes from './Header.module.css';
 
-import { ThemeContext } from '../ThemeContext';
+import { useTheme } from '../ThemeContext';
 
 const Header = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
 
   const toggle = () => {
     toggleTheme();
