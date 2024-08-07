@@ -3,5 +3,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100svh;
+  height: calc(100svh - 69px);
 }
