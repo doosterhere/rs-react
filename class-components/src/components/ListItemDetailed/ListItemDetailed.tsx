@@ -1,17 +1,14 @@
 'use client';
+
 import { FC } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-import clsx from 'clsx';
-
 import classes from './ListItemDetailed.module.css';
 
-import { useTheme } from '../ThemeContext';
 import { PlanetType } from '../../types';
 
 const ListItemDetailed: FC<{ data: PlanetType }> = ({ data }) => {
-  const { theme } = useTheme();
   const searchParams = useSearchParams();
   const search = searchParams.get('search') || '';
   const page = searchParams.get('page') || '1';
@@ -19,7 +16,7 @@ const ListItemDetailed: FC<{ data: PlanetType }> = ({ data }) => {
 
   return (
     <>
-      <div className={clsx(classes.content, classes[theme.value])}>
+      <div className={classes.content}>
         <div>Name: {data?.name}</div>
         <div>Diameter: {data?.diameter}</div>
         <div>Gravity: {data?.gravity}</div>

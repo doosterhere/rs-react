@@ -11,21 +11,21 @@
   transform: scale(1.4);
 }
 
-.search.dark input {
+[class*='dark'] .searchInput {
   color: white;
 
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.search.dark input::placeholder {
+[class*='dark'] .searchInput::placeholder {
   color: lightgray;
 }
 
-.search.dark input::-webkit-search-cancel-button {
-  filter: invert(0.6);
+[class*='dark'] .searchInput::-webkit-search-cancel-button {
+  filter: invert(0.7);
 }
 
-.search.dark button {
+[class*='dark'] .search button {
   color: white;
 
   background-color: slategray;

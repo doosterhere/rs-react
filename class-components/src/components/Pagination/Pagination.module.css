@@ -8,7 +8,7 @@
   font-size: 20px;
 }
 
-.dark {
+[class*='dark'] .pagination {
   color: white;
 }
 
@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 
-.pagination.dark .page {
+[class*='dark'] .page {
   border-color: darkgray;
 
   background-color: darkslateblue;
@@ -37,6 +37,6 @@
   background-color: lightskyblue;
 }
 
-.pagination.dark .page.active {
+[class*='dark'] .page.active {
   background-color: black;
 }

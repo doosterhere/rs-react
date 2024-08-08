@@ -1,4 +1,5 @@
 'use client';
+
 import { FC, useState } from 'react';
 
 import clsx from 'clsx';
@@ -9,10 +10,8 @@ import classes from './Flyout.module.css';
 import { CSV_HEADERS } from '../../constants';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectSelectedQuantity, clearSelectedItems, selectSelectedItems } from '../../store';
-import { useTheme } from '../ThemeContext';
 
 const Flyout: FC = () => {
-  const { theme } = useTheme();
   const quantity = useAppSelector(selectSelectedQuantity);
   const dispatcher = useAppDispatch();
   const [areYouSure, setAreYouSure] = useState(false);
@@ -34,7 +33,7 @@ const Flyout: FC = () => {
   };
 
   return (
-    <div className={clsx(classes.flyout, classes[theme.value])} data-quantity={quantity}>
+    <div className={classes.flyout} data-quantity={quantity}>
       {!areYouSure && (
         <>
           <div>Selected items: {quantity}</div>

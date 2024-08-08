@@ -1,22 +1,19 @@
 'use client';
+
 import { FC } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-
-import clsx from 'clsx';
 
 import classes from './ListItem.module.css';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addSelectedItem, removeSelectedItem, checkIsItemSelected } from '../../store';
 import { FullPlanetInfo } from '../../types';
-import { useTheme } from '../ThemeContext';
 
 const ListItem: FC<FullPlanetInfo> = props => {
   const searchParams = useSearchParams();
   const isChecked = useAppSelector(state => checkIsItemSelected(state, props.id)) ?? false;
   const dispatcher = useAppDispatch();
-  const { theme } = useTheme();
   const search = searchParams.get('search') || '';
   const page = searchParams.get('page') || '1';
   const detail = searchParams.get('detail') || '';
@@ -33,7 +30,7 @@ const ListItem: FC<FullPlanetInfo> = props => {
   return (
     <Link
       href={detail === props.id ? `/?${queryString}` : `/?${queryString}&detail=${props.id}`}
-      className={clsx(classes.item, classes[theme.value])}
+      className={classes.item}
     >
       <div className={classes.content}>
         <input

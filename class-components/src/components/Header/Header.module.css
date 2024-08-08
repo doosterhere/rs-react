@@ -13,11 +13,6 @@
   background-color: slategray;
 }
 
-[class*='dark'] .header,
-.dark {
-  background-color: rgb(47, 54, 61);
-}
-
 .header div {
   display: flex;
   align-items: center;
@@ -29,6 +24,10 @@
   height: auto;
 }
 
-.header.dark div img {
+[class*='dark'] .header {
+  background-color: rgb(47, 54, 61);
+}
+
+[class*='dark'] .header div img {
   filter: invert(1);
 }

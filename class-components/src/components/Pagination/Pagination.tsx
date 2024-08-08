@@ -1,12 +1,11 @@
 'use client';
+
 import { FC, useState, useMemo, useEffect } from 'react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
-import { clsx } from 'clsx';
+import clsx from 'clsx';
 
 import classes from './Pagination.module.css';
-
-import { useTheme } from '../ThemeContext';
 
 interface IPaginationProps {
   itemsCount: number;
@@ -21,7 +20,6 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   const q_search = searchParams.get('search') || '';
   const pathname = usePathname();
   const [activePage, setActivePage] = useState('1');
-  const { theme } = useTheme();
 
   useEffect(() => {
     if (q_page) {
@@ -38,7 +36,7 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   };
 
   return (
-    <div className={clsx(classes.pagination, classes[theme.value])}>
+    <div className={classes.pagination}>
       {pages.map(page => (
         <div
           className={clsx(classes.page, page === Number(activePage) && classes.active)}

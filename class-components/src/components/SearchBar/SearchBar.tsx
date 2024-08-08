@@ -1,12 +1,10 @@
 'use client';
+
 import { useState, FormEvent, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
-import clsx from 'clsx';
-
 import classes from './SearchBar.module.css';
 
-import { useTheme } from '../ThemeContext';
 import { useLocalStorage } from '../../hooks';
 
 const LS_KEY = 'searchQuery';
@@ -14,7 +12,6 @@ const LS_KEY = 'searchQuery';
 const SearchBar = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const { theme } = useTheme();
   const { storedValue: searchQuery, setStoredValue: setSearchQuery } = useLocalStorage(LS_KEY, '');
   const [value, setValue] = useState(searchQuery);
 
@@ -30,7 +27,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={clsx(classes.search, classes[theme.value])}>
+    <div className={classes.search}>
       <form onSubmit={handleSubmit} role="form">
         <input
           value={value || ''}

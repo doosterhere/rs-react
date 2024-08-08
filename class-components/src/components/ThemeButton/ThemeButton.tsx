@@ -1,4 +1,5 @@
 'use client';
+
 import classes from './ThemeButton.module.css';
 
 import { useTheme } from '../ThemeContext';

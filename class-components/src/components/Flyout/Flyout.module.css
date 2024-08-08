@@ -21,7 +21,8 @@
   transform: translateX(0);
 }
 
-.dark {
+[class*='dark'] .flyout,
+[class*='dark'] button.withIcon {
   color: white;
 
   background-color: rgb(47, 54, 61);
@@ -34,12 +35,6 @@ button.withIcon {
   gap: 10px;
 }
 
-.flyout.dark button.withIcon {
-  color: white;
-
-  background-color: slategray;
-}
-
 .delete:before,
 .back:before {
   color: red;
@@ -49,7 +44,7 @@ button.withIcon {
   color: green;
 }
 
-.flyout.dark .remove:before {
+[class*='dark'] .remove:before {
   color: yellowgreen;
 }
 

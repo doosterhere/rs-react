@@ -12,7 +12,7 @@
   text-decoration: none;
 }
 
-.dark {
+[class*='dark'] .item {
   border-color: rgb(47, 54, 61);
 
   color: white;
@@ -24,7 +24,7 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 }
 
-.item.dark:hover {
+[class*='dark'] .item:hover {
   box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.6);
 }
 
@@ -46,6 +46,6 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 }
 
-.item.dark .input:hover {
+[class*='dark'] .input:hover {
   box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.25);
 }
