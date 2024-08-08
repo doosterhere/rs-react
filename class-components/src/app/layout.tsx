@@ -5,7 +5,7 @@ import { AppProvider } from '../components/AppProvider';
 import { Header } from '../components/Header';
 
 import '../styles/global.css';
-import classes from './homePage.module.css';
+import classes from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'SW search app',
