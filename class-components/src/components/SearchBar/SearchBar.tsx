@@ -1,6 +1,6 @@
 'use client';
 import { useState, FormEvent, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 
 import clsx from 'clsx';
 
@@ -13,7 +13,7 @@ const LS_KEY = 'searchQuery';
 
 const SearchBar = () => {
   const router = useRouter();
-  const { query } = router;
+  const pathname = usePathname();
   const { theme } = useTheme();
   const { storedValue: searchQuery, setStoredValue: setSearchQuery } = useLocalStorage(LS_KEY, '');
   const [value, setValue] = useState(searchQuery);
@@ -26,8 +26,7 @@ const SearchBar = () => {
     e.preventDefault();
 
     setSearchQuery(value);
-    const newQuery = { ...query, search: value, page: '1' };
-    router.push({ pathname: router.pathname, query: newQuery });
+    router.push(`${pathname}?search=${value}&page=1`);
   };
 
   return (

@@ -1,6 +1,6 @@
 'use client';
 import { FC, useState, useMemo, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 import { clsx } from 'clsx';
 
@@ -16,23 +16,25 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   const pagesCount = Math.ceil(itemsCount / 10);
   const pages = useMemo(() => Array.from({ length: pagesCount }, (_, index) => index + 1), [pagesCount]);
   const router = useRouter();
-  const { query } = router;
+  const searchParams = useSearchParams();
+  const q_page = searchParams.get('page') || '1';
+  const q_search = searchParams.get('search') || '';
+  const pathname = usePathname();
   const [activePage, setActivePage] = useState('1');
   const { theme } = useTheme();
 
   useEffect(() => {
-    if (query.page) {
-      setActivePage(query.page.toString());
+    if (q_page) {
+      setActivePage(q_page.toString());
     } else {
       setActivePage('1');
     }
-  }, [query.page]);
+  }, [q_page]);
 
   const handlePageClick = (page: number) => {
-    const search = query.search || '';
+    const search = q_search || '';
     setActivePage(page.toString());
-    const newQuery = { ...query, search, page: page.toString() };
-    router.push({ pathname: router.pathname, query: newQuery });
+    router.push(`${pathname}?search=${search}&page=${page}`);
   };
 
   return (

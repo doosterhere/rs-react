@@ -7,33 +7,19 @@ import clsx from 'clsx';
 import classes from './Header.module.css';
 
 import { useTheme } from '../ThemeContext';
+import { ThemeButton } from '../ThemeButton';
 
 const Header = () => {
-  const { theme, toggleTheme } = useTheme();
-
-  const toggle = () => {
-    toggleTheme();
-  };
+  const { theme } = useTheme();
 
   return (
     <header className={clsx(classes.header, classes[theme.value])} role="heading">
       <div>
-        <Link href={'/'}>
+        <Link href={'/?search=&page=1'}>
           <Image src="/images/star-wars-logo.png" alt="Star Wars logo" width={80} height={32} />
         </Link>
         <div>Star Wars planet finder app</div>
-        <div className={classes.theme}>
-          {theme.value === 'light' && (
-            <div className={classes.button} onClick={toggle} role="button">
-              <i className="fa-solid fa-sun" />
-            </div>
-          )}
-          {theme.value === 'dark' && (
-            <div className={classes.button} onClick={toggle} role="button">
-              <i className="fa-solid fa-moon"></i>
-            </div>
-          )}
-        </div>
+        <ThemeButton />
       </div>
     </header>
   );

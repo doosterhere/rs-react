@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 
 import clsx from 'clsx';
 
@@ -12,9 +12,9 @@ import { PlanetType } from '../../types';
 
 const ListItemDetailed: FC<{ data: PlanetType }> = ({ data }) => {
   const { theme } = useTheme();
-  const { query } = useRouter();
-  const search = query.search?.toString() || '';
-  const page = query.page?.toString() || '1';
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search') || '';
+  const page = searchParams.get('page') || '1';
   const queryString = `search=${search}&page=${page}`;
 
   return (
