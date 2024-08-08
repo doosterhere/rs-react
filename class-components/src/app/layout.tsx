@@ -5,6 +5,7 @@ import { AppProvider } from '../components/AppProvider';
 import { Header } from '../components/Header';
 
 import '../styles/global.css';
+import classes from './homePage.module.css';
 
 export const metadata: Metadata = {
   title: 'SW search app',
@@ -28,8 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <AppProvider>
-          <Header />
-          {children}
+          <main className={classes.main}>
+            <Header />
+            {children}
+          </main>
         </AppProvider>
       </body>
     </html>
