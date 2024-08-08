@@ -9,12 +9,7 @@
     "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable",
-      "esnext"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "esnext"],
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "Bundler",
@@ -22,6 +17,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "next"
@@ -32,18 +30,9 @@
     "sourceMap": true,
     "strict": true,
     "target": "ES2020",
-    "types": [
-      "@testing-library/jest-dom"
-    ],
+    "types": ["@testing-library/jest-dom"],
     "useDefineForClassFields": true
   },
-  "include": [
-    "./src/**/*",
-    "./dist/types/**/*.ts",
-    "./next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "./node_modules"
-  ]
+  "include": ["./src/**/*", "./dist/types/**/*.ts", "./next-env.d.ts", ".next/types/**/*.ts"],
+  "exclude": ["./node_modules"]
 }
