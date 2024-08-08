@@ -7,6 +7,7 @@ import '../styles/global.css';
 
 import { AppStore, persistor, configStore } from '../store/store';
 import { ThemeProvider } from '../components/ThemeContext';
+import { ErrorBoundary } from './ErrorBoundary';
 
 function AppProvider({ children }: { children: ReactNode }) {
   const storeRef = useRef<AppStore>();
@@ -18,7 +19,9 @@ function AppProvider({ children }: { children: ReactNode }) {
   return (
     <Provider store={storeRef.current}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ErrorBoundary>
+          <ThemeProvider>{children}</ThemeProvider>
+        </ErrorBoundary>
       </PersistGate>
     </Provider>
   );
