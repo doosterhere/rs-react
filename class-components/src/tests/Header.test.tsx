@@ -1,10 +1,11 @@
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-import { Header } from '../components';
+import { Header } from '../components/Header';
+import { renderWithProvider } from '../utils';
 
 describe('Header', () => {
   it('should render correctly', () => {
-    const { container } = render(<Header />);
+    const { container } = renderWithProvider(<Header />);
 
     expect(container).toMatchSnapshot();
 

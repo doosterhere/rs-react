@@ -3,7 +3,7 @@
 exports[`Flyout should render correctly 1`] = `
 <div>
   <div
-    class="flyout light"
+    class="flyout"
     data-quantity="1"
   >
     <div>

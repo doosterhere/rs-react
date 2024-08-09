@@ -2,7 +2,7 @@ import { screen, render } from '@testing-library/react';
 import * as reduxHooks from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
-import { Flyout } from '../components';
+import { Flyout } from '../components/Flyout';
 import { clearSelectedItems } from '../store';
 
 jest.mock('react-redux');

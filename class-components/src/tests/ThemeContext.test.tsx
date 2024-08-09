@@ -1,8 +1,7 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { ThemeProvider, ThemeContext } from '../components';
+import { ThemeProvider, useTheme } from '../components/ThemeContext';
 
 describe('ThemeContext', () => {
   it('should provide a default theme', () => {
@@ -35,7 +34,7 @@ describe('ThemeContext', () => {
   });
 
   function TestComponent() {
-    const { theme, toggleTheme } = React.useContext(ThemeContext);
+    const { theme, toggleTheme } = useTheme();
 
     return (
       <div data-theme={theme.value} data-testid="container">
