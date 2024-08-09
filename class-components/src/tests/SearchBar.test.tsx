@@ -1,9 +1,14 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import mockRouter from 'next-router-mock';
+import { useRouter } from 'next/navigation';
 
 import { renderWithProvider } from '../utils';
-import { SearchBar } from '../components';
+import { SearchBar } from '../components/SearchBar';
+
+jest.mock('next/navigation', () => ({
+  usePathname: () => '/',
+  useRouter: jest.fn(),
+}));
 
 describe('SearchBar', () => {
   it('should render correctly', async () => {
@@ -17,11 +22,10 @@ describe('SearchBar', () => {
   });
 
   it('should push correct data into query params', async () => {
-    mockRouter.push('/');
+    const mockPush = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
 
     renderWithProvider(<SearchBar />);
-
-    expect(mockRouter).toMatchObject({});
 
     const input = screen.getByRole('searchbox');
     const button = screen.getByRole('button');
@@ -29,9 +33,6 @@ describe('SearchBar', () => {
     await userEvent.type(input, 'test');
     await userEvent.click(button);
 
-    expect(mockRouter).toMatchObject({
-      pathname: '/',
-      query: { page: '1', search: 'test' },
-    });
+    expect(mockPush).toHaveBeenCalledWith('/?search=test&page=1');
   });
 });
