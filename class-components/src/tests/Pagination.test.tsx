@@ -1,17 +1,32 @@
 import { screen, fireEvent } from '@testing-library/react';
 
 import { renderWithProvider } from '../utils';
-import { Pagination } from '../components';
+import { Pagination } from '../components/Pagination';
+
+jest.mock('next/navigation', () => ({
+  usePathname: () => '/',
+  useRouter: () => ({ push: jest.fn() }),
+  useSearchParams: () => ({ get: () => '' }),
+}));
 
 describe('Pagination', () => {
-  it('should renders correctly with two buttons and set proper classNames', () => {
-    const { container } = renderWithProvider(<Pagination itemsCount={15} />);
+  it('should renders correctly with correct numbers of buttons', () => {
+    const itemsCount = 34;
+    const buttonsCount = Math.ceil(itemsCount / 10);
+
+    const { container } = renderWithProvider(<Pagination itemsCount={itemsCount} />);
 
     expect(container).toMatchSnapshot();
 
     const buttons = screen.queryAllByRole('button');
 
-    expect(buttons).toHaveLength(2);
+    expect(buttons).toHaveLength(Math.ceil(buttonsCount));
+  });
+
+  it('should correct sets "active" class name for the buttons', () => {
+    renderWithProvider(<Pagination itemsCount={15} />);
+
+    const buttons = screen.queryAllByRole('button');
 
     const button_1 = buttons[0];
     const button_2 = buttons[1];
