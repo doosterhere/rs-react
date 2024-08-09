@@ -16,21 +16,19 @@ const Pagination: FC<IPaginationProps> = ({ itemsCount }) => {
   const pages = useMemo(() => Array.from({ length: pagesCount }, (_, index) => index + 1), [pagesCount]);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const q_page = searchParams.get('page') || '1';
-  const q_search = searchParams.get('search') || '';
+  const queryPage = searchParams.get('page') || '1';
+  const querySearch = searchParams.get('search') || '';
   const pathname = usePathname();
   const [activePage, setActivePage] = useState('1');
 
   useEffect(() => {
-    if (q_page) {
-      setActivePage(q_page.toString());
-    } else {
-      setActivePage('1');
-    }
-  }, [q_page]);
+    setActivePage(queryPage.toString());
+  }, [queryPage]);
 
   const handlePageClick = (page: number) => {
-    const search = q_search || '';
+    if (page === Number(activePage)) return;
+
+    const search = querySearch || '';
     setActivePage(page.toString());
     router.push(`${pathname}?search=${search}&page=${page}`);
   };
