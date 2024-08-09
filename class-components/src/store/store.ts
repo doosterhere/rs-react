@@ -6,8 +6,9 @@ const rootReducer = combineReducers({
   items: itemsReducer,
 });
 
-const configStore = () =>
+const configStore = (initialState?: Partial<RootState>) =>
   configureStore({
+    preloadedState: initialState,
     reducer: rootReducer,
     middleware: getDefaultMiddleware => getDefaultMiddleware({}),
   });
