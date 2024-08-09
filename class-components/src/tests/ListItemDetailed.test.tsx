@@ -1,9 +1,13 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProvider } from '../utils';
-import { ListItemDetailed } from '../components';
-import { PlanetType } from '../types';
+import { renderWithProvider } from '@/utils';
+import { ListItemDetailed } from '@/components/ListItemDetailed';
+import { PlanetType } from '@/types';
 import { mockedPlanet } from './testSetup/mockData';
+
+jest.mock('next/navigation', () => ({
+  useSearchParams: () => ({ get: () => '' }),
+}));
 
 describe('ListItemDetailed', () => {
   it('should renders correct data', async () => {

@@ -2,79 +2,87 @@
 
 exports[`ListItemDetailed should render correctly with no data received 1`] = `
 <div>
-  <div
-    class="content light"
+  <main
+    class="main light"
   >
-    <div>
-      Name: 
-    </div>
-    <div>
-      Diameter: 
-    </div>
-    <div>
-      Gravity: 
-    </div>
-    <div>
-      Population: 
-    </div>
-    <div>
-      Climate: 
-    </div>
-    <div>
-      Terrain: 
-    </div>
-    <div>
-      Surfase water: 
-    </div>
-    <a
-      href="/?search=&page=1"
-      role="link"
+    <div
+      class="content"
     >
-      Close
-    </a>
-  </div>
+      <div>
+        Name: 
+      </div>
+      <div>
+        Diameter: 
+      </div>
+      <div>
+        Gravity: 
+      </div>
+      <div>
+        Population: 
+      </div>
+      <div>
+        Climate: 
+      </div>
+      <div>
+        Terrain: 
+      </div>
+      <div>
+        Surfase water: 
+      </div>
+      <a
+        href="/?search=&page=1"
+        role="link"
+      >
+        Close
+      </a>
+    </div>
+  </main>
 </div>
 `;
 
 exports[`ListItemDetailed should renders correct data 1`] = `
 <div>
-  <div
-    class="content light"
+  <main
+    class="main light"
   >
-    <div>
-      Name: 
-      Mocked Planet
-    </div>
-    <div>
-      Diameter: 
-      10465
-    </div>
-    <div>
-      Gravity: 
-      1 standard
-    </div>
-    <div>
-      Population: 
-      200000
-    </div>
-    <div>
-      Climate: 
-      arid
-    </div>
-    <div>
-      Terrain: 
-      desert
-    </div>
-    <div>
-      Surfase water: 
-      1
-    </div>
-    <a
-      href="/?search=&page=1"
-      role="link"
+    <div
+      class="content"
     >
-      Close
-    </a>
-  </div>
+      <div>
+        Name: 
+        Mocked Planet
+      </div>
+      <div>
+        Diameter: 
+        10465
+      </div>
+      <div>
+        Gravity: 
+        1 standard
+      </div>
+      <div>
+        Population: 
+        200000
+      </div>
+      <div>
+        Climate: 
+        arid
+      </div>
+      <div>
+        Terrain: 
+        desert
+      </div>
+      <div>
+        Surfase water: 
+        1
+      </div>
+      <a
+        href="/?search=&page=1"
+        role="link"
+      >
+        Close
+      </a>
+    </div>
+  </main>
 </div>
 `;
