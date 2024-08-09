@@ -2,27 +2,31 @@
 
 exports[`SearchBar should render correctly 1`] = `
 <div>
-  <div
-    class="search light"
+  <main
+    class="main light"
   >
-    <form
-      role="form"
+    <div
+      class="search"
     >
-      <input
-        autocomplete="off"
-        class="searchInput"
-        placeholder="Search for a Star Wars planet..."
-        role="searchbox"
-        type="search"
-        value=""
-      />
-      <button
-        role="button"
-        type="submit"
+      <form
+        role="form"
       >
-        Search
-      </button>
-    </form>
-  </div>
+        <input
+          autocomplete="off"
+          class="searchInput"
+          placeholder="Search for a Star Wars planet..."
+          role="searchbox"
+          type="search"
+          value=""
+        />
+        <button
+          role="button"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </main>
 </div>
 `;
