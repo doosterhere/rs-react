@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProvider } from '../utils';
-import Page404 from '../app/not-found';
+import { renderWithProvider } from '../../utils';
+import Page404 from '../../app/not-found';
 
 describe('Page404', () => {
   it('should render correctly', () => {
