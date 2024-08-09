@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ListItem should render with correct href when id does not match 1`] = `
+exports[`ListItem should render with correct href when on the main page 1`] = `
 <div>
   <a
-    class="item light"
+    class="item"
     href="/detail/1?search=&page=1"
   >
     <div
