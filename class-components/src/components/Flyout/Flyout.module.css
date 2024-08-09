@@ -23,6 +23,8 @@
 
 [class*='dark'] .flyout,
 [class*='dark'] button.withIcon {
+  border-color: gray;
+
   color: white;
 
   background-color: rgb(47, 54, 61);
