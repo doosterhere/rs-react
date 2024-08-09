@@ -3,7 +3,7 @@ import { FC } from 'react';
 import classes from './List.module.css';
 
 import { PlanetType } from '../../types';
-import { ListItem } from '../ListItem';
+import { ListItem } from '@/components/ListItem';
 
 interface IListProps {
   itemsList: PlanetType[] | [];

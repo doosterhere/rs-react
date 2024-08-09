@@ -2,53 +2,33 @@
 
 exports[`List should renders correctly with data 1`] = `
 <div>
-  <div
-    class="list"
-    data-testid="list"
+  <main
+    class="main light"
   >
-    <a
-      class="item light"
-      href="/detail/1?search=&page=1"
+    <div
+      class="list"
+      data-testid="list"
     >
-      <div
-        class="content"
-      >
-        <input
-          class="input"
-          type="checkbox"
-        />
-        <div>
-          Mocked Planet
-        </div>
-        <div />
+      <div>
+        Mocked Planet
       </div>
-    </a>
-    <a
-      class="item light"
-      href="/detail/2?search=&page=1"
-    >
-      <div
-        class="content"
-      >
-        <input
-          class="input"
-          type="checkbox"
-        />
-        <div>
-          Mocked Planet 2
-        </div>
-        <div />
+      <div>
+        Mocked Planet 2
       </div>
-    </a>
-  </div>
+    </div>
+  </main>
 </div>
 `;
 
 exports[`List should renders correctly without data 1`] = `
 <div>
-  <div
-    class="list"
-    data-testid="list"
-  />
+  <main
+    class="main light"
+  >
+    <div
+      class="list"
+      data-testid="list"
+    />
+  </main>
 </div>
 `;

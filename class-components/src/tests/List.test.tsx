@@ -1,8 +1,13 @@
 import { screen } from '@testing-library/react';
 
 import { renderWithProvider } from '../utils';
-import { List } from '../components';
+import { List } from '../components/List';
 import { mockedPlanets } from './testSetup/mockData';
+import { PlanetType } from '../types';
+
+jest.mock('../components/ListItem', () => ({
+  ListItem: (item: PlanetType) => <div>{item.name}</div>,
+}));
 
 describe('List', () => {
   it('should renders correctly with data', () => {
