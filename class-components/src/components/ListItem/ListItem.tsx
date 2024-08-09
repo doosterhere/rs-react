@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useParams } from 'next/navigation';
 
 import classes from './ListItem.module.css';
 
@@ -11,12 +11,12 @@ import { addSelectedItem, removeSelectedItem, checkIsItemSelected } from '../../
 import { FullPlanetInfo } from '../../types';
 
 const ListItem: FC<FullPlanetInfo> = props => {
+  const { id } = useParams();
   const searchParams = useSearchParams();
   const isChecked = useAppSelector(state => checkIsItemSelected(state, props.id)) ?? false;
   const dispatcher = useAppDispatch();
   const search = searchParams.get('search') || '';
   const page = searchParams.get('page') || '1';
-  const detail = searchParams.get('detail') || '';
   const queryString = `search=${search}&page=${page}`;
 
   const handleChange = () => {
@@ -28,10 +28,7 @@ const ListItem: FC<FullPlanetInfo> = props => {
   };
 
   return (
-    <Link
-      href={detail === props.id ? `/?${queryString}` : `/?${queryString}&detail=${props.id}`}
-      className={classes.item}
-    >
+    <Link href={id === props.id ? `/?${queryString}` : `/detail/${props.id}?${queryString}`} className={classes.item}>
       <div className={classes.content}>
         <input
           type="checkbox"
