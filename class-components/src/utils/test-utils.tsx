@@ -1,13 +1,16 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { store } from '../store';
-import { ThemeProvider } from '../components';
+import { configStore } from '../store';
+import { ThemeProvider } from '../components/ThemeContext';
+import { ThemeContainer } from '../components/ThemeContainer';
 
 const renderWithProvider = (component: React.ReactNode) => {
   const Wrapper = ({ children }: { children: React.ReactNode }) => (
-    <Provider store={store}>
-      <ThemeProvider>{children}</ThemeProvider>
+    <Provider store={configStore({})}>
+      <ThemeProvider>
+        <ThemeContainer>{children}</ThemeContainer>
+      </ThemeProvider>
     </Provider>
   );
 
