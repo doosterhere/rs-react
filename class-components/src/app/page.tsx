@@ -28,7 +28,7 @@ async function getPlanet(id: string): Promise<PlanetType> {
   return response.json();
 }
 
-export default async function HomeWrapper({ searchParams }: { searchParams: { [key: string]: string } }) {
+export default async function HomePage({ searchParams }: { searchParams: { [key: string]: string } }) {
   const { search, page, detail } = searchParams;
   const data = await getPlanets(search || '', page || '1');
   let detailedData = {} as PlanetType;
