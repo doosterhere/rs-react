@@ -1,0 +1,32 @@
+.search form {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.searchInput::-webkit-search-cancel-button {
+  cursor: pointer;
+
+  transform: scale(1.4);
+}
+
+[class*='dark'] .searchInput {
+  color: white;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+[class*='dark'] .searchInput::placeholder {
+  color: lightgray;
+}
+
+[class*='dark'] .searchInput::-webkit-search-cancel-button {
+  filter: invert(0.7);
+}
+
+[class*='dark'] .search button {
+  color: white;
+
+  background-color: slategray;
+}

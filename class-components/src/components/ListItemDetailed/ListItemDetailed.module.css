@@ -1,0 +1,38 @@
+.content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+
+  font-size: 20px;
+
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+[class*='dark'] .content {
+  border-color: rgb(47, 54, 61);
+
+  color: white;
+
+  background-color: rgb(47, 54, 61);
+}
+
+.content a {
+  width: 80px;
+  padding: 5px 0;
+  border: 1px solid black;
+  border-radius: 5px;
+
+  color: white;
+  text-align: center;
+
+  background-color: lightskyblue;
+  text-decoration: none;
+}
+
+[class*='dark'] .content a {
+  background-color: darkslateblue;
+}

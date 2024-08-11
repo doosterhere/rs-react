@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flyout should render correctly 1`] = `
+<div>
+  <div
+    class="flyout"
+    data-quantity="1"
+  >
+    <div>
+      Selected items: 
+      1
+    </div>
+    <button
+      class="withIcon"
+      role="button"
+    >
+      <i
+        class="fa-solid fa-trash-can delete"
+      />
+      Unselect all
+    </button>
+    <a
+      class="csvlink"
+      data-testid="csvlink"
+      download="1_planet.csv"
+      href="data:text/csv;charset=utf-8,﻿[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+1"
+      target="_self"
+    >
+      <button
+        class="withIcon"
+        role="button"
+      >
+        <i
+          class="fa-solid fa-file-arrow-down"
+        />
+        Download selected
+      </button>
+    </a>
+  </div>
+</div>
+`;

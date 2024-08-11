@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List should renders correctly with data 1`] = `
+<div>
+  <main
+    class="main light"
+  >
+    <div
+      class="list"
+      data-testid="list"
+    >
+      <div>
+        Mocked Planet
+      </div>
+      <div>
+        Mocked Planet 2
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`List should renders correctly without data 1`] = `
+<div>
+  <main
+    class="main light"
+  >
+    <div
+      class="list"
+      data-testid="list"
+    />
+  </main>
+</div>
+`;

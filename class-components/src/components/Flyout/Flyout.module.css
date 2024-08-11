@@ -1,0 +1,55 @@
+.flyout {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid black;
+  border-radius: 6px;
+
+  transition: transform 0.4s ease-in-out;
+}
+
+.flyout[data-quantity='0'] {
+  transform: translateX(150%);
+}
+
+.flyout[data-quantity='1'] {
+  transform: translateX(0);
+}
+
+[class*='dark'] .flyout,
+[class*='dark'] button.withIcon {
+  border-color: gray;
+
+  color: white;
+
+  background-color: rgb(47, 54, 61);
+}
+
+button.withIcon {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.delete:before,
+.back:before {
+  color: red;
+}
+
+.remove:before {
+  color: green;
+}
+
+[class*='dark'] .remove:before {
+  color: yellowgreen;
+}
+
+.csvlink {
+  text-decoration: none;
+}

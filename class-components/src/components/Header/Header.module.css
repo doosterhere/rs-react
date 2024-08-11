@@ -1,0 +1,33 @@
+.header {
+  position: relative;
+
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  color: white;
+  font-size: 20px;
+
+  background-color: slategray;
+}
+
+.header div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header div img {
+  width: 80px;
+  height: auto;
+}
+
+[class*='dark'] .header {
+  background-color: rgb(47, 54, 61);
+}
+
+[class*='dark'] .header div img {
+  filter: invert(1);
+}
