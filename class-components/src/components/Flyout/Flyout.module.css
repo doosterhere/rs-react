@@ -1,0 +1,58 @@
+.flyout {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid black;
+  border-radius: 6px;
+
+  transition: transform 0.4s ease-in-out;
+}
+
+.flyout[data-quantity='0'] {
+  transform: translateX(150%);
+}
+
+.flyout[data-quantity='1'] {
+  transform: translateX(0);
+}
+
+.dark {
+  color: white;
+
+  background-color: rgb(47, 54, 61);
+}
+
+button.withIcon {
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.flyout.dark button.withIcon {
+  color: white;
+
+  background-color: slategray;
+}
+
+.delete:before,
+.back:before {
+  color: red;
+}
+
+.remove:before {
+  color: green;
+}
+
+.flyout.dark .remove:before {
+  color: yellowgreen;
+}
+
+a {
+  text-decoration: none;
+}
