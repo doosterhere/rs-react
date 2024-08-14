@@ -1,4 +1,4 @@
 function ControlledForm() {
-  return <div className="content">Controlled form</div>;
+  return <div>Controlled form</div>;
 }
 export { ControlledForm };

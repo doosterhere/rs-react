@@ -1,6 +1,6 @@
 function HomePage() {
   return (
-    <div className="content">
+    <div>
       <h1>Comparison of controlled and uncontrolled forms</h1>
     </div>
   );
