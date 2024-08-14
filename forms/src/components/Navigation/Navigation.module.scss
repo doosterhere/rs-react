@@ -1,15 +1,15 @@
 @import '../../styles/variables';
 
 a {
-  &:hover {
-    text-decoration: underline;
-  }
+  color: white;
+
+  text-decoration: none;
 
   &.active {
     color: $color-link-active;
   }
 
-  color: white;
-
-  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
