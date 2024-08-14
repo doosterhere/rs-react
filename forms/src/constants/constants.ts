@@ -1,4 +1,4 @@
-import { NavLinkType } from '../types/navlink.types';
+import { NavLinkType } from '@/types/navlink.types';
 
 const ROUTES = {
   HOME: '/',

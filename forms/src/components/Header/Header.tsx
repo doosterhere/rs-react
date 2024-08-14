@@ -1,6 +1,6 @@
 import classes from './Header.module.scss';
 
-import { NAV_ITEMS } from '../../constants';
+import { NAV_ITEMS } from '@/constants';
 import { Navigation } from '../Navigation';
 
 function Header() {

@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { ROUTES } from '../constants';
+import { ROUTES } from '@/constants';
 
 import { Layout } from './Layout';
-import { ControlledForm } from '../pages/ControlledForm';
-import { UncontrolledForm } from '../pages/UncontrolledForm';
-import { HomePage } from '../pages/HomePage';
+import { ControlledForm } from '@/pages/ControlledForm';
+import { UncontrolledForm } from '@/pages/UncontrolledForm';
+import { HomePage } from '@/pages/HomePage';
 
 const router = createBrowserRouter([
   {

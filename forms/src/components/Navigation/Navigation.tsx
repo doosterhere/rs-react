@@ -2,7 +2,7 @@ import { useLocation, NavLink } from 'react-router-dom';
 
 import classes from './Navigation.module.scss';
 
-import { NavLinkType } from '../../types/navlink.types';
+import { NavLinkType } from '@/types/navlink.types';
 
 type Props = {
   navLinks: NavLinkType[];
