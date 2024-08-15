@@ -1,5 +1,3 @@
-import { useId } from 'react';
-
 import classes from './RadioGroup.module.scss';
 
 type Props = {
@@ -8,8 +6,6 @@ type Props = {
   name: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 function RadioGroup({ label, options, name, ...attr }: Props) {
-  const id = useId();
-
   return (
     <div className={classes.group}>
       {'* ' + label}:
@@ -20,13 +16,13 @@ function RadioGroup({ label, options, name, ...attr }: Props) {
               <input
                 type="radio"
                 name={name}
-                id={`${id}-${option}`}
+                id={option}
                 value={option}
                 defaultChecked={index === 0}
                 className={classes.input}
                 {...attr}
               />
-              <label htmlFor={`${id}-${option}`} className={classes.label}>
+              <label htmlFor={option} className={classes.label}>
                 {option}
               </label>
             </div>

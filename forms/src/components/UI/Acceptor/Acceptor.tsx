@@ -1,5 +1,3 @@
-import { useId } from 'react';
-
 import classes from './Acceptor.module.scss';
 
 type Props = {
@@ -7,12 +5,10 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 function Acceptor({ label, ...attr }: Props) {
-  const id = useId();
-
   return (
     <div className={classes.acceptor}>
-      <label htmlFor={id} className={classes.label}>
-        <input type="checkbox" id={id} className={classes.input} {...attr} required />
+      <label className={classes.label}>
+        <input type="checkbox" className={classes.input} {...attr} required />
         <span />
         {label}
       </label>

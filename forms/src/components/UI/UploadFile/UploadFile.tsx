@@ -1,4 +1,4 @@
-import { ChangeEvent, useId } from 'react';
+import { ChangeEvent } from 'react';
 
 import classes from './UploadFile.module.scss';
 
@@ -8,8 +8,6 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 function UploadFile({ label, required = false, ...rest }: Props) {
-  const id = useId();
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const size = e.target.files?.[0]?.size || 0;
     console.log(size);
@@ -17,9 +15,9 @@ function UploadFile({ label, required = false, ...rest }: Props) {
 
   return (
     <div className={classes.uploader}>
-      <label htmlFor={id} className={classes.label}>
+      <label className={classes.label}>
         {(required ? '* ' : '') + label}:
-        <input type="file" id={id} onChange={handleChange} className={classes.input} {...rest} />
+        <input type="file" onChange={handleChange} className={classes.input} {...rest} />
       </label>
     </div>
   );

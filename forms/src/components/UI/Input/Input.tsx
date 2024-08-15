@@ -1,5 +1,3 @@
-import { useId } from 'react';
-
 import classes from './Input.module.scss';
 
 type Props = {
@@ -8,11 +6,10 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 function Input({ label, required = false, ...attr }: Props) {
-  const id = useId();
   return (
-    <label htmlFor={id} className={classes.label}>
+    <label className={classes.label}>
       {(required ? '* ' : '') + label}:
-      <input id={id} className={classes.input} required={required} {...attr} />
+      <input className={classes.input} required={required} {...attr} />
     </label>
   );
 }
