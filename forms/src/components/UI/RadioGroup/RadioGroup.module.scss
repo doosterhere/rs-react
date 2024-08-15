@@ -1,11 +1,8 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-
-  font-size: 1rem;
+  @include form-label;
 
   .option {
     display: flex;
