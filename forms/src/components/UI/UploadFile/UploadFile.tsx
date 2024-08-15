@@ -4,9 +4,10 @@ import classes from './UploadFile.module.scss';
 
 type Props = {
   label: string;
+  required?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-function UploadFile({ label, ...rest }: Props) {
+function UploadFile({ label, required = false, ...rest }: Props) {
   const id = useId();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +18,7 @@ function UploadFile({ label, ...rest }: Props) {
   return (
     <div className={classes.uploader}>
       <label htmlFor={id} className={classes.label}>
-        {label}
+        {(required ? '* ' : '') + label}:
         <input type="file" id={id} onChange={handleChange} className={classes.input} {...rest} />
       </label>
     </div>
