@@ -9,7 +9,7 @@
 
     &:active,
     &:focus {
-      outline: thin solid $color-input-active;
+      outline: thin solid $color-focus;
     }
   }
 }

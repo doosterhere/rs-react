@@ -22,7 +22,7 @@
 
       &:focus {
         &::file-selector-button {
-          border-color: $color-success;
+          border-color: $color-focus;
         }
       }
     }

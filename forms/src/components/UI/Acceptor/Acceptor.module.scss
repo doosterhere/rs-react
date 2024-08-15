@@ -49,7 +49,7 @@
   }
 
   .input:focus + span::before {
-    outline: thin solid $color-input-active;
+    outline: thin solid $color-focus;
   }
 
   .input:focus:not(:checked) + span::before {

@@ -68,7 +68,7 @@
 
     .input:active + .label:before,
     .input:focus + .label:before {
-      outline: thin solid $color-input-active;
+      outline: thin solid $color-focus;
     }
 
     .input:checked + .label:after {
