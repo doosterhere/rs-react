@@ -4,7 +4,11 @@ type Props = {
   children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-function Button({ children }: Props) {
-  return <button className={classes.button}>{children}</button>;
+function Button({ children, ...attr }: Props) {
+  return (
+    <button className={classes.button} {...attr}>
+      {children}
+    </button>
+  );
 }
 export { Button };
