@@ -1,0 +1,22 @@
+@import '../../../styles/variables';
+
+.button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.2rem;
+
+  font-size: 1.2rem;
+  color: white;
+
+  background-color: $color-primary;
+  cursor: pointer;
+
+  &:focus {
+    outline: 1px solid $color-success;
+  }
+
+  &:active {
+    outline: none;
+  }
+}
