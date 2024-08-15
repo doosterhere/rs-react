@@ -1,8 +1,20 @@
-//colors
-$color-background-dark: #2c2c32;
-$color-link-active: #0f7dc6;
+//base colors
+$color-primary: #0759d3;
+$color-success: #28a745;
+$color-error: #dc3545;
+$color-light-gray: #d3d3d3;
+$color-dark-gray: #2c2c32;
+
+//element colors
+$color-background-dark: $color-dark-gray;
+$color-navlink-active: $color-primary;
+$color-input-active: $color-success;
+$color-input-border: $color-light-gray;
+$color-button-border: $color-light-gray;
 
 //measurements
 $container-width: 1200px;
 $header-height: 70px;
 $footer-height: 60px;
+$content-height: calc(100dvh - #{$header-height} - #{$footer-height});
+$min-input-width: 280px;
