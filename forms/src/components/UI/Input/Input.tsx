@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import classes from './Input.module.scss';
 
 type Props = {
@@ -5,12 +7,13 @@ type Props = {
   required?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-function Input({ label, required = false, ...attr }: Props) {
+const Input = forwardRef(({ label, required = false, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
   return (
     <label className={classes.label}>
       {(required ? '* ' : '') + label}:
-      <input className={classes.input} required={required} {...attr} />
+      <input className={classes.input} required={required} ref={ref || undefined} {...attr} />
     </label>
   );
-}
+});
+
 export { Input };
