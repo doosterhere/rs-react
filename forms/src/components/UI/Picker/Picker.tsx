@@ -26,7 +26,7 @@ const Picker = forwardRef(
           onChange={handleChange}
           onFocus={handleFocus}
           autoComplete="one-time-code"
-          ref={ref || undefined}
+          ref={ref}
           {...attr}
         />
         {listVisible && filteredList.length > 0 && !selectedCountry && (

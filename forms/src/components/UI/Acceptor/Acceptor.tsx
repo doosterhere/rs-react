@@ -10,7 +10,7 @@ const Acceptor = forwardRef(({ label, ...attr }: Props, ref?: React.ForwardedRef
   return (
     <div className={classes.acceptor}>
       <label className={classes.label}>
-        <input type="checkbox" className={classes.input} required ref={ref || undefined} {...attr} />
+        <input type="checkbox" className={classes.input} required ref={ref} {...attr} />
         <span />
         {label}
       </label>

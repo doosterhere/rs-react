@@ -11,7 +11,7 @@ const Input = forwardRef(({ label, required = false, ...attr }: Props, ref?: Rea
   return (
     <label className={classes.label}>
       {(required ? '* ' : '') + label}:
-      <input className={classes.input} required={required} ref={ref || undefined} {...attr} />
+      <input className={classes.input} required={required} ref={ref} {...attr} />
     </label>
   );
 });
