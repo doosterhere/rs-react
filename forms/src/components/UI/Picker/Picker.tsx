@@ -13,6 +13,7 @@ function Picker({ label, dataList, required = false, ...attr }: Props) {
   const [value, setValue] = useState<string>('');
   const [listVisible, setListVisible] = useState<boolean>(false);
   const [filteredList, setFilteredList] = useState<string[]>(dataList);
+  const [selectedCountry, setSelectedCountry] = useState<string>('');
 
   useEffect(() => {
     setFilteredList(dataList.filter(country => country.toLowerCase().includes(value.toLowerCase())));
@@ -27,6 +28,13 @@ function Picker({ label, dataList, required = false, ...attr }: Props) {
   const handleListClick = (country: string) => {
     setValue(country);
     setListVisible(false);
+    setSelectedCountry(country);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+    setSelectedCountry('');
+    setListVisible(true);
   };
 
   const handleFocus = () => {
@@ -36,7 +44,8 @@ function Picker({ label, dataList, required = false, ...attr }: Props) {
   };
 
   const handleBlur = () => {
-    setTimeout(() => setListVisible(false), 100);
+    //the only solution I've found
+    setTimeout(() => setListVisible(false), 150);
   };
 
   return (
@@ -47,12 +56,12 @@ function Picker({ label, dataList, required = false, ...attr }: Props) {
         {...attr}
         className={classes.input}
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        autoComplete="off"
+        autoComplete="one-time-code"
       />
-      {listVisible && filteredList.length > 0 && (
+      {listVisible && filteredList.length > 0 && !selectedCountry && (
         <ul className={classes.list}>
           {filteredList.map(country => (
             <li key={country} onClick={() => handleListClick(country)}>
