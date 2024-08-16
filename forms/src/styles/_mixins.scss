@@ -7,6 +7,8 @@
   gap: 0.4rem;
 
   font-size: 1rem;
+
+  user-select: none;
 }
 
 @mixin form-input {
