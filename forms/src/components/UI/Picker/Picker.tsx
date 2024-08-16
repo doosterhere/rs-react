@@ -1,6 +1,5 @@
-import { useEffect, useId, useState } from 'react';
-
 import classes from './Picker.module.scss';
+import { useAutocomplete } from '../../../hooks/useAutocomplete';
 
 type Props = {
   label: string;
@@ -9,50 +8,13 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 function Picker({ label, dataList, required = false, ...attr }: Props) {
-  const id = useId();
-  const [value, setValue] = useState<string>('');
-  const [listVisible, setListVisible] = useState<boolean>(false);
-  const [filteredList, setFilteredList] = useState<string[]>(dataList);
-  const [selectedCountry, setSelectedCountry] = useState<string>('');
-
-  useEffect(() => {
-    setFilteredList(dataList.filter(country => country.toLowerCase().includes(value.toLowerCase())));
-
-    if (value) {
-      setListVisible(true);
-    } else {
-      setListVisible(false);
-    }
-  }, [value, dataList]);
-
-  const handleListClick = (country: string) => {
-    setValue(country);
-    setListVisible(false);
-    setSelectedCountry(country);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    setSelectedCountry('');
-    setListVisible(true);
-  };
-
-  const handleFocus = () => {
-    if (value) {
-      setListVisible(true);
-    }
-  };
-
-  const handleBlur = () => {
-    //the only solution I've found
-    setTimeout(() => setListVisible(false), 150);
-  };
+  const { value, listVisible, filteredList, selectedCountry, handleChange, handleFocus, handleBlur, handleListClick } =
+    useAutocomplete(dataList);
 
   return (
-    <label htmlFor={id} className={classes.label}>
+    <label className={classes.label}>
       {(required ? '* ' : '') + label}:
       <input
-        id={id}
         {...attr}
         className={classes.input}
         value={value}
