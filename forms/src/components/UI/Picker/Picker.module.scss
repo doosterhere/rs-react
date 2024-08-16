@@ -17,9 +17,10 @@
 
   .list {
     position: absolute;
-    top: 3.4rem;
+    top: 3.2rem;
+    z-index: 1;
 
-    padding: 1rem 0;
+    padding: 0.6rem 0;
     max-height: 10rem;
     width: 100%;
 
