@@ -8,7 +8,7 @@ function Acceptor({ label, ...attr }: Props) {
   return (
     <div className={classes.acceptor}>
       <label className={classes.label}>
-        <input type="checkbox" className={classes.input} {...attr} required />
+        <input type="checkbox" className={classes.input} required {...attr} />
         <span />
         {label}
       </label>

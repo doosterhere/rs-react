@@ -7,7 +7,7 @@ type Props = {
   required?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-function UploadFile({ label, required = false, ...rest }: Props) {
+function UploadFile({ label, required = false, ...attr }: Props) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const size = e.target.files?.[0]?.size || 0;
     console.log(size);
@@ -17,7 +17,7 @@ function UploadFile({ label, required = false, ...rest }: Props) {
     <div className={classes.uploader}>
       <label className={classes.label}>
         {(required ? '* ' : '') + label}:
-        <input type="file" onChange={handleChange} className={classes.input} {...rest} />
+        <input type="file" onChange={handleChange} className={classes.input} {...attr} />
       </label>
     </div>
   );
