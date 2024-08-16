@@ -1,10 +1,29 @@
 import { useEffect, useState } from 'react';
 
-const useAutocomplete = (dataList: string[]) => {
+const useAutocomplete = (dataList: string[], id: string) => {
   const [value, setValue] = useState<string>('');
   const [listVisible, setListVisible] = useState<boolean>(false);
   const [filteredList, setFilteredList] = useState<string[]>(dataList);
   const [selectedCountry, setSelectedCountry] = useState<string>('');
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (
+        (e.target as HTMLElement).id === `picker-input-${id}` ||
+        (e.target as HTMLElement).id === `picker-list-${id}`
+      ) {
+        return;
+      }
+
+      setListVisible(false);
+    };
+
+    document.addEventListener('click', onClick);
+
+    return () => {
+      document.removeEventListener('click', onClick);
+    };
+  }, [id]);
 
   useEffect(() => {
     setFilteredList(dataList.filter(country => country.toLowerCase().includes(value.toLowerCase())));
@@ -34,11 +53,6 @@ const useAutocomplete = (dataList: string[]) => {
     }
   };
 
-  const handleBlur = () => {
-    //since the input's blur event fires earlier than list's click event, this is the only solution I've found
-    setTimeout(() => setListVisible(false), 150);
-  };
-
   return {
     value,
     listVisible,
@@ -47,7 +61,6 @@ const useAutocomplete = (dataList: string[]) => {
     handleChange,
     handleListClick,
     handleFocus,
-    handleBlur,
   };
 };
 
