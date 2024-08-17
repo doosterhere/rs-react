@@ -24,6 +24,7 @@ const SCHEMA = yup.object().shape({
     .string()
     .required('Name is required')
     .min(3, 'Name must be at least 3 characters long')
+    .test('chars-test', 'Name should not contain special characters', (name: string) => /^[A-Za-z\s-]+$/.test(name))
     .matches(/^[A-Z]{1}[A-Za-z\s-]+$/, 'The name must begin with a capital letter'),
   age: yup
     .number()
