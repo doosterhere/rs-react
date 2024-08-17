@@ -12,4 +12,8 @@
       outline: thin solid $color-focus;
     }
   }
+
+  .error {
+    @include validation-error;
+  }
 }

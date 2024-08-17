@@ -4,14 +4,15 @@ import classes from './Input.module.scss';
 
 type Props = {
   label: string;
-  required?: boolean;
+  message?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const Input = forwardRef(({ label, required = false, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
+const Input = forwardRef(({ label, message, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
   return (
     <label className={classes.label}>
-      {(required ? '* ' : '') + label}:
-      <input className={classes.input} required={required} ref={ref} {...attr} />
+      {label}:
+      <input className={classes.input} ref={ref} {...attr} />
+      {message && <span className={classes.error}>{message}</span>}
     </label>
   );
 });
