@@ -26,5 +26,9 @@
         }
       }
     }
+
+    .error {
+      @include validation-error;
+    }
   }
 }
