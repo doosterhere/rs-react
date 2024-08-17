@@ -25,7 +25,7 @@ function Summary() {
       </div>
       <div>
         <b>Avatar:</b>
-        <img src={data.picture} />
+        <img src={data.picture} alt="Avatar" />
       </div>
     </div>
   );
