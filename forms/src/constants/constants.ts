@@ -46,11 +46,7 @@ const SCHEMA = yup.object().shape({
     .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
     .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
     .matches(/[0-9]/, 'Password must contain at least one number')
-    .matches(/[!@#$%^&*]/, 'Password must contain at least one special character'),
-  // .matches(
-  //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-  //   'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character',
-  // ),
+    .matches(/[!@#$%^&*_.]/, 'Password must contain at least one special character'),
   passwordRepeat: yup
     .string()
     .required('Password confirmation is required')
