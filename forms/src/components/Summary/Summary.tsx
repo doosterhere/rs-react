@@ -15,7 +15,7 @@ function Summary() {
         <b>Age:</b> {data.age}
       </div>
       <div>
-        <b>e-mail:</b> {data.email}
+        <b>e-mail:</b> <a href="mailto:{data.email}">{data.email}</a>
       </div>
       <div>
         <b>Gender:</b> {data.gender}

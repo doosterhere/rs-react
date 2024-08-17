@@ -12,6 +12,10 @@
     &:not(:first-child) {
       border-top: none;
     }
+
+    a {
+      color: $color-primary;
+    }
   }
 
   img {
