@@ -29,6 +29,9 @@
 
     .error {
       @include validation-error;
+
+      top: 55%;
+      left: 28%;
     }
   }
 }

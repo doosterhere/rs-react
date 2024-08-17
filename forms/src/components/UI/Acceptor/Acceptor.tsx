@@ -14,8 +14,8 @@ const Acceptor = forwardRef(({ label, message, ...attr }: Props, ref?: React.For
         <input type="checkbox" className={classes.input} ref={ref} {...attr} />
         <span />
         {label}
+        {message && <span className={classes.error}>{message}</span>}
       </label>
-      {message && <span className={classes.error}>{message}</span>}
     </div>
   );
 });

@@ -4,6 +4,13 @@
 .label {
   @include form-label;
 
+  &:has(.input[type='password']) div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
   .input {
     @include form-input;
 

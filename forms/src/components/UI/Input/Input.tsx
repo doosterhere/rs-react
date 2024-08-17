@@ -15,7 +15,9 @@ const Input = forwardRef(({ label, message, password, ...attr }: Props, ref?: Re
     <label className={classes.label}>
       {label}:
       <input className={classes.input} ref={ref} {...attr} />
-      {attr.type === 'password' && password && <PasswordStrengthMeter password={password || ''} />}
+      {attr.type === 'password' && label.toLowerCase() === 'Password'.toLowerCase() && (
+        <PasswordStrengthMeter password={password || ''} />
+      )}
       {message && <span className={classes.error}>{message}</span>}
     </label>
   );
