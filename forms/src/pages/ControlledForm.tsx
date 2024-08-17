@@ -29,7 +29,7 @@ function ControlledForm() {
     reset,
     setValue,
     watch,
-  } = useForm({ resolver: yupResolver(SCHEMA), mode: 'onTouched', reValidateMode: 'onChange' });
+  } = useForm({ resolver: yupResolver(SCHEMA), mode: 'all', reValidateMode: 'onChange' });
 
   const currentCountry = watch('country');
 
