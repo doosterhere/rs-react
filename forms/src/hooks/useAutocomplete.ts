@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const useAutocomplete = (dataList: string[], id: string) => {
-  const [value, setValue] = useState<string>('');
+const useAutocomplete = (dataList: string[], id: string, value: string, setValue: (value: string) => void) => {
   const [listVisible, setListVisible] = useState<boolean>(false);
   const [filteredList, setFilteredList] = useState<string[]>(dataList);
   const [selectedCountry, setSelectedCountry] = useState<string>('');
@@ -54,7 +53,6 @@ const useAutocomplete = (dataList: string[], id: string) => {
   };
 
   return {
-    value,
     listVisible,
     filteredList,
     selectedCountry,

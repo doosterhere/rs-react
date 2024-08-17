@@ -7,19 +7,26 @@ import { useAutocomplete } from '@/hooks/useAutocomplete';
 type Props = {
   label: string;
   dataList: string[];
-  required?: boolean;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+  message?: string;
+  value: string;
+  onChanging: (value: string) => void;
+};
 
 const Picker = forwardRef(
-  ({ label, dataList, required = false, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
+  ({ label, dataList, message, value, onChanging, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
     const id = useId();
-    const { value, listVisible, filteredList, selectedCountry, handleChange, handleFocus, handleListClick } =
-      useAutocomplete(dataList, id);
+    const { listVisible, filteredList, selectedCountry, handleChange, handleFocus, handleListClick } = useAutocomplete(
+      dataList,
+      id,
+      value,
+      onChanging,
+    );
 
     return (
       <label className={classes.label}>
-        {(required ? '* ' : '') + label}:
+        {label}:
         <input
+          type="text"
           id={`picker-input-${id}`}
           className={classes.input}
           value={value}
@@ -29,6 +36,7 @@ const Picker = forwardRef(
           ref={ref}
           {...attr}
         />
+        {message && <span className={classes.error}>{message}</span>}
         {listVisible && filteredList.length > 0 && !selectedCountry && (
           <ul className={classes.list} id={`picker-list-${id}`}>
             {filteredList.map(country => (

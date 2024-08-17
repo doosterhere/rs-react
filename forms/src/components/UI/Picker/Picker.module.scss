@@ -29,6 +29,7 @@
 
     background-color: white;
     overflow: hidden scroll;
+
     li {
       padding-left: 1rem;
       padding-right: 1rem;
@@ -40,5 +41,9 @@
         background-color: $color-light-gray;
       }
     }
+  }
+
+  .error {
+    @include validation-error;
   }
 }
