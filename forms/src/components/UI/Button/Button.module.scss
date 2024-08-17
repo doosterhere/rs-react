@@ -19,4 +19,10 @@
   &:active {
     outline: none;
   }
+
+  &:disabled {
+    background-color: $color-dark-gray;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
