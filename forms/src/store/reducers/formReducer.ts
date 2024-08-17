@@ -1,33 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type FormDataType = {
-  name: string;
-  age: number;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  gender: string;
-  country: string;
-  picture: string;
-  agreed: boolean;
-};
+import { FormDataType } from '@/types/formData.type';
+
+type FormData = Omit<FormDataType, 'picture'> & { picture: string };
+
 interface IFormState {
-  formData: FormDataType;
+  formData: FormData;
 }
 
 const initialState: IFormState = {
-  formData: {} as FormDataType,
+  formData: {} as FormData,
 };
 
 const formReducer = createSlice({
   name: 'form',
   initialState,
   reducers: create => ({
-    setFormData: create.reducer((state, action: PayloadAction<FormDataType>) => {
+    setFormData: create.reducer((state, action: PayloadAction<FormData>) => {
       state.formData = action.payload;
     }),
     clearFormData: create.reducer(state => {
-      state.formData = {} as FormDataType;
+      state.formData = {} as FormData;
     }),
   }),
   selectors: {
