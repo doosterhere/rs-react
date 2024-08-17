@@ -47,6 +47,7 @@ h1 {
 }
 
 form {
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   gap: 1rem;

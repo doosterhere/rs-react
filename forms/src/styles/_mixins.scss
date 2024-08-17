@@ -19,3 +19,8 @@
   border: 1px solid $color-input-border;
   border-radius: 0.2rem;
 }
+
+@mixin validation-error {
+  color: $color-error;
+  font-size: 0.8rem;
+}
