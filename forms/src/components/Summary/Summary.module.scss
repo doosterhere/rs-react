@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.summary {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    padding: 1rem;
+    border: 1px solid $color-light-gray;
+
+    &:not(:first-child) {
+      border-top: none;
+    }
+  }
+
+  img {
+    width: 200px;
+    display: flex;
+  }
+}
