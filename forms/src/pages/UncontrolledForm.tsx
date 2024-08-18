@@ -77,7 +77,6 @@ function UncontrolledForm() {
         agreed: AGREED || false,
       };
 
-      dispatcher(clearFormData());
       dispatcher(setFormData({ ...data, picture: base64 }));
       navigate(ROUTES.HOME);
     }

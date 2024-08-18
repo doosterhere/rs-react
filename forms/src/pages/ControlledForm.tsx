@@ -37,7 +37,6 @@ function ControlledForm() {
     const picture = data.picture[0];
     const base64 = await getBase64(picture);
 
-    dispatcher(clearFormData());
     dispatcher(setFormData({ ...data, picture: base64 }));
     reset();
     navigate(ROUTES.HOME);
