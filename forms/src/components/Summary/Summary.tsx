@@ -4,31 +4,32 @@ import { selectFormData } from '@/store/reducers/formReducer';
 import { useAppSelector } from '@/store/store';
 
 function Summary() {
-  const data = useAppSelector(selectFormData);
+  // const data = [...useAppSelector(selectFormData)].reverse();
+  const data = [...useAppSelector(selectFormData)].reverse();
 
   return (
     <div className={classes.summary}>
-      {data.map((data, index) => (
+      {data.map((item, index, data) => (
         <div key={index}>
-          <h3>Form {index + 1}</h3>
+          <h3>Form {data.length - index}</h3>
           <div>
-            <b>Full name:</b> {data.name}
+            <b>Full name:</b> {item.name}
           </div>
           <div>
-            <b>Age:</b> {data.age}
+            <b>Age:</b> {item.age}
           </div>
           <div>
-            <b>e-mail:</b> <a href="mailto:{data.email}">{data.email}</a>
+            <b>e-mail:</b> <a href="mailto:{data.email}">{item.email}</a>
           </div>
           <div>
-            <b>Gender:</b> {data.gender}
+            <b>Gender:</b> {item.gender}
           </div>
           <div>
-            <b>Country:</b> {data.country}
+            <b>Country:</b> {item.country}
           </div>
           <div>
             <b>Avatar:</b>
-            <img src={data.picture} alt="Avatar" />
+            <img src={item.picture} alt="Avatar" />
           </div>
         </div>
       ))}
