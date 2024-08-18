@@ -4,17 +4,29 @@
   max-width: 400px;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 
   div {
     padding: 1rem;
     border: 1px solid $color-light-gray;
+    border-radius: 0.4rem;
 
-    &:not(:first-child) {
-      border-top: none;
-    }
+    color: white;
 
-    a {
-      color: $color-primary;
+    background-color: $color-background-dark;
+
+    & > div {
+      padding: 1rem;
+      border: 1px solid $color-light-gray;
+      border-radius: 0;
+
+      color: black;
+
+      background-color: white;
+
+      a {
+        color: $color-primary;
+      }
     }
   }
 
