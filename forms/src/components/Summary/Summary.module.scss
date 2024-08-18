@@ -15,6 +15,11 @@
 
     background-color: $color-background-dark;
 
+    &:first-child {
+      animation: blink 0.8s ease-in-out;
+      animation-iteration-count: 2;
+    }
+
     & > div {
       padding: 1rem;
       border: 1px solid $color-light-gray;
@@ -33,5 +38,17 @@
   img {
     width: 200px;
     display: flex;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
   }
 }
