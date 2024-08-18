@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import classes from './RadioGroup.module.scss';
 
 type Props = {
@@ -8,20 +8,24 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>;
 const RadioGroup = forwardRef(
   ({ label, options, message, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
+    const [value, setValue] = useState(options[0]);
+
     return (
       <div className={classes.group}>
         {label}:
-        <div className={classes.groups}>
+        <div className={classes.groups} ref={ref} data-value={value}>
           {options.map((option, index) => {
             return (
               <div className={classes.option} key={option}>
                 <input
                   type="radio"
                   id={option}
+                  name={label}
                   value={option}
+                  ref={typeof ref === 'function' ? ref : null}
                   defaultChecked={index === 0}
                   className={classes.input}
-                  ref={ref}
+                  onChange={typeof ref === 'function' ? () => {} : e => setValue(e.target.value)}
                   {...attr}
                 />
                 <label htmlFor={option} className={classes.label}>
