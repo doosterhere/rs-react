@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ROUTES, SCHEMA } from '@/constants';
 import { getBase64 } from '@/utils/getBase64';
 import { useAppDispatch } from '@/store/store';
-import { clearFormData, setFormData } from '@/store/reducers/formReducer';
+import { setFormData } from '@/store/reducers/formReducer';
 import { useCountries } from '@/hooks/useCountries';
 import { Input } from '@/components/UI/Input';
 import { RadioGroup } from '@/components/UI/RadioGroup';
