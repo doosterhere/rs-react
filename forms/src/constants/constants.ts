@@ -28,7 +28,7 @@ const SCHEMA = yup.object().shape({
     .matches(/^[A-Z]{1}[A-Za-z\s-]+$/, 'The name must begin with a capital letter'),
   age: yup
     .number()
-    .typeError('Age must be a number between 1 and 130')
+    .typeError(`Age must be a number between ${MIN_AGE} and ${MAX_AGE}`)
     .required('Age is required')
     .test(
       'is-valid-age',
@@ -42,11 +42,11 @@ const SCHEMA = yup.object().shape({
   password: yup
     .string()
     .required('Password is required')
-    .min(8, 'Password must be at least 8 characters')
-    .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .matches(/[0-9]/, 'Password must contain at least one number')
-    .matches(/[!@#$%^&*_.]/, 'Password must contain at least one special character'),
+    .min(8, 'Password must be at least 8 characters long')
+    .matches(/[A-Z]/, 'At least one uppercase letter is required')
+    .matches(/[a-z]/, 'At least one lowercase letter is required')
+    .matches(/[0-9]/, 'At least one number is required')
+    .matches(/[!@#$%^&*_.]/, 'At least one special character is required'),
   passwordRepeat: yup
     .string()
     .required('Password confirmation is required')
@@ -55,7 +55,7 @@ const SCHEMA = yup.object().shape({
   country: yup.string().required('Please choose your country'),
   picture: yup
     .mixed<FileList>()
-    .required('Upload your avatar')
+    .required('Please, upload a file')
     .test('is-valid-file', 'Please upload a file', (value: FileList | undefined) => value && value.length > 0)
     .test(
       'is-valid-size',
@@ -66,7 +66,7 @@ const SCHEMA = yup.object().shape({
       'is-valid-type',
       'Only PNG and JPEG files are accepted',
       (value: FileList | undefined) =>
-        value && value[0] && ['image/png', 'image/jpeg', '.jpg', '.png'].includes(value[0].type),
+        value && value[0] && ['image/png', 'image/jpeg', '.jpeg', '.png'].includes(value[0].type),
     ),
   agreed: yup
     .boolean()
@@ -74,4 +74,4 @@ const SCHEMA = yup.object().shape({
     .oneOf([true], 'Please accept Terms and Conditions'),
 });
 
-export { ROUTES, NAV_ITEMS, MAX_FILE_SIZE, SCHEMA, MIN_AGE, MAX_AGE };
+export { ROUTES, NAV_ITEMS, MAX_FILE_SIZE, SCHEMA, MIN_AGE, MAX_AGE, MB };
