@@ -1,8 +1,12 @@
-import { forwardRef, useEffect, useId, useState } from 'react';
+import { forwardRef, useId, useState } from 'react';
+
+import { UseFormRegister } from 'react-hook-form';
 
 import classes from './Picker.module.scss';
 
 import { useAutocomplete } from '@/hooks/useAutocomplete';
+
+import { FormDataType } from '@/types/formData.type';
 
 type Props = {
   label: string;
@@ -10,10 +14,14 @@ type Props = {
   message?: string;
   value?: string;
   onChanging?: (value: string) => void;
+  register?: UseFormRegister<FormDataType>;
 };
 
 const Picker = forwardRef(
-  ({ label, dataList, message, value, onChanging, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
+  (
+    { label, dataList, message, value, onChanging, register, ...attr }: Props,
+    ref?: React.ForwardedRef<HTMLInputElement>,
+  ) => {
     const id = useId();
     const [innerValue, setInnerValue] = useState('');
     const { listVisible, filteredList, selectedCountry, handleChange, handleFocus, handleListClick } = useAutocomplete(
@@ -22,14 +30,6 @@ const Picker = forwardRef(
       value ?? innerValue,
       onChanging ?? setInnerValue,
     );
-
-    // useEffect(() => {
-    //   console.log(
-    //     `listVisible=${listVisible}`,
-    //     `filteredList.length=${filteredList.length}`,
-    //     `selectedCountry=${selectedCountry}`,
-    //   );
-    // }, [listVisible, filteredList.length, selectedCountry]);
 
     return (
       <label className={classes.label}>

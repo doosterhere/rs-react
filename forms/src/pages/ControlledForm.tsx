@@ -29,7 +29,7 @@ function ControlledForm() {
     reset,
     setValue,
     watch,
-  } = useForm({ resolver: yupResolver(SCHEMA), mode: 'all', reValidateMode: 'onChange' });
+  } = useForm<FormDataType>({ resolver: yupResolver(SCHEMA), mode: 'all', reValidateMode: 'onChange' });
 
   const currentCountry = watch('country');
 
@@ -83,7 +83,7 @@ function ControlledForm() {
         dataList={countries}
         value={currentCountry || ''}
         onChanging={(value: string) => setValue('country', value)}
-        {...register(Fields.country)}
+        register={register}
         message={errors.country?.message}
       />
       <UploadFile
