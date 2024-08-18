@@ -1,4 +1,4 @@
-import { forwardRef, useId } from 'react';
+import { forwardRef, useEffect, useId, useState } from 'react';
 
 import classes from './Picker.module.scss';
 
@@ -8,19 +8,28 @@ type Props = {
   label: string;
   dataList: string[];
   message?: string;
-  value: string;
-  onChanging: (value: string) => void;
+  value?: string;
+  onChanging?: (value: string) => void;
 };
 
 const Picker = forwardRef(
   ({ label, dataList, message, value, onChanging, ...attr }: Props, ref?: React.ForwardedRef<HTMLInputElement>) => {
     const id = useId();
+    const [innerValue, setInnerValue] = useState('');
     const { listVisible, filteredList, selectedCountry, handleChange, handleFocus, handleListClick } = useAutocomplete(
       dataList,
       id,
-      value,
-      onChanging,
+      value ?? innerValue,
+      onChanging ?? setInnerValue,
     );
+
+    // useEffect(() => {
+    //   console.log(
+    //     `listVisible=${listVisible}`,
+    //     `filteredList.length=${filteredList.length}`,
+    //     `selectedCountry=${selectedCountry}`,
+    //   );
+    // }, [listVisible, filteredList.length, selectedCountry]);
 
     return (
       <label className={classes.label}>
@@ -29,7 +38,7 @@ const Picker = forwardRef(
           type="text"
           id={`picker-input-${id}`}
           className={classes.input}
-          value={value}
+          value={value ?? innerValue}
           onChange={handleChange}
           onFocus={handleFocus}
           autoComplete="one-time-code"
