@@ -5,11 +5,11 @@ import { FormDataType } from '@/types/formData.type';
 type FormData = Omit<FormDataType, 'picture'> & { picture: string };
 
 interface IFormState {
-  formData: FormData;
+  formData: FormData[];
 }
 
 const initialState: IFormState = {
-  formData: {} as FormData,
+  formData: [],
 };
 
 const formReducer = createSlice({
@@ -17,10 +17,10 @@ const formReducer = createSlice({
   initialState,
   reducers: create => ({
     setFormData: create.reducer((state, action: PayloadAction<FormData>) => {
-      state.formData = action.payload;
+      state.formData = [...state.formData, action.payload];
     }),
     clearFormData: create.reducer(state => {
-      state.formData = {} as FormData;
+      state.formData = [];
     }),
   }),
   selectors: {
