@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.header {
+  height: $header-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $color-background-dark;
+
+  .nav {
+    display: flex;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+a {
+  color: white;
+
+  text-decoration: none;
+
+  &.active {
+    color: $color-navlink-active;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,37 @@
+@import 'variables';
+
+@mixin form-label {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.4rem;
+
+  font-size: 1rem;
+
+  user-select: none;
+}
+
+@mixin form-input {
+  width: 100%;
+  min-width: $min-input-width;
+  padding: 0.6rem;
+
+  border: 1px solid $color-input-border;
+  border-radius: 0.2rem;
+}
+
+@mixin validation-error {
+  position: absolute;
+  top: 3.15rem;
+  left: 2%;
+
+  padding: 0.1rem;
+  border-radius: 0.4rem;
+
+  color: $color-error;
+  font-size: 0.8rem;
+
+  background-color: white;
+}

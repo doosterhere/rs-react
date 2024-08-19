@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.footer {
+  height: $footer-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0.8rem;
+  color: white;
+
+  background-color: $color-background-dark;
+}
